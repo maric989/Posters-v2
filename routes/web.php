@@ -23,3 +23,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admin'],function (){
    Route::get('/','AdminController@index');
 });
+
+Route::group(['prefix' => 'posteri'],function (){
+   Route::get('/create','PosterController@create')->name('create.poster');
+   Route::post('/create','PosterController@store')->name('store.poster');
+});
