@@ -32,4 +32,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class,'role_id','id');
     }
+
+    public function posters()
+    {
+        return $this->hasMany(Poster::class);
+    }
 }

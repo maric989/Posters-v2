@@ -77,25 +77,22 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
             <li class="active">
-                <a href="index.html" class="dropdown-toggle" data-toggle="dropdown">Home <b class="caret"></b></a>
+                <a href="index.html" class="dropdown-toggle" data-toggle="dropdown">Posteri <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="index2.html">Homepage with 2 right sidebars</a></li>
-                    <li><a href="index3.html">Homepage with big right sidebar</a></li>
-                    <li><a href="index4.html">Homepage big masonry</a></li>
-                    <li><a href="index5.html">Homepage with masonry and sidebar</a></li>
+                    <li><a href="index2.html">Top</a></li>
+                    <li><a href="index3.html">Trending</a></li>
+                    <li><a href="index4.html">Svezi</a></li>
                 </ul>
             </li>
             <li>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Definicije <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="category.html">Category page</a></li>
-                    <li><a href="post.html">Single post page</a></li>
-                    <li><a href="profile.html">User profile page</a></li>
-                    <li><a href="settings.html">Settings page</a></li>
-                    <li><a href="widgets.html">Widgets page</a></li>
+                    <li><a href="category.html">Top</a></li>
+                    <li><a href="post.html">Trending</a></li>
+                    <li><a href="profile.html">Sveze</a></li>
                 </ul>
             </li>
-            <li><a href="#">Popular</a></li>
+            <li><a href="#">Autori</a></li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
                 <ul class="dropdown-menu">

@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <form action="{{route('store.poster')}}" method="post">
+    <form action="{{route('store.poster')}}" method="post" enctype="multipart/form-data">
         {{csrf_field()}}
         <div class="post-window window-image">
             <div class="window-left">
@@ -14,7 +14,7 @@
                                      <span>PNG, GIF ili JPG samo. <br/> Max Velicina fajla je 5MB.</span>
                                      <!-- The file input field used as target for the file upload widget -->
                                     {{--<input class="fileupload-init" type="file" name="files[]" rel="files-photos">--}}
-                                         <input type="file" name="fileToUpload" id="fileToUpload">
+                                         <input type="file" name="posterImg" id="fileToUpload">
 
                                 </span>
                     <div id="files-photos" class="files"></div>

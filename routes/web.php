@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('user.index');
-});
+Route::get('/', 'PosterController@index');
+
 
 Route::post('/test','AuthController@register')->name('test');
 
@@ -24,7 +23,8 @@ Route::group(['prefix' => 'admin'],function (){
    Route::get('/','AdminController@index');
 });
 
-Route::group(['prefix' => 'posteri'],function (){
+Route::group(['prefix' => 'poster'],function (){
    Route::get('/create','PosterController@create')->name('create.poster');
    Route::post('/create','PosterController@store')->name('store.poster');
+   Route::get('/{slug}/{id}','PosterController@single')->name('single.poster');
 });
