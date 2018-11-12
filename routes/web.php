@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('user.index');
 });
 
+Route::post('/test','AuthController@register')->name('test');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -15,7 +15,10 @@
         <h2>User functionality</h2>
         <hr />
         <div class="widget-content">
-            <a data-toggle="modal" href="#registerModal" class="btn btn-primary btn-lg btn-block custom-button">Register/Login</a><br />
+            @if(!Auth::user())
+            <a data-toggle="modal" href="{{route('register')}}" class="btn btn-primary btn-lg btn-block custom-button">Register</a><br />
+            <a data-toggle="modal" href="{{route('login')}}" class="btn btn-primary btn-lg btn-block custom-button">Login</a><br />
+            @endif
             <a data-toggle="modal" href="#postModal" class="btn btn-primary btn-lg btn-block custom-button">Post Article</a>
         </div>
     </div>

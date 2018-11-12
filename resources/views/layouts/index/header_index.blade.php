@@ -127,20 +127,31 @@
         <div class="user-box">
             <a href="#">
                 <figure>
-                    <img src="img/user-box.png" alt=""/>
+                    <img src="{{asset('aruna/img/user-box.png')}}" alt=""/>
                 </figure>
-                <span class="name">teothemes</span>
+                @if(Auth::user())
+                    <span class="name">{{Auth::user()->name}}</span>
+                @else
+                    <span class="name">Welcome</span>
+                @endif
             </a>
-            <div class="drop-down">
-                <div class="counters-line">
-                    <div class="half"><span class="counter">321k</span><span class="desc">kudos</span></div>
-                    <div class="half"><span class="counter">42</span><span class="desc">posts</span></div>
+            @if(Auth::user())
+                <div class="drop-down">
+                    <div class="counters-line">
+                        <div class="half"><span class="counter">321k</span><span class="desc">Lajkovi</span></div>
+                        <div class="half"><span class="counter">42</span><span class="desc">Postovi</span></div>
+                    </div>
+                    <div class="buttons-line">
+                        <a href="#" class="btn btn-primary btn-block custom-button">Post Fun</a>
+                        <a href="settings.html" class="btn btn-primary btn-block custom-button">Profile & Settings</a>
+                        <form action="{{route('logout')}}" method="POST">
+                            {{csrf_field()}}
+                            <button class="btn btn-primary btn-block custom-button">Logout</button>
+                        </form>
+
+                    </div>
                 </div>
-                <div class="buttons-line">
-                    <a href="#" class="btn btn-primary btn-block custom-button">Post Fun</a>
-                    <a href="settings.html" class="btn btn-primary btn-block custom-button">Profile & Settings</a>
-                </div>
-            </div>
+            @endif
         </div>
         <div class="social-share">
             <a href="#" class='share'>share</a>

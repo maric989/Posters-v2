@@ -6,20 +6,19 @@
                     <div class="half">
                         <div class="append">Type</div>
                         <select name="test" id="myCombobox">
-                            <option value="window-slider">Slider Post</option>
+                            <option value="window-image">Image Post</option>
                             <option value="window-video">Video Post</option>
                             <option value="window-quote">Quote Post</option>
-                            <option value="window-image">Image Post</option>
                         </select>
                     </div>
-                    <div class="half category-combobox">
-                        <select name="test" id="categoryCombobox">
-                            <option class="blue-background" value="SelectBoxIt is:" rel="#348dd1">Category #Obama Stuff</option>
-                            <option class="red-background" value="a jQuery Plugin" rel="#d5aa27">Category #Lolcats</option>
-                            <option class="green-background" value="a Select Box Replacement" rel="#38c574">Category #Tuts</option>
-                            <option class="purple-background" value="a Stateful UI Widget" rel="#7e00ff">Category #Obama Stuff</option>
-                        </select>
-                    </div>
+                    {{--<div class="half category-combobox">--}}
+                        {{--<select name="test" id="categoryCombobox">--}}
+                            {{--<option class="blue-background" value="SelectBoxIt is:" rel="#348dd1">Category #Obama Stuff</option>--}}
+                            {{--<option class="red-background" value="a jQuery Plugin" rel="#d5aa27">Category #Lolcats</option>--}}
+                            {{--<option class="green-background" value="a Select Box Replacement" rel="#38c574">Category #Tuts</option>--}}
+                            {{--<option class="purple-background" value="a Stateful UI Widget" rel="#7e00ff">Category #Obama Stuff</option>--}}
+                        {{--</select>--}}
+                    {{--</div>--}}
                 </div>
                 <div class="post-window window-video">
                     <div class="window-left">
@@ -38,14 +37,14 @@
                                     <input type="checkbox" value="check1" name="check" id="check7" checked />
                                     <label for="check7">NSFW</label>
                                 </div>
-                                <div class="custom-checkbox">
-                                    <input type="checkbox" value="check1" name="check" id="check8" />
-                                    <label for="check8">COMMENTS</label>
-                                </div>
-                                <div class="custom-checkbox">
-                                    <input type="checkbox" value="check1" name="check" id="check9" />
-                                    <label for="check9">ANONYMOUS</label>
-                                </div>
+                                {{--<div class="custom-checkbox">--}}
+                                    {{--<input type="checkbox" value="check1" name="check" id="check8" />--}}
+                                    {{--<label for="check8">COMMENTS</label>--}}
+                                {{--</div>--}}
+                                {{--<div class="custom-checkbox">--}}
+                                    {{--<input type="checkbox" value="check1" name="check" id="check9" />--}}
+                                    {{--<label for="check9">ANONYMOUS</label>--}}
+                                {{--</div>--}}
                             </div>
                         </div>
                         <div class="tags-wrap">
@@ -75,14 +74,14 @@
                                     <input type="checkbox" value="check1" name="check" id="check13" checked />
                                     <label for="check13">NSFW</label>
                                 </div>
-                                <div class="custom-checkbox">
-                                    <input type="checkbox" value="check1" name="check" id="check14" />
-                                    <label for="check14">COMMENTS</label>
-                                </div>
-                                <div class="custom-checkbox">
-                                    <input type="checkbox" value="check1" name="check" id="check15" />
-                                    <label for="check15">ANONYMOUS</label>
-                                </div>
+                                {{--<div class="custom-checkbox">--}}
+                                    {{--<input type="checkbox" value="check1" name="check" id="check14" />--}}
+                                    {{--<label for="check14">COMMENTS</label>--}}
+                                {{--</div>--}}
+                                {{--<div class="custom-checkbox">--}}
+                                    {{--<input type="checkbox" value="check1" name="check" id="check15" />--}}
+                                    {{--<label for="check15">ANONYMOUS</label>--}}
+                                {{--</div>--}}
                             </div>
                         </div>
                         <div class="tags-wrap">
@@ -112,14 +111,14 @@
                                     <input type="checkbox" value="check1" name="check" id="check16" checked />
                                     <label for="check16">NSFW</label>
                                 </div>
-                                <div class="custom-checkbox">
-                                    <input type="checkbox" value="check1" name="check" id="check17" />
-                                    <label for="check17">COMMENTS</label>
-                                </div>
-                                <div class="custom-checkbox">
-                                    <input type="checkbox" value="check1" name="check" id="check18" />
-                                    <label for="check18">ANONYMOUS</label>
-                                </div>
+                                {{--<div class="custom-checkbox">--}}
+                                    {{--<input type="checkbox" value="check1" name="check" id="check17" />--}}
+                                    {{--<label for="check17">COMMENTS</label>--}}
+                                {{--</div>--}}
+                                {{--<div class="custom-checkbox">--}}
+                                    {{--<input type="checkbox" value="check1" name="check" id="check18" />--}}
+                                    {{--<label for="check18">ANONYMOUS</label>--}}
+                                {{--</div>--}}
                             </div>
                         </div>
                         <div class="tags-wrap">
@@ -130,20 +129,20 @@
                 </div>
                 <div class="post-window window-slider">
                     <div class="window-left small-padding">
-                        <div class="slider-numbers">
-                            <ul>
-                                <li><a href="#" rel="window-1" class="active">1</a></li>
-                                <li><a href="#" rel="window-2">2</a></li>
-                                <li><a href="#" rel="window-3">3</a></li>
-                                <li><a href="#" rel="window-4">4</a></li>
-                                <li><a href="#" rel="window-5">5</a></li>
-                                <li><a href="#" rel="window-6">6</a></li>
-                                <li><a href="#" rel="window-7">7</a></li>
-                                <li><a href="#" rel="window-8">8</a></li>
-                                <li><a href="#" rel="window-9">9</a></li>
-                                <li><a href="#" rel="window-10">10</a></li>
-                            </ul>
-                        </div>
+                        {{--<div class="slider-numbers">--}}
+                            {{--<ul>--}}
+                                {{--<li><a href="#" rel="window-1" class="active">1</a></li>--}}
+                                {{--<li><a href="#" rel="window-2">2</a></li>--}}
+                                {{--<li><a href="#" rel="window-3">3</a></li>--}}
+                                {{--<li><a href="#" rel="window-4">4</a></li>--}}
+                                {{--<li><a href="#" rel="window-5">5</a></li>--}}
+                                {{--<li><a href="#" rel="window-6">6</a></li>--}}
+                                {{--<li><a href="#" rel="window-7">7</a></li>--}}
+                                {{--<li><a href="#" rel="window-8">8</a></li>--}}
+                                {{--<li><a href="#" rel="window-9">9</a></li>--}}
+                                {{--<li><a href="#" rel="window-10">10</a></li>--}}
+                            {{--</ul>--}}
+                        {{--</div>--}}
                         <div class="slider-selector">
                             <div class="window-1 slider-selector-window">
                                 <textarea class="form-control" rows="3" placeholder="How about a title?"></textarea>
@@ -294,14 +293,14 @@
                                     <input type="checkbox" value="check1" name="check" id="check10" checked />
                                     <label for="check10">NSFW</label>
                                 </div>
-                                <div class="custom-checkbox">
-                                    <input type="checkbox" value="check1" name="check" id="check11" />
-                                    <label for="check11">COMMENTS</label>
-                                </div>
-                                <div class="custom-checkbox">
-                                    <input type="checkbox" value="check1" name="check" id="check12" />
-                                    <label for="check12">ANONYMOUS</label>
-                                </div>
+                                {{--<div class="custom-checkbox">--}}
+                                    {{--<input type="checkbox" value="check1" name="check" id="check11" />--}}
+                                    {{--<label for="check11">COMMENTS</label>--}}
+                                {{--</div>--}}
+                                {{--<div class="custom-checkbox">--}}
+                                    {{--<input type="checkbox" value="check1" name="check" id="check12" />--}}
+                                    {{--<label for="check12">ANONYMOUS</label>--}}
+                                {{--</div>--}}
                             </div>
                         </div>
                         <div class="tags-wrap">
