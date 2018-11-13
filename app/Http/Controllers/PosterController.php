@@ -51,4 +51,9 @@ class PosterController extends Controller
 
         return view('poster.single',compact('poster'));
     }
+
+    public function videoCreate()
+    {
+        return view('poster.video_create');
+    }
 }

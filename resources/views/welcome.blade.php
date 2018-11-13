@@ -83,6 +83,7 @@
             </div>
         </div>
     </div>
+    </div>
 </div>
 @include('layouts.index.add_post')
 <div id="scripts">
@@ -106,5 +107,15 @@
     <script src="{{asset('aruna/js/retina-1.1.0.min.js')}}"></script>
     <script src="{{asset('aruna/js/jquery.lazyload.min.js')}}"></script>
 </div>
+//www.youtube.com/embed/LNrb7ncKc9M
+<script>
+        function myFunction(val) {
+            var test = val.match(/v\=(.*)\&/)[1];
+            console.log(test);
+
+            $('#video_iframe').attr('src',val);
+        }
+
+</script>
 </body>
 </html>

@@ -22,7 +22,7 @@
             {{--<a data-toggle="modal" href="#postModal" class="btn btn-primary btn-lg btn-block custom-button">Post Article</a>--}}
             <a href="{{route('create.poster')}}" class="btn btn-primary btn-lg btn-block custom-button">Kreiraj Poster</a>
             <a href="#" class="btn btn-primary btn-lg btn-block custom-button">Kreiraj Definiciju</a>
-            <a href="#" class="btn btn-primary btn-lg btn-block custom-button">Dodaj Video</a>
+            <a href="{{route('video_create')}}" class="btn btn-primary btn-lg btn-block custom-button">Dodaj Video</a>
         </div>
     </div>
     <div class="widget">

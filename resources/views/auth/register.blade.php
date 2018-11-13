@@ -79,7 +79,7 @@
 
 @extends('welcome')
 @section('content')
-    <form action="{{route('test')}}" method="POST">
+    <form action="{{route('register_user')}}" method="POST">
         {{csrf_field()}}
         <div class="col-sm-12 border-right">
             <h2>    Registration

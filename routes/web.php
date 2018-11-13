@@ -14,9 +14,9 @@
 Route::get('/', 'PosterController@index');
 
 
-Route::post('/test','AuthController@register')->name('test');
+Route::post('/store_user','AuthController@register')->name('register_user');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admin'],function (){
@@ -26,5 +26,7 @@ Route::group(['prefix' => 'admin'],function (){
 Route::group(['prefix' => 'poster'],function (){
    Route::get('/create','PosterController@create')->name('create.poster');
    Route::post('/create','PosterController@store')->name('store.poster');
+   Route::get('/create_video','PosterController@videoCreate')->name('video_create');
    Route::get('/{slug}/{id}','PosterController@single')->name('single.poster');
+
 });
