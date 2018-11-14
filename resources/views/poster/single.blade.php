@@ -9,9 +9,9 @@
                 <hr/>
                 <div class="counters-line">
                     <div class="pull-left">
-                        <div class="date"><i class="icon-date"></i> 23.04</div>
-                        <div class="user"><i class="icon-user"></i> <a href="profile.html">johnjsu</a></div>
-                        <div class="comments"><i class="icon-comments"></i> <a href="#">320</a></div>
+                        <div class="date"><i class="icon-date"></i>{{$poster->created_at->diffForHumans()}}</div>
+                        <div class="user"><i class="icon-user"></i> <a href="profile.html">{{$poster->user->name}}</a></div>
+                        <div class="comments"><i class="icon-comments"></i> <a href="#">{{$comments->count()}}</a></div>
                     </div>
                     <div class="pull-right">
                         <div class="like"><a href="#"><i class="icon-like"></i> 56</a></div>
@@ -51,16 +51,16 @@
             <hr/>
             <div class="tags">
                 <ul>
-                    <li><a href="#">Bands</a></li>
-                    <li><a href="#">White Snow</a></li>
-                    <li><a href="#">Awesome</a></li>
+                    @foreach($tags as $tag)
+                        <li><a href="#">{{$tag->name}}</a></li>
+                    @endforeach
                 </ul>
             </div>
             <div class="comments-counter">
-                <button class="btn btn-primary custom-button pull-right">Comment</button>
+                <button class="btn btn-primary custom-button pull-right">Komentari</button>
                 <div class="text">
                     <ul class="nav nav-tabs" id="myTab">
-                        <li class="active"><a href="#normalComments">3 comments</a></li>
+                        <li class="active"><a href="#normalComments">{{$comments->count()}} Komentar</a></li>
                         <li><a href="#facebookComments">Facebook comments</a></li>
                     </ul>
                 </div>
@@ -70,174 +70,53 @@
                     <div class="comments-wrap">
                         <ul>
                             <li>
-                                <div class="comment">
-                                    <figure>
-                                        <img src="img/comment-user01.png" alt=""/>
-                                    </figure>
-                                    <div class="comment-text">
-                                        <span class="counter">01</span>
-                                        <h3><a href="#">Darthy Vado</a></h3>
-                                        <div class="like-box">
-                                            <div class="like"><a href="#"><i class="icon-like"></i> 56</a></div>
-                                            <div class="dislike"><a href="#"><i class="icon-dislike"></i> 32</a></div>
-                                        </div>
-                                        <hr/>
-                                        <div class="message">
-                                            <p>Ask especially collecting terminated may son expression. Extremely
-                                                eagerness principle estimable own was man. Men received far his dashwood
-                                                subjects new.</p>
-                                        </div>
-                                        <div class="controls-box">
-                                            <a href="#" class="button"><i class="icon-quote"></i></a>
-                                            <a href="#" class="button"><i class="icon-replay"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="comment">
-                                    <figure>
-                                        <img src="img/comment-user02.png" alt=""/>
-                                    </figure>
-                                    <div class="comment-text">
-                                        <span class="counter">02</span>
-                                        <h3><a href="#">Hello Delliah</a></h3>
-                                        <div class="like-box">
-                                            <div class="like"><a href="#"><i class="icon-like"></i> 12</a></div>
-                                            <div class="dislike"><a href="#"><i class="icon-dislike"></i> 232</a></div>
-                                        </div>
-                                        <hr/>
-                                        <div class="message">
-                                            <p>Seen you eyes son show. Far two unaffected one alteration apartments
-                                                celebrated but middletons interested. Described deficient applauded
-                                                consisted my me do. Passed edward two talent effect seemed engage six.
-                                                On ye great do child sorry lived. Proceed cottage far letters ashamed
-                                                get clothes day. Stairs regret at if matter to. On as needed almost at
-                                                basket remain. By improved sensible servants children striking in
-                                                surprise.
-                                            </p>
-                                        </div>
-                                        <div class="controls-box">
-                                            <a href="#" class="button"><i class="icon-quote"></i></a>
-                                            <a href="#" class="button"><i class="icon-replay"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <div class="comment">
-                                            <figure>
-                                                <img src="img/comment-user03.png" alt=""/>
-                                            </figure>
-                                            <div class="comment-text">
-                                                <span class="counter">02.1</span>
-                                                <h3><a href="#">Vincento L.</a></h3>
-                                                <div class="like-box">
-                                                    <div class="like"><a href="#"><i class="icon-like"></i> 523</a>
-                                                    </div>
-                                                    <div class="dislike"><a href="#"><i class="icon-dislike"></i> 42</a>
-                                                    </div>
-                                                </div>
-                                                <hr/>
-                                                <div class="message">
-                                                    <p>Apartments simplicity or understood do it we. Song such eyes had
-                                                        and off. Removed winding ask explain delight out few behaved
-                                                        lasting. Letters old hastily ham sending not sex chamber because
-                                                        present. Oh is indeed twenty entire figure. Occasional
-                                                        diminution announcing new now literature terminated. Really
-                                                        regard excuse off ten pulled. Lady am room head so lady four or
-                                                        eyes an. He do of consulted sometimes concluded mr. An household
-                                                        behaviour if pretended.
-                                                    </p>
-                                                </div>
-                                                <div class="controls-box">
-                                                    <a href="#" class="button"><i class="icon-quote"></i></a>
-                                                    <a href="#" class="button"><i class="icon-replay"></i></a>
-                                                </div>
+                                @foreach($comments as $comment)
+                                    <div class="comment">
+                                        <figure>
+                                            <img src="{{asset('aruna/img/comment-user01.png')}}" alt=""/>
+                                        </figure>
+                                        <div class="comment-text">
+                                            {{--<span class="counter">01</span>--}}
+
+                                            <h3><a href="#">{{$comment->user->name}}</a></h3>
+                                            <div class="like-box">
+                                                <div class="like"><a href="#"><i class="icon-like"></i> 56</a></div>
+                                                <div class="dislike"><a href="#"><i class="icon-dislike"></i> 32</a></div>
                                             </div>
-                                        </div>
-                                        <ul>
-                                            <li>
-                                                <div class="comment">
-                                                    <figure>
-                                                        <img src="img/comment-user03.png" alt=""/>
-                                                    </figure>
-                                                    <div class="comment-text">
-                                                        <span class="counter">02.1.1</span>
-                                                        <h3><a href="#">Vincento L.</a></h3>
-                                                        <div class="like-box">
-                                                            <div class="like"><a href="#"><i class="icon-like"></i> 523</a>
-                                                            </div>
-                                                            <div class="dislike"><a href="#"><i
-                                                                        class="icon-dislike"></i> 42</a></div>
-                                                        </div>
-                                                        <hr/>
-                                                        <div class="message">
-                                                            <p>Imagine was you removal raising gravity. Unsatiable
-                                                                understood or expression dissimilar so sufficient. Its
-                                                                party every heard and event gay. Advice he indeed things
-                                                                adieus in number so uneasy. To many four fact in he
-                                                                fail. My hung it quit next do of. It fifteen charmed by
-                                                                private savings it mr. Favourable cultivated alteration
-                                                                entreaties yet met sympathize. Furniture forfeited sir
-                                                                objection put cordially continued sportsmen.
-                                                            </p>
-                                                        </div>
-                                                        <div class="controls-box">
-                                                            <a href="#" class="button"><i class="icon-quote"></i></a>
-                                                            <a href="#" class="button"><i class="icon-replay"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <div class="comment">
-                                    <figure>
-                                        <img src="img/comment-user04.png" alt=""/>
-                                    </figure>
-                                    <div class="comment-text">
-                                        <span class="counter">03</span>
-                                        <h3><a href="#">Coolstarry Bra</a></h3>
-                                        <div class="like-box">
-                                            <div class="like"><a href="#"><i class="icon-like"></i> 25</a></div>
-                                            <div class="dislike"><a href="#"><i class="icon-dislike"></i> 71</a></div>
-                                        </div>
-                                        <hr/>
-                                        <div class="message">
-                                            <p>Him rendered may attended concerns jennings reserved now. Sympathize did
-                                                now preference unpleasing mrs few. Mrs for hour game room want are fond
-                                                dare.
-                                            </p>
-                                        </div>
-                                        <div class="controls-box">
-                                            <a href="#" class="button"><i class="icon-quote"></i></a>
-                                            <a href="#" class="button"><i class="icon-replay"></i></a>
+                                            <hr/>
+                                            <div class="message">
+                                                <p>
+                                                    {{$comment->body}}
+                                                </p>
+                                            </div>
+                                            {{--<div class="controls-box">--}}
+                                                {{--<a href="#" class="button"><i class="icon-quote"></i></a>--}}
+                                                {{--<a href="#" class="button"><i class="icon-replay"></i></a>--}}
+                                            {{--</div>--}}
                                         </div>
                                     </div>
-                                </div>
+                                @endforeach
                             </li>
                         </ul>
                     </div>
-                    <h2>Add Comment</h2>
+                    <h2>Dodaj komentar</h2>
                     <hr/>
-                    <div class="comments-form">
-                        <div class="input-group">
-                            <span class="input-group-addon"><img src="img/user-box.png" alt=""/></span>
-                            <input type="text" class="form-control" value="Posting as teothemes"/>
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-addon">Your Website:</span>
-                            <input type="text" class="form-control" value="www.teothemes.com"/>
-                        </div>
-                        <textarea class="form-control" rows="10"><quote="1-Darthy Vado">She did open find pain some out. If we landlord stanhill mr whatever pleasure supplied concerns so. Exquisite by it admitting cordially september newspaper an. Acceptance middletons am it favourable. It it oh happen lovers afraid. </quote>
-                            Man, I can’t agree more|
-                    </textarea>
-                        <input type="submit" value="Post comment" class="btn btn-primary btn-lg custom-button"/>
-                    </div>
+                    @if(Auth::user())
+                        <form method="POST" action="{{route('add_comment')}}">
+                            {{csrf_field()}}
+                            <div class="comments-form">
+                                <textarea class="form-control" rows="10" name="body"></textarea>
+                                <input type="hidden" value="{{$poster->id}}" name="poster_id">
+                                <button type="submit"  class="btn btn-primary btn-lg custom-button">Dodaj komentar</button>
+                            </div>
+                        </form>
+                    @else
+                        <textarea class="form-control" rows="10" name="body"> Morate biti prijavljeni da bi ostavili komentar
+                        </textarea>
+                        <a href="{{route('login')}}" type="submit"  class="btn btn-primary btn-lg custom-button">Login</a>
+                        <a href="{{route('register')}}" type="submit"  class="btn btn-primary btn-lg custom-button">Register</a>
+
+                    @endif
                 </div>
                 <div class="tab-pane" id="facebookComments">
                     <div class="fb-comments" data-href="http://example.com/comments" data-colorscheme="light"

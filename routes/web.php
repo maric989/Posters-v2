@@ -30,3 +30,5 @@ Route::group(['prefix' => 'poster'],function (){
    Route::get('/{slug}/{id}','PosterController@single')->name('single.poster');
 
 });
+
+Route::post('/comment','CommentController@store')->name('add_comment');
