@@ -115,7 +115,47 @@
 
             $('#video_iframe').attr('src',val);
         }
+</script>
+<script>
+    $(document).ready(function () {
+        var poster_id = $('#poster_id').val();
 
+        $('#upvote_poster').on('click',function (event) {
+            event.preventDefault();
+            console.log('like1');
+
+            $.ajax({
+                type:'POST',
+                url:"{{ url('/poster/upvote') }}",
+                data:{
+                    "_token": "{{ csrf_token() }}",
+                    "poster_id": poster_id
+                },
+                success:function(data){
+                    $('#countDown').html(data.down);
+                    $('#countUp').html(data.up);
+                }
+            });
+        });
+
+        $('#downvote_poster').on('click',function (event) {
+            event.preventDefault();
+            console.log('like1');
+
+            $.ajax({
+                type:'POST',
+                url:"{{ url('/poster/downvote') }}",
+                data:{
+                    "_token": "{{ csrf_token() }}",
+                    "poster_id": poster_id
+                },
+                success:function(data){
+                    $('#countDown').html(data.down);
+                    $('#countUp').html(data.up);
+                }
+            });
+        });
+    })
 </script>
 </body>
 </html>

@@ -32,3 +32,5 @@ Route::group(['prefix' => 'poster'],function (){
 });
 
 Route::post('/comment','CommentController@store')->name('add_comment');
+Route::post('/poster/upvote','PosterController@upvote')->name('upvote_poster');
+Route::post('/poster/downvote','PosterController@downvote')->name('downvote_poster');

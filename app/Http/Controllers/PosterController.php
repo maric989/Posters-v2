@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Like;
 use App\Poster;
 use App\Tag;
 use Illuminate\Http\Request;
@@ -76,6 +77,16 @@ class PosterController extends Controller
     {
         $poster = Poster::whereId($id)->first();
 
+        $likesUp = Like::where('likeable_id',$poster->id)
+            ->where('up',1)
+            ->where('likeable_type','App\Poster')
+            ->get();
+
+        $likesDown = Like::where('likeable_id',$poster->id)
+            ->where('down',1)
+            ->where('likeable_type','App\Poster')
+            ->get();
+
         $comments = Comment::where('post_id',$poster->id)
             ->where('comm_type','App\Poster')
             ->get();
@@ -85,21 +96,87 @@ class PosterController extends Controller
                 ->where('post_type','=','App\Poster')
                 ->get();
 
-        foreach ($tags_id as $tag_id){
-            $tageed_id[] = $tag_id->tag_id;
-        }
 
-        $tags = Tag::whereIn('id',$tageed_id)->get();
+        if (!$tags_id->isEmpty() ){
+            foreach ($tags_id as $tag_id){
+                $tageed_id[] = $tag_id->tag_id;
+            }
+
+            $tags = Tag::whereIn('id',$tageed_id)->get();
+        }else{
+            $tags = false;
+        }
 
         return view('poster.single',compact(
             'poster',
             'comments',
-            'tags'
+            'tags',
+            'likesUp',
+            'likesDown'
         ));
     }
 
+    public function upvote(Request $request)
+    {
+        $user_id = Auth::user()->id;
+        $poster = Poster::find($request->poster_id);
+
+        if ($poster->likes()->where('user_id',$user_id)->count()){
+            $poster->likes()->where('user_id',$user_id)->delete();
+
+            $liked = false;
+        }else{
+                $like = new Like();
+                $like->user_id = $user_id;
+                $like->up = 1;
+                $like->down = 0;
+                $poster->likes()->save($like);
+
+                $liked = true;
+        }
+
+        $up = $poster->likes()->where('up',1)->count();
+        $down = $poster->likes()->where('down',1)->count();
+        $data = [
+            'up' => $up,
+            'down' => $down
+        ];
+
+        return response()->json($data);
+
+    }
+
+    public function downvote(Request $request)
+    {
+        $user_id = Auth::user()->id;
+        $poster = Poster::find($request->poster_id);
+
+        if ($poster->likes()->where('user_id',$user_id)->count()){
+            $poster->likes()->where('user_id',$user_id)->delete();
+
+            $liked = false;
+        }else{
+            $like = new Like();
+            $like->user_id = $user_id;
+            $like->up = 0;
+            $like->down = 1;
+            $poster->likes()->save($like);
+
+            $liked = true;
+        }
+        $up = $poster->likes()->where('up',1)->count();
+        $down = $poster->likes()->where('down',1)->count();
+        $data = [
+            'up' => $up,
+            'down' => $down
+        ];
+        return response()->json($data);
+    }
+    
     public function videoCreate()
     {
         return view('poster.video_create');
     }
+    
+    
 }

@@ -5,18 +5,37 @@
     <div class="main-wrap">
         <article class="main-post post-page">
             <div class="article-top">
-                <h1><a href="post.html">{{$poster->title}}</a></h1>
+                <h1><a href="#">{{$poster->title}}</a></h1>
                 <hr/>
                 <div class="counters-line">
                     <div class="pull-left">
-                        <div class="date"><i class="icon-date"></i>{{$poster->created_at->diffForHumans()}}</div>
+                        <div class="date"><i class="icon-date"></i>{{$poster->createdAtSerbian()}}</div>
                         <div class="user"><i class="icon-user"></i> <a href="profile.html">{{$poster->user->name}}</a></div>
                         <div class="comments"><i class="icon-comments"></i> <a href="#">{{$comments->count()}}</a></div>
                     </div>
-                    <div class="pull-right">
-                        <div class="like"><a href="#"><i class="icon-like"></i> 56</a></div>
-                        <div class="dislike"><a href="#"><i class="icon-dislike"></i> 32</a></div>
-                    </div>
+                    @if(Auth::user())
+                        <div class="pull-right">
+                            <div class="like">
+                                <input type="hidden" value="{{$poster->id}}" id="poster_id">
+                                <a href="#"><i class="icon-like" id="upvote_poster"></i><span id="countUp">{{$likesUp->count()}}</span></a>
+
+                            </div>
+                            <div class="dislike">
+                                <a href="#"><i class="icon-dislike" id="downvote_poster"></i><span id="countDown">{{$likesDown->count()}}</span></a>
+                            </div>
+                        </div>
+                    @else
+                        <div class="pull-right">
+                            <div class="like">
+                                <input type="hidden" value="{{$poster->id}}" id="poster_id">
+                                <a href="{{route('login')}}"><i class="icon-like"></i><span id="countUp">{{$likesUp->count()}}</span></a>
+
+                            </div>
+                            <div class="dislike">
+                                <a href="{{route('login')}}"><i class="icon-dislike"></i><span id="countDown">{{$likesDown->count()}}</span></a>
+                            </div>
+                        </div>
+                    @endif
                 </div>
                 <div class="buttons-bar">
                     <div class="buttons">
@@ -47,15 +66,17 @@
             </div>
         </article>
         <div class="article-infos">
-            <h2>Post tags</h2>
-            <hr/>
-            <div class="tags">
-                <ul>
-                    @foreach($tags as $tag)
-                        <li><a href="#">{{$tag->name}}</a></li>
-                    @endforeach
-                </ul>
-            </div>
+            @if($tags)
+                <h2>Post tags</h2>
+                <hr/>
+                <div class="tags">
+                    <ul>
+                        @foreach($tags as $tag)
+                            <li><a href="#">{{$tag->name}}</a></li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="comments-counter">
                 <button class="btn btn-primary custom-button pull-right">Komentari</button>
                 <div class="text">
