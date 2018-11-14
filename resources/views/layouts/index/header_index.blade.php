@@ -70,7 +70,7 @@
                 </div>
             </div>
         </div>
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="/">
             <img src="{{asset('aruna/img/logo.png')}}" alt="Aruna - Image Sharing, Gag, Meme Theme"/>
         </a>
     </div>

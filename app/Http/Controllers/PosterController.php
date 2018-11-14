@@ -96,6 +96,7 @@ class PosterController extends Controller
                 ->where('post_type','=','App\Poster')
                 ->get();
 
+        $likesSum = $likesUp->count() - $likesDown->count();
 
         if (!$tags_id->isEmpty() ){
             foreach ($tags_id as $tag_id){
@@ -112,7 +113,8 @@ class PosterController extends Controller
             'comments',
             'tags',
             'likesUp',
-            'likesDown'
+            'likesDown',
+            'likesSum'
         ));
     }
 
@@ -137,9 +139,11 @@ class PosterController extends Controller
 
         $up = $poster->likes()->where('up',1)->count();
         $down = $poster->likes()->where('down',1)->count();
+        $sum = $up-$down;
         $data = [
             'up' => $up,
-            'down' => $down
+            'down' => $down,
+            'sum' => $sum
         ];
 
         return response()->json($data);
@@ -166,9 +170,11 @@ class PosterController extends Controller
         }
         $up = $poster->likes()->where('up',1)->count();
         $down = $poster->likes()->where('down',1)->count();
+        $sum = $up - $down;
         $data = [
             'up' => $up,
-            'down' => $down
+            'down' => $down,
+            'sum' => $sum
         ];
         return response()->json($data);
     }

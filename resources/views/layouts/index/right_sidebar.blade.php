@@ -18,11 +18,13 @@
             @if(!Auth::user())
             <a data-toggle="modal" href="{{route('register')}}" class="btn btn-primary btn-lg btn-block custom-button">Register</a><br />
             <a data-toggle="modal" href="{{route('login')}}" class="btn btn-primary btn-lg btn-block custom-button">Login</a><br />
-            @endif
+            @else
             {{--<a data-toggle="modal" href="#postModal" class="btn btn-primary btn-lg btn-block custom-button">Post Article</a>--}}
             <a href="{{route('create.poster')}}" class="btn btn-primary btn-lg btn-block custom-button">Kreiraj Poster</a>
             <a href="#" class="btn btn-primary btn-lg btn-block custom-button">Kreiraj Definiciju</a>
             <a href="{{route('video_create')}}" class="btn btn-primary btn-lg btn-block custom-button">Dodaj Video</a>
+            @endif
+
         </div>
     </div>
     <div class="widget">

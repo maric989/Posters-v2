@@ -134,6 +134,9 @@
                 success:function(data){
                     $('#countDown').html(data.down);
                     $('#countUp').html(data.up);
+                    $('#likesSum').html(data.sum);
+                    console.log(data);
+
                 }
             });
         });
@@ -152,6 +155,7 @@
                 success:function(data){
                     $('#countDown').html(data.down);
                     $('#countUp').html(data.up);
+                    $('#likesSum').html(data.sum);
                 }
             });
         });

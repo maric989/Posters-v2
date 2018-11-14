@@ -41,7 +41,7 @@
                     <div class="buttons">
                         <a href="#" class='repost has-tooltip' data-title="REPOST">Repost</a>
                         <a href="#" class='bookmark has-tooltip' data-title="BOOKMARK">bookmark</a>
-                        <div class="count">2430</div>
+                        <div class="count"><span id="likesSum">{{$likesSum}}</span></div>
                     </div>
                     <div class="social-icons">
                         <a href="javascript:void(0)"
