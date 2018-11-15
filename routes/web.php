@@ -34,3 +34,8 @@ Route::group(['prefix' => 'poster'],function (){
 Route::post('/comment','CommentController@store')->name('add_comment');
 Route::post('/poster/upvote','PosterController@upvote')->name('upvote_poster');
 Route::post('/poster/downvote','PosterController@downvote')->name('downvote_poster');
+
+Route::group(['prefix' => 'user'],function (){
+   Route::get('/settings','UserController@settings')->name('user.settings');
+   Route::get('/{slug}','UserController@profile')->name('user.profile');
+});

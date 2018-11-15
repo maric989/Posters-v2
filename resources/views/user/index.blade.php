@@ -13,7 +13,9 @@
                         <div class="comments"><i class="icon-comments"></i> <a href="post.html">320</a></div>
                     </div>
                     <div class="pull-right">
-                        <div class="like"><a href="#"><i class="icon-like"></i> 56</a></div>
+                        <input type="hidden" value="{{$poster->id}}" id="poster_id">
+                        <a href="#"><i class="icon-like upvote_poster"></i><span class="countUp">100</span></a>
+
                         <div class="dislike"><a href="#"><i class="icon-dislike"></i> 32</a></div>
                     </div>
                 </div>

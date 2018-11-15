@@ -39,4 +39,11 @@ class Poster extends Model
 
         return $created_at;
     }
+
+    public function getComments($id)
+    {
+        $comments = Comment::where('post_id',$id)->where('comm_type','App\Poster')->get();
+
+        return $comments;
+    }
 }

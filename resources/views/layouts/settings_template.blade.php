@@ -22,7 +22,42 @@
     <link rel="stylesheet" href="{{asset('aruna/css/style.css')}}">
 
     <script src="{{asset('aruna/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js')}}"></script>
+    <style>
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
 
+        /* Style the buttons that are used to open the tab content */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: #7f46dd;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            /*border: 1px solid #ccc;*/
+            border-top: none;
+        }
+    </style>
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
@@ -47,12 +82,11 @@
         <div class="row">
             <div class="col-sm-9 right-content">
                 <div class="row">
-                    <div class="col-sm-9">
+                    <div class="col-sm-12">
                         <div class="main-wrap">
                             @yield('content')
                         </div>
                     </div>
-                    @include('layouts.index.right_sidebar')
                 </div>
             </div>
             @include('layouts.index.left_sidebar')
@@ -77,12 +111,12 @@
                     <div class="row">
                         @include('layouts.index.registration')
                     </div>
-                <div class="modal-window login-window">
-                    @include('layouts.index.login')
+                    <div class="modal-window login-window">
+                        @include('layouts.index.login')
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </div>
 @include('layouts.index.add_post')
@@ -109,61 +143,29 @@
 </div>
 
 <script>
-        function myFunction(val) {
-            var test = val.match(/v\=(.*)\&/)[1];
-            console.log(test);
 
-            $('#video_iframe').attr('src',val);
-        }
 </script>
 <script>
-    $(document).ready(function () {
-        var poster_id = $('#poster_id').val();
+    function openCity(evt, cityName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
 
-        $('.upvote_poster').on('click',function (event) {
-            var $this = $(this),
-            post = $this.closest('div.pull-right');
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
 
-            console.log(post.find('#poster_id'));
-            event.preventDefault();
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
 
-            $.ajax({
-                type:'POST',
-                url:"{{ url('/poster/upvote') }}",
-                data:{
-                    "_token": "{{ csrf_token() }}",
-                    "poster_id": poster_id
-                },
-                success:function(data){
-                    post.find('.countUp').html(data.up);
-//                    $('#countDown').html(data.down);
-//                    $('#countUp').html(data.up);
-//                    $('#likesSum').html(data.sum);
-//                    console.log(data);
-
-                }
-            });
-        });
-
-        $('#downvote_poster').on('click',function (event) {
-            event.preventDefault();
-            console.log('like1');
-
-            $.ajax({
-                type:'POST',
-                url:"{{ url('/poster/downvote') }}",
-                data:{
-                    "_token": "{{ csrf_token() }}",
-                    "poster_id": poster_id
-                },
-                success:function(data){
-                    $('#countDown'+post_id).html(data.down);
-                    $('#countUp').html(data.up);
-                    $('#likesSum').html(data.sum);
-                }
-            });
-        });
-    })
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
 </script>
 </body>
 </html>

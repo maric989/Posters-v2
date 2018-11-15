@@ -6,6 +6,7 @@ use App\Comment;
 use App\Like;
 use App\Poster;
 use App\Tag;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -59,6 +60,13 @@ class PosterController extends Controller
         $poster->slug    = str_slug($request->title,'-');
 
         $poster->save();
+
+        $user = User::find(Auth::user()->id);
+        if ($user->role_id == 3){
+            $user->role_id = 2;
+
+            $user->save();
+        }
 
         foreach ($tags as $tag) {
             $tag_id = Tag::where('name',strtolower($tag))->pluck('id')->first();

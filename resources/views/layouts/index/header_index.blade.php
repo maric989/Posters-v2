@@ -139,8 +139,8 @@
                         <div class="half"><span class="counter">42</span><span class="desc">Postovi</span></div>
                     </div>
                     <div class="buttons-line">
-                        <a href="#" class="btn btn-primary btn-block custom-button">Post Fun</a>
-                        <a href="settings.html" class="btn btn-primary btn-block custom-button">Profile & Settings</a>
+                        <a href="{{route('user.profile',Auth::user()->slug)}}" class="btn btn-primary btn-block custom-button">Profil</a>
+                        <a href="{{route('user.settings')}}" class="btn btn-primary btn-block custom-button">Podesavanja</a>
                         <form action="{{route('logout')}}" method="POST">
                             {{csrf_field()}}
                             <button class="btn btn-primary btn-block custom-button">Logout</button>
