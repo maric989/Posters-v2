@@ -77,22 +77,22 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
             <li class="active">
-                <a href="index.html" class="dropdown-toggle" data-toggle="dropdown">Posteri <b class="caret"></b></a>
+                <a href="{{url('/')}}" class="dropdown-toggle" data-toggle="dropdown">Posteri <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="index2.html">Top</a></li>
-                    <li><a href="index3.html">Trending</a></li>
-                    <li><a href="index4.html">Svezi</a></li>
+                    <li><a href="{{url('/')}}">Top</a></li>
+                    <li><a href="{{route('poster.trending')}}">Trending</a></li>
+                    <li><a href="{{route('poster.fresh')}}">Svezi</a></li>
                 </ul>
             </li>
             <li>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Definicije <b class="caret"></b></a>
+                <a href="{{route('index.definition')}}" class="dropdown-toggle" data-toggle="dropdown">Definicije <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="category.html">Top</a></li>
-                    <li><a href="post.html">Trending</a></li>
-                    <li><a href="profile.html">Sveze</a></li>
+                    <li><a href="{{route('index.definition')}}">Top</a></li>
+                    <li><a href="{{route('trending.definition')}}">Trending</a></li>
+                    <li><a href="{{route('fresh.definition')}}">Sveze</a></li>
                 </ul>
             </li>
-            <li><a href="#">Autori</a></li>
+            <li><a href="/autori">Autori</a></li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
                 <ul class="dropdown-menu">

@@ -7,6 +7,7 @@ use App\Like;
 use App\Poster;
 use App\Tag;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -16,14 +17,35 @@ class PosterController extends Controller
 
     public function index()
     {
+        $posters = Poster::where('approved','1')->with('likes')->get();
+        $comments = Comment::all();
+//
+//        foreach ($posters as $poster){
+////            dd($poster->likes->pluck('up')->sum());
+//        }
+//        $top_posters = $posters->relations->likes->pluck('up')->sum();
 
-        $posters = Poster::where('approved','1')->orderBy('created_at','desc')->get();
 
-        return view('user.index',compact('posters'));
+        return view('user.index',compact('posters','comments'));
     }
 
     public function create()
     {
+        if(!Auth::user()){
+            return back();
+        }
+
+        $user = Auth::user();
+
+        $last_poster = $user->posters()->orderBy('created_at','desc')->first();
+        $date = Carbon::now()->subHour(5);
+
+        if (!is_null($last_poster)){
+            if ($last_poster->created_at > $date){
+                    return view('poster.limit',compact('last_poster'));
+            }
+        }
+
         return view('poster.create');
     }
 
@@ -77,8 +99,8 @@ class PosterController extends Controller
               ]
             );
         }
-        
-        return redirect('/');
+
+        return redirect('/')->with('success','Vas Poster mora dobiti odobrenje od moderatora!');
     }
 
     public function single($slug,$id)
@@ -191,6 +213,21 @@ class PosterController extends Controller
     {
         return view('poster.video_create');
     }
-    
+
+    public function trending()
+    {
+        $posters = Poster::where('approved','1')->with('likes')->orderBy('created_at','desc')->get();
+        $comments = Comment::all();
+
+        return view('poster.trending',compact('posters','comments'));
+    }
+
+    public function fresh()
+    {
+        $posters = Poster::where('approved','1')->with('likes')->orderBy('created_at','desc')->get();
+        $comments = Comment::all();
+
+        return view('poster.fresh',compact('posters','comments'));
+    }
     
 }

@@ -11,6 +11,7 @@ class CommentController extends Controller
 {
     public function store(StoreCommentRequest $request)
     {
+
         if (Auth::user()){
             $user = Auth::user();
         }else{
@@ -21,7 +22,7 @@ class CommentController extends Controller
         $comment->body = $request->body;
         $comment->user_id = Auth::user()->id;
         $comment->post_id = $request->poster_id;
-        $comment->comm_type = 'App\Poster';
+        $comment->comm_type = $request->type;
 
         $comment->save();
 

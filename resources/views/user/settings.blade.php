@@ -41,11 +41,9 @@
 
                                 </div>
                                 <div class="button-container">
-                                    <button class="btn btn-primary custom-button btn-md" style="margin-top: 5px">Izmeni Pozadinu</button>
-                                    <button class="btn btn-primary custom-button btn-md" style="margin-top: 5px">Izmeni profilnu sliku</button>
-
+                                    <button class="btn btn-primary custom-button btn-md" data-toggle="modal" data-target="#modalCoverForm" style="margin-top: 5px">Izmeni Pozadinu</button>
+                                    <button class="btn btn-primary custom-button btn-md" data-toggle="modal" data-target="#modalProfilImgForm" style="margin-top: 5px" >Izmeni profilnu sliku</button>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -103,5 +101,60 @@
         </div>
     </section>
 
+{{--Modals--}}
+    <div class="modal fade" id="modalCoverForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Dodaj Sliku</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="{{route('change.cover')}}" enctype="multipart/form-data">
+                    {{csrf_field()}}
+                    <div class="modal-body mx-3">
+                        <div class="md-form mb-5">
+                            <i class="fa fa-envelope prefix grey-text"></i>
+                            <input type="file" id="cover_img" class="form-control validate" name="cover_img">
+                            <input type="hidden" name="user_id" value="{{$user->id}}">
+                            <label data-error="wrong" data-success="right" for="defaultForm-email">Dodaj</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="submit" class="btn btn-default">Izmeni</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
+    <div class="modal fade" id="modalProfilImgForm" tabindex="-1" role="dialog" aria-labelledby="myProfileLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Dodaj Sliku</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="{{route('change.profile')}}" enctype="multipart/form-data">
+                    {{csrf_field()}}
+                    <div class="modal-body mx-3">
+                        <div class="md-form mb-5">
+                            <i class="fa fa-envelope prefix grey-text"></i>
+                            <input type="file" id="profile_img" class="form-control validate" name="profile_img">
+                            <input type="hidden" name="user_id" value="{{$user->id}}">
+                            <label data-error="wrong" data-success="right" for="defaultForm-email">Dodaj</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="submit" class="btn btn-default">Izmeni</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection

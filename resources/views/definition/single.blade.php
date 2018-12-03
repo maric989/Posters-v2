@@ -5,18 +5,18 @@
     <div class="main-wrap">
         <article class="main-post post-page">
             <div class="article-top">
-                <h1><a href="#">{{$poster->title}}</a></h1>
+                <h1><a href="#">{{$definition->title}}</a></h1>
                 <hr/>
                 <div class="counters-line">
                     <div class="pull-left">
-                        <div class="date"><i class="icon-date"></i>{{$poster->createdAtSerbian()}}</div>
-                        <div class="user"><i class="icon-user"></i> <a href="profile.html">{{$poster->user->name}}</a></div>
+                        <div class="date"><i class="icon-date"></i>{{$definition->created_at}}</div>
+                        <div class="user"><i class="icon-user"></i> <a href="profile.html">{{$definition->user->name}}</a></div>
                         <div class="comments"><i class="icon-comments"></i> <a href="#">{{$comments->count()}}</a></div>
                     </div>
                     @if(Auth::user())
                         <div class="pull-right">
                             <div class="like">
-                                <input type="hidden" value="{{$poster->id}}" id="poster_id">
+                                <input type="hidden" value="{{$definition->id}}" id="poster_id">
                                 <a href="#"><i class="icon-like" id="upvote_poster"></i><span id="countUp">{{$likesUp->count()}}</span></a>
 
                             </div>
@@ -27,7 +27,7 @@
                     @else
                         <div class="pull-right">
                             <div class="like">
-                                <input type="hidden" value="{{$poster->id}}" id="poster_id">
+                                <input type="hidden" value="{{$definition->id}}" id="poster_id">
                                 <a href="{{route('login')}}"><i class="icon-like"></i><span id="countUp">{{$likesUp->count()}}</span></a>
 
                             </div>
@@ -59,10 +59,12 @@
                 </div>
             </div>
             <div class="article-content">
-                <figure>
-                    <div class="corner-tag green"><a href="#">Gingerfun</a></div>
-                    <img class="lazy" data-original="{{$poster->image}}" alt=""/>
-                </figure>
+                <div class="quote-wrap">
+                    <h2>Mudrost</h2>
+                    <div class="quote">
+                        <p>&ldquo; {{$definition->body}} &rdquo;</p>
+                    </div>
+                </div>
             </div>
         </article>
         <div class="article-infos">
@@ -111,8 +113,8 @@
                                                 </p>
                                             </div>
                                             {{--<div class="controls-box">--}}
-                                                {{--<a href="#" class="button"><i class="icon-quote"></i></a>--}}
-                                                {{--<a href="#" class="button"><i class="icon-replay"></i></a>--}}
+                                            {{--<a href="#" class="button"><i class="icon-quote"></i></a>--}}
+                                            {{--<a href="#" class="button"><i class="icon-replay"></i></a>--}}
                                             {{--</div>--}}
                                         </div>
                                     </div>
@@ -127,8 +129,8 @@
                             {{csrf_field()}}
                             <div class="comments-form">
                                 <textarea class="form-control" rows="10" name="body"></textarea>
-                                <input type="hidden" value="{{$poster->id}}" name="poster_id">
-                                <input type="hidden" value="App\Poster" name="type">
+                                <input type="hidden" value="{{$definition->id}}" name="poster_id">
+                                <input type="hidden" value="App\Definition" name="type">
                                 <button type="submit"  class="btn btn-primary btn-lg custom-button">Dodaj komentar</button>
                             </div>
                         </form>

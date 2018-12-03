@@ -1,6 +1,7 @@
 @extends('welcome')
 
 @section('content')
+    @include('layouts.flash_message')
 
     <form action="{{route('store.poster')}}" method="post" enctype="multipart/form-data">
         {{csrf_field()}}

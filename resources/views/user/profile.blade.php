@@ -6,12 +6,20 @@
             <div class="row">
                 <div class="col-sm-12 right-content profile-bg">
                     <div class="row">
-                        <div class="profile-wrap" style="background-image: url('{{asset('aruna/img/user-cover.jpg')}}');">
+                        @if($user->cover_photo)
+                            <div class="profile-wrap" style="background-image: url('{{asset($user->cover_photo)}}');">
+                        @else
+                            <div class="profile-wrap" style="background-image: url('{{asset('aruna/img/user-cover.jpg')}}');">
+                        @endif
                             <div class="col-sm-12">
                                 <div class="outer">
                                     <div class="inner">
                                         <figure>
-                                            <img src="{{asset('aruna/img/user.png')}}" alt=""/>
+                                            @if($user->profile_photo)
+                                                <img src="{{asset($user->profile_photo)}}" alt=""/>
+                                            @else
+                                                <img src="{{asset('aruna/img/user.png')}}" alt=""/>
+                                            @endif
                                         </figure>
                                         <div class="text">
                                             <div class="outer">
