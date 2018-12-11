@@ -259,8 +259,8 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                            <span class="hidden-xs">Alexander Pierce</span>
+                            <img src="{{$user->profile_photo}}" class="user-image" alt="User Image">
+                            <span class="hidden-xs">{{$user->name}}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
@@ -313,11 +313,11 @@
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="{{asset('adminStuff/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+                    <img src="{{$user->profile_photo}}" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>Alexander Pierce</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    <p>{{$user->name}}</p>
+                    <a href="#"><i class="fa fa-circle text-success"></i> {{$user->email}}</a>
                 </div>
             </div>
             <!-- search form -->
