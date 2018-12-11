@@ -27,4 +27,9 @@ class AdminController extends Controller
 
         return view('admin.index',compact('user','users','posters','definitions'));
     }
+
+
+
+
+
 }

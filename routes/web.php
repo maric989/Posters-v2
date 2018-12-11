@@ -28,6 +28,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin'],function (){
    Route::get('/','AdminController@index');
+   Route::get('/posters','Admin\PosterController@getPosters')->name('posters.all');
+   Route::get('/posters/approved','Admin\PosterController@getApprovedPosters')->name('posters.approved');
+   Route::get('/posters/waiting','Admin\PosterController@getWaitingPosters')->name('posters.waiting');
+   Route::post('/poster/approve/{id}','Admin\PosterController@approve')->name('poster.approve');
+   Route::post('/poster/refuse/{id}','Admin\PosterController@refuse')->name('poster.refuse');
+   Route::post('/poster/delete/{id}','Admin\PosterController@delete')->name('poster.delete');
+   Route::get('/posters/{id}','Admin\PosterController@getSinglePoster')->name('admin_single_poster');
 });
 
 Route::group(['prefix' => 'poster'],function (){
