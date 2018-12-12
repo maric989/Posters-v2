@@ -68,12 +68,12 @@
             </div>
         </article>
         <div class="article-infos">
-            @if($tags)
+            @if($tagged)
                 <h2>Post tags</h2>
                 <hr/>
                 <div class="tags">
                     <ul>
-                        @foreach($tags as $tag)
+                        @foreach($tagged as $tag)
                             <li><a href="#">{{$tag->name}}</a></li>
                         @endforeach
                     </ul>

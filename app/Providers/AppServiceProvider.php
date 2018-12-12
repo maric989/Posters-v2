@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Tag;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $tags = Tag::getMostUsedTags();
+
+        if (Auth::user()){
+            $user = Auth::user();
+            view()->share('user',$user);
+        }
+
+        view()->share('tags',$tags);
+
     }
 
     /**

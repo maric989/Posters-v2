@@ -19,14 +19,12 @@ class PosterController extends Controller
     {
         $posters = Poster::where('approved','1')->with('likes')->get();
         $comments = Comment::all();
-//
-//        foreach ($posters as $poster){
-////            dd($poster->likes->pluck('up')->sum());
-//        }
-//        $top_posters = $posters->relations->likes->pluck('up')->sum();
+        if (Auth::user()){
+            $user = Auth::user();
+        }
+        $tags = Tag::getMostUsedTags();
 
-
-        return view('user.index',compact('posters','comments'));
+        return view('user.index',compact('posters','comments','user','tags'));
     }
 
     public function create()
@@ -125,7 +123,7 @@ class PosterController extends Controller
                 ->where('post_id','=',$poster->id)
                 ->where('post_type','=','App\Poster')
                 ->get();
-
+        $tags = Tag::getMostUsedTags();
         $likesSum = $likesUp->count() - $likesDown->count();
 
         if (!$tags_id->isEmpty() ){
@@ -133,9 +131,9 @@ class PosterController extends Controller
                 $tageed_id[] = $tag_id->tag_id;
             }
 
-            $tags = Tag::whereIn('id',$tageed_id)->get();
+            $tagged = Tag::whereIn('id',$tageed_id)->get();
         }else{
-            $tags = false;
+            $tagged = false;
         }
 
         return view('poster.single',compact(
@@ -144,7 +142,8 @@ class PosterController extends Controller
             'tags',
             'likesUp',
             'likesDown',
-            'likesSum'
+            'likesSum',
+            'tagged'
         ));
     }
 
@@ -218,16 +217,19 @@ class PosterController extends Controller
     {
         $posters = Poster::where('approved','1')->with('likes')->orderBy('created_at','desc')->get();
         $comments = Comment::all();
+        $user = Auth::user();
 
-        return view('poster.trending',compact('posters','comments'));
+        return view('poster.trending',compact('posters','comments','user'));
     }
 
     public function fresh()
     {
         $posters = Poster::where('approved','1')->with('likes')->orderBy('created_at','desc')->get();
         $comments = Comment::all();
+        $user = Auth::user();
 
-        return view('poster.fresh',compact('posters','comments'));
+
+        return view('poster.fresh',compact('posters','comments','user'));
     }
     
 }

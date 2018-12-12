@@ -71,3 +71,4 @@ Route::post('/poster/downvote','PosterController@downvote')->name('downvote_post
 Route::get('/autori','AutorsController@index')->name('autori.index');
 Route::post('/coverPhoto','AutorsController@coverImg')->name('change.cover');
 Route::post('/profilePhoto','AutorsController@profileImg')->name('change.profile');
+Route::get('tag/{name}','TagController@index')->name('tags');

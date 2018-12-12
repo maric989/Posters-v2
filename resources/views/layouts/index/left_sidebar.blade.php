@@ -1,28 +1,29 @@
 <aside class="col-sm-3 left-aside">
     <div class="sidebar-menu">
         <div class="top-menu">
-            <div class="inception-menu">
-                <a href="#" class="selector">Menu</a>
-                <div class="sub-navigation">
-                    <div class="half">
-                        <a href="#" rel="sidebar-content-hot"><i class='icon-hot'></i> Hot Posts</a>
-                    </div>
-                    <div class="half">
-                        <a href="#" rel="sidebar-content-bookmarks"><i class='icon-bookmarks'></i> Bookmarks</a>
-                    </div>
-                </div>
-            </div>
-            <div class="section-title">Categories</div>
+            {{--<div class="inception-menu">--}}
+                {{--<a href="#" class="selector">Menu</a>--}}
+                {{--<div class="sub-navigation">--}}
+                    {{--<div class="half">--}}
+                        {{--<a href="#" rel="sidebar-content-hot"><i class='icon-hot'></i> Hot Posts</a>--}}
+                    {{--</div>--}}
+                    {{--<div class="half">--}}
+                        {{--<a href="#" rel="sidebar-content-bookmarks"><i class='icon-bookmarks'></i> Bookmarks</a>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+            <div class="section-title">Tags</div>
         </div>
         <div class="sidebar-content sidebar-content-category">
             <div class="menu-group">
-                <h2><a href="category.html">Interwebs</a></h2>
+                <h2><a href="#">Top Tags</a></h2>
                 <hr />
                 <ul>
-                    <li><a href="category.html">Lolcats</a></li>
-                    <li><a href="category.html">Lolweb</a></li>
-                    <li><a href="category.html">Chinese Dad</a></li>
-                    <li><a href="category.html">Idontalways</a></li>
+                    @foreach($tags as $tag)
+                        @foreach($tag as $a)
+                            <li style="font-family: Roboto, Arial, sans-serif;"><a href="{{route('tags',$a->name)}}">{{$a->name}}</a></li>
+                        @endforeach
+                    @endforeach
                 </ul>
             </div>
             <div class="menu-group">

@@ -6,70 +6,70 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <div class="top-ten">
-            <div class="activator">
-                <div class="left">
-                    <span class="small">Top</span>
-                    <span class="small">All</span>
-                    <span class="small">Time</span>
-                </div>
-                <div class="right">5</div>
-            </div>
-            <div class="drop-down">
-                <div class="post-list">
-                    <article>
-                        <figure>
-                            <img src="img/top1.jpg" alt=""/>
-                            <figcaption>01</figcaption>
-                        </figure>
-                        <div class="text">
-                            <h3><a href="post.html">Helping the elderly is not fun...</a></h3>
-                            <span class="date">25.04</span>
-                        </div>
-                    </article>
-                    <article>
-                        <figure>
-                            <img src="img/top2.jpg" alt=""/>
-                            <figcaption>02</figcaption>
-                        </figure>
-                        <div class="text">
-                            <h3><a href="post.html">Old people burning...</a></h3>
-                            <span class="date">25.04</span>
-                        </div>
-                    </article>
-                    <article>
-                        <figure>
-                            <img src="img/top3.jpg" alt=""/>
-                            <figcaption>03</figcaption>
-                        </figure>
-                        <div class="text">
-                            <h3><a href="post.html">Inappropriate jokes are alway...</a></h3>
-                            <span class="date">23.04</span>
-                        </div>
-                    </article>
-                    <article>
-                        <figure>
-                            <img src="img/top4.jpg" alt=""/>
-                            <figcaption>04</figcaption>
-                        </figure>
-                        <div class="text">
-                            <h3><a href="post.html">The Law</a></h3>
-                            <span class="date">22.04</span>
-                        </div>
-                    </article>
-                    <article>
-                        <figure>
-                            <img src="img/top5.jpg" alt=""/>
-                            <figcaption>05</figcaption>
-                        </figure>
-                        <div class="text">
-                            <h3><a href="post.html">Helping the elderly is not fun...</a></h3>
-                            <span class="date">25.04</span>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </div>
+        {{--<div class="top-ten">--}}
+            {{--<div class="activator">--}}
+                {{--<div class="left">--}}
+                    {{--<span class="small">Top</span>--}}
+                    {{--<span class="small">All</span>--}}
+                    {{--<span class="small">Time</span>--}}
+                {{--</div>--}}
+                {{--<div class="right">5</div>--}}
+            {{--</div>--}}
+            {{--<div class="drop-down">--}}
+                {{--<div class="post-list">--}}
+                    {{--<article>--}}
+                        {{--<figure>--}}
+                            {{--<img src="img/top1.jpg" alt=""/>--}}
+                            {{--<figcaption>01</figcaption>--}}
+                        {{--</figure>--}}
+                        {{--<div class="text">--}}
+                            {{--<h3><a href="post.html">Helping the elderly is not fun...</a></h3>--}}
+                            {{--<span class="date">25.04</span>--}}
+                        {{--</div>--}}
+                    {{--</article>--}}
+                    {{--<article>--}}
+                        {{--<figure>--}}
+                            {{--<img src="img/top2.jpg" alt=""/>--}}
+                            {{--<figcaption>02</figcaption>--}}
+                        {{--</figure>--}}
+                        {{--<div class="text">--}}
+                            {{--<h3><a href="post.html">Old people burning...</a></h3>--}}
+                            {{--<span class="date">25.04</span>--}}
+                        {{--</div>--}}
+                    {{--</article>--}}
+                    {{--<article>--}}
+                        {{--<figure>--}}
+                            {{--<img src="img/top3.jpg" alt=""/>--}}
+                            {{--<figcaption>03</figcaption>--}}
+                        {{--</figure>--}}
+                        {{--<div class="text">--}}
+                            {{--<h3><a href="post.html">Inappropriate jokes are alway...</a></h3>--}}
+                            {{--<span class="date">23.04</span>--}}
+                        {{--</div>--}}
+                    {{--</article>--}}
+                    {{--<article>--}}
+                        {{--<figure>--}}
+                            {{--<img src="img/top4.jpg" alt=""/>--}}
+                            {{--<figcaption>04</figcaption>--}}
+                        {{--</figure>--}}
+                        {{--<div class="text">--}}
+                            {{--<h3><a href="post.html">The Law</a></h3>--}}
+                            {{--<span class="date">22.04</span>--}}
+                        {{--</div>--}}
+                    {{--</article>--}}
+                    {{--<article>--}}
+                        {{--<figure>--}}
+                            {{--<img src="img/top5.jpg" alt=""/>--}}
+                            {{--<figcaption>05</figcaption>--}}
+                        {{--</figure>--}}
+                        {{--<div class="text">--}}
+                            {{--<h3><a href="post.html">Helping the elderly is not fun...</a></h3>--}}
+                            {{--<span class="date">25.04</span>--}}
+                        {{--</div>--}}
+                    {{--</article>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
         <a class="navbar-brand" href="/">
             <img src="{{asset('aruna/img/logo.png')}}" alt="Aruna - Image Sharing, Gag, Meme Theme"/>
         </a>
@@ -124,7 +124,7 @@
         <div class="user-box">
             <a href="#">
                 <figure>
-                    <img src="{{asset('aruna/img/user-box.png')}}" alt=""/>
+                    <img src="{{(Auth::user())? Auth::user()->profile_photo : asset('aruna/img/user-box.png')}}" alt="" class="img-circle"/>
                 </figure>
                 @if(Auth::user())
                     <span class="name">{{Auth::user()->name}}</span>

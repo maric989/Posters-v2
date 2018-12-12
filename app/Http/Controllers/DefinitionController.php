@@ -120,11 +120,17 @@ class DefinitionController extends Controller
                 $tageed_id[] = $tag_id->tag_id;
             }
 
-            $tags = Tag::whereIn('id',$tageed_id)->get();
+            $tagged = Tag::whereIn('id',$tageed_id)->get();
         }else{
-            $tags = false;
+            $tagged = false;
         }
 
-        return view('definition.single',compact('definition','comments','tags','likesSum','likesDown','likesUp'));
+        return view('definition.single',compact(
+            'definition',
+            'comments',
+            'likesSum',
+            'likesDown',
+            'likesUp',
+            'tagged'));
     }
 }
