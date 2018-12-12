@@ -4,10 +4,14 @@
         <hr/>
         <div class="widget-content">
             <div class="input-group search-widget">
-                <input type="text" class="form-control" placeholder="Search something" />
-                <span class="input-group-btn">
-                                        <button class="btn btn-primary custom-button" type="button">Search</button>
-                                    </span>
+                @if(strpos(Route::currentRouteName(),'poster') !== false)
+                    <form action="{{route('search.poster')}}" method="POST" class="form-group">
+                        {{csrf_field()}}
+                        <input type="text"  placeholder="Search something" name="q" class="form-control"/>
+                          <button class="btn btn-primary custom-button" type="submit">Search</button>
+                    </form>
+                @endif
+
             </div>
         </div>
     </div>

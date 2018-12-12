@@ -231,5 +231,13 @@ class PosterController extends Controller
 
         return view('poster.fresh',compact('posters','comments','user'));
     }
+
+    public function search(Request $request)
+    {
+        $q = $request->q;
+        $results = Poster::where('title','LIKE','%'.$q.'%')->get();
+
+        return view('search',compact('results'));
+    }
     
 }

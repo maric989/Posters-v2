@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'PosterController@index');
+Route::get('/', 'PosterController@index')->name('poster.index');
 
 
 Route::post('/store_user','AuthController@register')->name('register_user');
@@ -72,3 +72,5 @@ Route::get('/autori','AutorsController@index')->name('autori.index');
 Route::post('/coverPhoto','AutorsController@coverImg')->name('change.cover');
 Route::post('/profilePhoto','AutorsController@profileImg')->name('change.profile');
 Route::get('tag/{name}','TagController@index')->name('tags');
+
+Route::post('/search/poster','PosterController@search')->name('search.poster');
