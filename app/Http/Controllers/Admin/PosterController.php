@@ -30,7 +30,7 @@ class PosterController extends Controller
     public function getApprovedPosters()
     {
         $user = Auth::user();
-        $posters = Poster::where('approved','1')->paginate(12);
+        $posters = Poster::where('approved','1')->orderBy('created_at','desc')->paginate(12);
 
         return view('admin.posters_approved',compact('user','posters'));
     }
@@ -48,7 +48,7 @@ class PosterController extends Controller
     public function getWaitingPosters ()
     {
         $user = Auth::user();
-        $posters = Poster::where('approved','0')->paginate(12);
+        $posters = Poster::where('approved','0')->orderBy('created_at','desc')->paginate(12);
 
         return view('admin.posters_not_approved',compact('user','posters'));
     }
