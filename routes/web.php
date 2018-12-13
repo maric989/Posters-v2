@@ -74,3 +74,4 @@ Route::post('/profilePhoto','AutorsController@profileImg')->name('change.profile
 Route::get('tag/{name}','TagController@index')->name('tags');
 
 Route::post('/search/poster','PosterController@search')->name('search.poster');
+Route::post('/search/definition','DefinitionController@search')->name('search.definition');

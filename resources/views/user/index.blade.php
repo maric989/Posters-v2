@@ -41,7 +41,9 @@
                 </figure>
             </div>
         </article>
-            @endif
+            {{$posters->links()}}
+
+        @endif
     @endforeach
 
 {{--<article class="main-post">--}}

@@ -10,6 +10,12 @@
                         <input type="text"  placeholder="Search something" name="q" class="form-control"/>
                           <button class="btn btn-primary custom-button" type="submit">Search</button>
                     </form>
+                @else
+                    <form action="{{route('search.definition')}}" method="POST" class="form-group">
+                        {{csrf_field()}}
+                        <input type="text"  placeholder="Search something" name="q" class="form-control"/>
+                        <button class="btn btn-primary custom-button" type="submit">Search</button>
+                    </form>
                 @endif
 
             </div>

@@ -42,6 +42,7 @@
                 </figure>
             </div>
         </article>
+       {{$posters->links()}}
         @endif
     @endforeach
 

@@ -32,7 +32,7 @@ class DefinitionController extends Controller
 
     public function fresh()
     {
-        $definitions = Definition::where('approved',1)->orderBy('created_at','desc')->get();
+        $definitions = Definition::where('approved',1)->orderBy('created_at','desc')->paginate(12)->get();
         $comments = Comment::all();
 
         return view('definition.fresh',compact('definitions','comments'));
@@ -132,5 +132,14 @@ class DefinitionController extends Controller
             'likesDown',
             'likesUp',
             'tagged'));
+    }
+
+    public function search(Request $request)
+    {
+        $q = $request->q;
+        $results = Definition::where('title','LIKE','%'.$q.'%')->get();
+        $comments = Comment::all();
+
+        return view('search_definition',compact('results','comments'));
     }
 }

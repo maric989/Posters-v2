@@ -17,7 +17,8 @@ class PosterController extends Controller
 
     public function index()
     {
-        $posters = Poster::where('approved','1')->with('likes')->get();
+        $posters = Poster::where('approved','1')->with('likes')->paginate(12);
+
         $comments = Comment::all();
         if (Auth::user()){
             $user = Auth::user();
@@ -215,7 +216,7 @@ class PosterController extends Controller
 
     public function trending()
     {
-        $posters = Poster::where('approved','1')->with('likes')->orderBy('created_at','desc')->get();
+        $posters = Poster::where('approved','1')->with('likes')->orderBy('created_at','desc')->paginate(12);
         $comments = Comment::all();
         $user = Auth::user();
 
@@ -224,7 +225,10 @@ class PosterController extends Controller
 
     public function fresh()
     {
-        $posters = Poster::where('approved','1')->with('likes')->orderBy('created_at','desc')->get();
+        $posters = Poster::where('approved','1')
+            ->with('likes')
+            ->orderBy('created_at','desc')
+            ->paginate(12);
         $comments = Comment::all();
         $user = Auth::user();
 
@@ -236,8 +240,9 @@ class PosterController extends Controller
     {
         $q = $request->q;
         $results = Poster::where('title','LIKE','%'.$q.'%')->get();
+        $comments = Comment::all();
 
-        return view('search',compact('results'));
+        return view('search',compact('results','comments'));
     }
     
 }
