@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Http\Requests\StorePosterRequest;
 use App\Like;
 use App\Poster;
 use App\Tag;
@@ -62,7 +63,7 @@ class PosterController extends Controller
         return view('poster.create');
     }
 
-    public function store(Request $request)
+    public function store(StorePosterRequest $request)
     {
         if (!Auth::user())
         {

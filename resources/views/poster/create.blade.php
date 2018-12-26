@@ -7,6 +7,11 @@
         {{csrf_field()}}
         <div class="post-window window-image">
             <div class="window-left">
+                @if ($errors->has('title'))
+                    <span>
+                    <strong style="color: red">{{ $errors->first('title') }}</strong>
+                    </span>
+                @endif
                 <textarea class="form-control" rows="3" placeholder="Post title" name="title"></textarea>
                 <div class="upload-wrap">
                                  <span class="btn btn-success fileinput-button">
@@ -19,6 +24,11 @@
 
                                 </span>
                     <div id="files-photos" class="files"></div>
+                    @if ($errors->has('posterImg'))
+                        <span>
+                    <strong style="color: red">{{ $errors->first('posterImg') }}</strong>
+                    </span>
+                    @endif
                 </div>
             </div>
             <aside>
