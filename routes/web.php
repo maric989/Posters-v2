@@ -77,7 +77,3 @@ Route::get('tag/{name}','TagController@index')->name('tags');
 
 Route::post('/search/poster','PosterController@search')->name('search.poster');
 Route::post('/search/definition','DefinitionController@search')->name('search.definition');
-
-Route::get('/run-migrations', function () {
-    return Artisan::call('migrate', ["--force"=> true ]);
-});

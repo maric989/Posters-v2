@@ -88,7 +88,10 @@
                                                     <td><button class="btn btn-success">Approve</button></td>
                                                 </form>
                                             @endif
-                                            <td><button class="btn btn-danger">Delete</button></td>
+                                            <form action="{{route('poster.delete',$poster->id)}}" method="post">
+                                                {{csrf_field()}}
+                                                <td><button class="btn btn-danger">Delete</button></td>
+                                            </form>
                                         </tr>
                                         </tbody>
                                     </table>

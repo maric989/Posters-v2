@@ -8,6 +8,7 @@ use App\Like;
 use App\Poster;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PosterController extends Controller
 {
@@ -81,11 +82,14 @@ class PosterController extends Controller
                 $comment->delete();
             }
         }
+        $image_path = public_path().'/'.$poster->image;
 
+        unlink($image_path);
+
+        Like::where('likeable_id',$poster->id)->where('likeable_type','App\Poster')->delete();
         $poster->delete();
 
-
-        return back();
+        return redirect('/admin');
     }
 
 }
