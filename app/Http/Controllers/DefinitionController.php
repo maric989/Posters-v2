@@ -32,7 +32,7 @@ class DefinitionController extends Controller
 
     public function fresh()
     {
-        $definitions = Definition::where('approved',1)->orderBy('created_at','desc')->paginate(12)->get();
+        $definitions = Definition::where('approved',1)->orderBy('created_at','desc')->paginate(12);
         $comments = Comment::all();
 
         return view('definition.fresh',compact('definitions','comments'));

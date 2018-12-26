@@ -17,12 +17,26 @@ class PosterController extends Controller
 
     public function index()
     {
-        $posters = Poster::where('approved','1')->with('likes')->paginate(12);
+        //HOT POSTERS
+        //Get all posters
+        $posters = Poster::all();
+        $ids = [];
 
+        //Count their likes
+        foreach ($posters as $poster){
+            if ($poster->getPosterLikes($poster->id) > env('HOT_LIKES_MIN')){
+                $ids[] = $poster->id;
+            };
+        }
+        //Get Posters with more then HOT_LIKES_MIN
+        $posters = Poster::whereIn('id',$ids)->orderBy('created_at','DESC')->paginate();
+
+        //Get Comments
         $comments = Comment::all();
         if (Auth::user()){
             $user = Auth::user();
         }
+        //Get Tags
         $tags = Tag::getMostUsedTags();
 
         return view('user.index',compact('posters','comments','user','tags'));
@@ -216,7 +230,19 @@ class PosterController extends Controller
 
     public function trending()
     {
-        $posters = Poster::where('approved','1')->with('likes')->orderBy('created_at','desc')->paginate(12);
+        $posters = Poster::all();
+        $ids = [];
+
+        //Count their likes
+        foreach ($posters as $poster){
+            if ($poster->getPosterLikes($poster->id) >= env('TRENDING_LIKES_MIN') && $poster->getPosterLikes($poster->id) <= env('TRENDING_LIKES_MAX')){
+                $ids[] = $poster->id;
+            };
+        }
+
+        //Get Posters with more then HOT_LIKES_MIN
+        $posters = Poster::whereIn('id',$ids)->orderBy('created_at','DESC')->paginate();
+
         $comments = Comment::all();
         $user = Auth::user();
 
@@ -225,10 +251,19 @@ class PosterController extends Controller
 
     public function fresh()
     {
-        $posters = Poster::where('approved','1')
-            ->with('likes')
-            ->orderBy('created_at','desc')
-            ->paginate(12);
+        $posters = Poster::all();
+        $ids = [];
+
+        //Count their likes
+        foreach ($posters as $poster){
+            if ($poster->getPosterLikes($poster->id) <= env('FRESH_LIKES_MAX')){
+                $ids[] = $poster->id;
+            };
+        }
+
+        //Get Posters with more then HOT_LIKES_MIN
+        $posters = Poster::whereIn('id',$ids)->orderBy('created_at','DESC')->paginate();
+
         $comments = Comment::all();
         $user = Auth::user();
 

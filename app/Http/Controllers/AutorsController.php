@@ -2,16 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Definition;
+use App\Poster;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AutorsController extends Controller
 {
     public function index()
     {
         $autors = User::where('role_id',2)->get();
+        $likes = [];
+        foreach ($autors as $autor) {
+            $likes[$autor->id] = $this->countLikesDiff($autor->id);
+        }
+        arsort($likes);
 
-        return view('user.autors');
+        $user_ids = array_keys($likes);
+
+        $sorted_autors = User::whereIn('id',$user_ids)
+            ->orderBy(DB::raw("FIELD(id,".join(',',$user_ids).")"))
+            ->get();
+
+        return view('user.autors',compact('sorted_autors'));
     }
 
     public function coverImg(Request $request)
@@ -43,5 +57,19 @@ class AutorsController extends Controller
 
         return back();
 
+    }
+
+    public static function countLikesDiff($id)
+    {
+        $posterUp =   Poster::getUserPosterLikes($id);
+        $posterDown = Poster::getUserPosterDislikes($id);
+        $definitionUp = Definition::getUserDefinitionLikes($id);
+        $definitionDown = Definition::getUserDefinitionDislikes($id);
+
+        $ups = $posterUp + $definitionUp;
+        $downs = $posterDown + $definitionDown;
+        $sum = $ups - $downs;
+
+        return $sum;
     }
 }

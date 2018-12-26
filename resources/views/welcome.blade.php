@@ -47,12 +47,14 @@
         <div class="row">
             <div class="col-sm-9 right-content">
                 <div class="row">
-                    <div class="col-sm-9">
+                    <div class="col-sm-{{strpos(Route::currentRouteName(),'autori') === false?'9':'12' }}">
                         <div class="main-wrap">
                             @yield('content')
                         </div>
                     </div>
-                    @include('layouts.index.right_sidebar')
+                    @if(strpos(Route::currentRouteName(),'autori') === false)
+                        @include('layouts.index.right_sidebar')
+                    @endif
                 </div>
             </div>
             @include('layouts.index.left_sidebar')

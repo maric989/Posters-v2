@@ -21,6 +21,11 @@ class Poster extends Model
         return $this->morphMany(Like::class,'likeable');
     }
 
+    public function getLikesCountAttribute()
+    {
+        return $this->likes()->count();
+    }
+
     public function createdAtSerbian()
     {
         $created_at = $this->created_at->diffForHumans();
@@ -46,4 +51,45 @@ class Poster extends Model
 
         return $comments;
     }
+
+    public static function getPosterLikes($poster_id)
+    {
+        $likes = Like::where('likeable_id',$poster_id)
+            ->where('likeable_type','App\Poster')
+            ->pluck('up')
+            ->sum();
+
+        return $likes;
+    }
+    public static function getUserPosterLikes($user_id)
+    {
+        $posters_id = Poster::where('user_id',$user_id)->pluck('id')->toArray();
+
+        $result = [];
+        foreach ($posters_id as $id)
+        {
+            $result[] = Like::where('likeable_id',$id)
+                ->where('likeable_type','App\Poster')
+                ->pluck('up')->sum();
+        }
+        $sum = array_sum($result);
+        return $sum;
+    }
+
+    public static function getUserPosterDislikes($user_id)
+    {
+        $posters_id = Poster::where('user_id',$user_id)->pluck('id')->toArray();
+
+        $result = [];
+        foreach ($posters_id as $id)
+        {
+            $result[] = Like::where('likeable_id',$id)
+                ->where('likeable_type','App\Poster')
+                ->pluck('down')->sum();
+        }
+        $sum = array_sum($result);
+        return $sum;
+    }
+
+
 }

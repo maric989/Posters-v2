@@ -3,7 +3,6 @@
 @section('content')
 
     @foreach($posters as $poster)
-        @if(($poster->likes->pluck('up')->sum()) <=5 && ($poster->likes->pluck('up')->sum()) >=2)
             <article class="main-post">
             <div class="article-top">
                 <h1><a href="{{route('single.poster',[$poster->slug,$poster->id])}}">{{$poster->title}}</a></h1>
@@ -42,8 +41,7 @@
                 </figure>
             </div>
         </article>
-       {{$posters->links()}}
-        @endif
     @endforeach
+    {{$posters->links()}}
 
 @endsection

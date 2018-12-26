@@ -3,7 +3,6 @@
 @section('content')
 
     @foreach($posters as $poster)
-        @if($poster->likes->pluck('up')->sum() <=3 && $poster->likes->pluck('up')->sum() ==0)
             <article class="main-post">
                 <div class="article-top">
                     <h1><a href="{{route('single.poster',[$poster->slug,$poster->id])}}">{{$poster->title}}</a></h1>
@@ -16,7 +15,7 @@
                         </div>
                         <div class="pull-right">
                             <input type="hidden" value="{{$poster->id}}" id="poster_id">
-                            <a href="#"><i class="icon-like upvote_poster"></i><span class="countUp">100</span></a>
+                            <a href="#"><i class="icon-like upvote_poster"></i><span class="countUp">{{\App\Poster::getPosterLikes($poster->id)}}</span></a>
 
                             <div class="dislike"><a href="#"><i class="icon-dislike"></i> 32</a></div>
                         </div>
@@ -42,8 +41,7 @@
                     </figure>
                 </div>
             </article>
-            {{$posters->links()}}
-        @endif
     @endforeach
+    {{$posters->links()}}
 
 @endsection
