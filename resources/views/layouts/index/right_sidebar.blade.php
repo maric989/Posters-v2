@@ -1,28 +1,28 @@
 <aside class="col-sm-3">
-    <div class="widget">
-        <h2>Search</h2>
-        <hr/>
-        <div class="widget-content">
-            <div class="input-group search-widget">
-                @if(strpos(Route::currentRouteName(),'poster') !== false)
-                    <form action="{{route('search.poster')}}" method="POST" class="form-group">
-                        {{csrf_field()}}
-                        <input type="text"  placeholder="Search something" name="q" class="form-control"/>
-                          <button class="btn btn-primary custom-button" type="submit">Search</button>
-                    </form>
-                @else
-                    <form action="{{route('search.definition')}}" method="POST" class="form-group">
-                        {{csrf_field()}}
-                        <input type="text"  placeholder="Search something" name="q" class="form-control"/>
-                        <button class="btn btn-primary custom-button" type="submit">Search</button>
-                    </form>
-                @endif
+    {{--<div class="widget">--}}
+        {{--<h2>Search</h2>--}}
+        {{--<hr/>--}}
+        {{--<div class="widget-content">--}}
+            {{--<div class="input-group search-widget">--}}
+                {{--@if(strpos(Route::currentRouteName(),'poster') !== false)--}}
+                    {{--<form action="{{route('search.poster')}}" method="POST" class="form-group">--}}
+                        {{--{{csrf_field()}}--}}
+                        {{--<input type="text"  placeholder="Search something" name="q" class="form-control"/>--}}
+                          {{--<button class="btn btn-primary custom-button" type="submit">Search</button>--}}
+                    {{--</form>--}}
+                {{--@else--}}
+                    {{--<form action="{{route('search.definition')}}" method="POST" class="form-group">--}}
+                        {{--{{csrf_field()}}--}}
+                        {{--<input type="text"  placeholder="Search something" name="q" class="form-control"/>--}}
+                        {{--<button class="btn btn-primary custom-button" type="submit">Search</button>--}}
+                    {{--</form>--}}
+                {{--@endif--}}
 
-            </div>
-        </div>
-    </div>
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
     <div class="widget">
-        <h2>User functionality</h2>
+        <h2>Funkcionalnosti</h2>
         <hr />
         <div class="widget-content">
             @if(!Auth::user())
@@ -31,14 +31,15 @@
             @else
             {{--<a data-toggle="modal" href="#postModal" class="btn btn-primary btn-lg btn-block custom-button">Post Article</a>--}}
             <a href="{{route('create.poster')}}" class="btn btn-primary btn-lg btn-block custom-button">Kreiraj Poster</a>
-            <a href="{{route('create.definition')}}" class="btn btn-primary btn-lg btn-block custom-button">Kreiraj Definiciju</a>
-            <a href="{{route('video_create')}}" class="btn btn-primary btn-lg btn-block custom-button">Dodaj Video</a>
+            {{--<a href="{{route('create.definition')}}" class="btn btn-primary btn-lg btn-block custom-button">Kreiraj Definiciju</a>--}}
+            {{--<a href="{{route('video_create')}}" class="btn btn-primary btn-lg btn-block custom-button">Dodaj Video</a>--}}
             @endif
 
         </div>
     </div>
     <div class="widget">
-        <h2>Funnies Joker</h2>
+        <h2>Najbolji Autor</h2>
+        @dd(\App\Poster::getHighestRankedPoster())
         <hr />
         <div class="widget-content">
             <div class="joker">

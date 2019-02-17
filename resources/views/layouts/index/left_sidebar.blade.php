@@ -12,7 +12,7 @@
                     {{--</div>--}}
                 {{--</div>--}}
             {{--</div>--}}
-            <div class="section-title">Tags</div>
+            <div class="section-title">Tagovi</div>
         </div>
         <div class="sidebar-content sidebar-content-category">
             <div class="menu-group">
@@ -26,30 +26,30 @@
                     @endforeach
                 </ul>
             </div>
-            <div class="menu-group">
-                <h2><a href="category.html">Politics</a></h2>
-                <hr />
-                <ul>
-                    <li><a href="category.html">Funny Politicians</a></li>
-                    <li><a href="category.html">#ObamaStuff</a></li>
-                </ul>
-            </div>
-            <div class="menu-group">
-                <h2><a href="category.html">Gingerfun</a></h2>
-                <hr />
-                <ul>
-                    <li><a href="category.html">Ginger People</a></li>
-                </ul>
-            </div>
-            <div class="menu-group">
-                <h2><a href="category.html">Cute</a></h2>
-                <hr />
-                <ul>
-                    <li><a href="category.html">Cute Kittens</a></li>
-                    <li><a href="category.html">Pandas</a></li>
-                    <li><a href="category.html">Babies Garden</a></li>
-                </ul>
-            </div>
+            {{--<div class="menu-group">--}}
+                {{--<h2><a href="category.html">Politics</a></h2>--}}
+                {{--<hr />--}}
+                {{--<ul>--}}
+                    {{--<li><a href="category.html">Funny Politicians</a></li>--}}
+                    {{--<li><a href="category.html">#ObamaStuff</a></li>--}}
+                {{--</ul>--}}
+            {{--</div>--}}
+            {{--<div class="menu-group">--}}
+                {{--<h2><a href="category.html">Gingerfun</a></h2>--}}
+                {{--<hr />--}}
+                {{--<ul>--}}
+                    {{--<li><a href="category.html">Ginger People</a></li>--}}
+                {{--</ul>--}}
+            {{--</div>--}}
+            {{--<div class="menu-group">--}}
+                {{--<h2><a href="category.html">Cute</a></h2>--}}
+                {{--<hr />--}}
+                {{--<ul>--}}
+                    {{--<li><a href="category.html">Cute Kittens</a></li>--}}
+                    {{--<li><a href="category.html">Pandas</a></li>--}}
+                    {{--<li><a href="category.html">Babies Garden</a></li>--}}
+                {{--</ul>--}}
+            {{--</div>--}}
         </div>
         <div class="sidebar-content sidebar-content-hot">
             <div class="side-article">

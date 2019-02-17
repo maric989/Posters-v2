@@ -70,8 +70,11 @@
                 {{--</div>--}}
             {{--</div>--}}
         {{--</div>--}}
+
         <a class="navbar-brand" href="/">
-            <img src="{{asset('aruna/img/logo.png')}}" alt="Aruna - Image Sharing, Gag, Meme Theme"/>
+            {{--<img src="{{asset('aruna/img/logo.png')}}" alt="Aruna - Image Sharing, Gag, Meme Theme"/>--}}
+            {{--<img src="https://c7.uihere.com/files/557/258/473/rubik-s-cube-3d-free-jigsaw-puzzles-professor-s-cube-cube-thumb.jpg">--}}
+            <p style="color: white;font-weight: 800">Rubik</p>
         </a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

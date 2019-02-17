@@ -109,4 +109,24 @@ class Poster extends Model
     }
 
 
+    public static function getHighestRankedPoster()
+    {
+        $ids = Poster::all()->pluck('id');
+
+        foreach ($ids as $id)
+        {
+            $res[$id] = Poster::getPosterLikes($id);
+        }
+
+
+        arsort($res);
+        $top_fives = array_slice($res,0,5,true);
+        $top_fives = array_keys($top_fives);
+//        dd($top_fives);
+        $ids = implode(',',$top_fives);
+//        dd($top_fives);
+        $posters = Poster::whereIn('id',$top_fives)->get();
+//        $posters = Poster::find($ids);
+        dd($posters);
+    }
 }

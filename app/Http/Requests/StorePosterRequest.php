@@ -24,7 +24,7 @@ class StorePosterRequest extends FormRequest
     public function rules()
     {
         return [
-            'posterImg' => 'required|mimes:gif,png,jpg|size:max:5000',
+            'posterImg' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'title'     => 'required'
         ];
     }

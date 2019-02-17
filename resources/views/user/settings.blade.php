@@ -40,12 +40,13 @@
                                     </div>
 
                                 </div>
-                                <div class="button-container">
-                                    <button class="btn btn-primary custom-button btn-md" data-toggle="modal" data-target="#modalCoverForm" style="margin-top: 5px">Izmeni Pozadinu</button>
-                                    <button class="btn btn-primary custom-button btn-md" data-toggle="modal" data-target="#modalProfilImgForm" style="margin-top: 5px" >Izmeni profilnu sliku</button>
-                                </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
+                        <button class="btn btn-primary custom-button btn-md" data-toggle="modal" data-target="#modalCoverForm" style="margin-top: 5px">Izmeni Pozadinu</button>
+                        <button class="btn btn-primary custom-button btn-md" data-toggle="modal" data-target="#modalProfilImgForm" style="margin-top: 5px" >Izmeni profilnu sliku</button>
+
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
