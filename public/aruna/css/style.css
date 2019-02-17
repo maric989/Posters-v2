@@ -967,6 +967,42 @@ aside .widget:first-child {
   font-family: Dosis, Arial, sans-serif;
   font-weight: bold;
 }
+.count {
+    height: 55px;
+    background-color: #7541cc;
+    float: left;
+    padding: 0 40px;
+    color: white;
+    border-right: 1px solid;
+    font-size: 14px;
+    line-height: 55px;
+    font-family: Dosis, Arial, sans-serif;
+    font-weight: bold;
+}
+.author-bar {
+    height: 55px;
+    background-color: #7541cc;
+    float: left;
+    padding: 0 40px;
+    color: white;
+    border-right: 1px solid;
+    font-size: 14px;
+    line-height: 55px;
+    font-family: Dosis, Arial, sans-serif;
+    font-weight: bold;
+}
+.date-bar {
+    height: 55px;
+    background-color: #7541cc;
+    float: left;
+    padding: 0 12px;
+    color: white;
+    font-size: 14px;
+    line-height: 55px;
+    font-family: Dosis, Arial, sans-serif;
+    font-weight: bold;
+    border-right: 1px solid;
+}
 .main-post .buttons-bar .social-icons {
   float: left;
 }
@@ -983,6 +1019,17 @@ aside .widget:first-child {
   -o-transition: background-color 0.4s ease-in-out;
   -ms-transition: background-color 0.4s ease-in-out;
   transition: background-color 0.4s ease-in-out;
+}
+
+.likes-bar a{
+    width: 40px;
+    height: 55px;
+    float: right;
+    text-transform: capitalize;
+    background-color: transparent;
+    color: white;
+    text-decoration: none;
+
 }
 .main-post .buttons-bar .social-icons a:hover {
   background-color: #703dc2;

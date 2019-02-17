@@ -165,6 +165,10 @@ class PosterController extends Controller
 
     public function upvote(Request $request)
     {
+
+        if (!Auth::user()){
+            return redirect('login');
+        }
         $user_id = Auth::user()->id;
         $poster = Poster::find($request->poster_id);
 
@@ -173,15 +177,14 @@ class PosterController extends Controller
 
             $liked = false;
         }else{
-                $like = new Like();
-                $like->user_id = $user_id;
-                $like->up = 1;
-                $like->down = 0;
-                $poster->likes()->save($like);
+            $like = new Like();
+            $like->user_id = $user_id;
+            $like->up = 1;
+            $like->down = 0;
+            $poster->likes()->save($like);
 
-                $liked = true;
+            $liked = true;
         }
-
         $up = $poster->likes()->where('up',1)->count();
         $down = $poster->likes()->where('down',1)->count();
         $sum = $up-$down;

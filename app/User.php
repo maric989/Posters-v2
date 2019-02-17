@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -104,5 +105,20 @@ class User extends Authenticatable implements MustVerifyEmail
         $definitions = $this->definitions()->where('approved',1)->get();
 
         return count($definitions);
+    }
+
+    public function isPostLiked($post_id,$user_id)
+    {
+
+        $liked = DB::table('likes')
+            ->select('id')
+            ->where('likeable_id','=',$post_id)
+            ->where('user_id','=',$user_id)
+            ->where('likeable_type','App\Poster')
+            ->get();
+
+        //TODO ovde iskesiraj $liked ako je true da ne ide do baze uvek
+        return ($liked->isEmpty()) ? false : true;
+
     }
 }

@@ -120,14 +120,9 @@
 </script>
 <script>
     $(document).ready(function () {
-        var poster_id = $('#poster_id').val();
-
-        $('.upvote_poster').on('click',function (event) {
-            var $this = $(this),
-            post = $this.closest('div.pull-right');
-
-            console.log(post.find('#poster_id'));
-            event.preventDefault();
+        $('#like_up').on('click',function () {
+            var up = $('.countUp').html();
+            var poster_id = $('#poster_id').val();
 
             $.ajax({
                 type:'POST',
@@ -137,35 +132,70 @@
                     "poster_id": poster_id
                 },
                 success:function(data){
-                    post.find('.countUp').html(data.up);
-//                    $('#countDown').html(data.down);
-//                    $('#countUp').html(data.up);
-//                    $('#likesSum').html(data.sum);
-//                    console.log(data);
+                    console.log(data);
+                    $('#like_up').off('click');
+                    $('#like_up').css('background-color', 'blue');
+                    // $('#like_down').off('click');
+                    // post.find('.countUp').html(data.up);
+                   // $('#countDown').html(data.down);
+                   // $('#countUp').html(data.up);
+                   // $('#likesSum').html(data.sum);
+                   // console.log(data);
 
                 }
             });
-        });
 
-        $('#downvote_poster').on('click',function (event) {
-            event.preventDefault();
-            console.log('like1');
-
-            $.ajax({
-                type:'POST',
-                url:"{{ url('/poster/downvote') }}",
-                data:{
-                    "_token": "{{ csrf_token() }}",
-                    "poster_id": poster_id
-                },
-                success:function(data){
-                    $('#countDown'+post_id).html(data.down);
-                    $('#countUp').html(data.up);
-                    $('#likesSum').html(data.sum);
-                }
-            });
-        });
+        })
     })
+</script>
+<script>
+    {{--$(document).ready(function () {--}}
+        {{--var poster_id = $('#poster_id').val();--}}
+
+        {{--$('.upvote_poster').on('click',function (event) {--}}
+            {{--var $this = $(this),--}}
+            {{--post = $this.closest('div.pull-right');--}}
+
+            {{--console.log(post.find('#poster_id'));--}}
+            {{--event.preventDefault();--}}
+
+            {{--$.ajax({--}}
+                {{--type:'POST',--}}
+                {{--url:"{{ url('/poster/upvote') }}",--}}
+                {{--data:{--}}
+                    {{--"_token": "{{ csrf_token() }}",--}}
+                    {{--"poster_id": poster_id--}}
+                {{--},--}}
+                {{--success:function(data){--}}
+                    {{--post.find('.countUp').html(data.up);--}}
+{{--//                    $('#countDown').html(data.down);--}}
+{{--//                    $('#countUp').html(data.up);--}}
+{{--//                    $('#likesSum').html(data.sum);--}}
+{{--//                    console.log(data);--}}
+
+                {{--}--}}
+            {{--});--}}
+        {{--});--}}
+
+        {{--$('#downvote_poster').on('click',function (event) {--}}
+            {{--event.preventDefault();--}}
+            {{--console.log('like1');--}}
+
+            {{--$.ajax({--}}
+                {{--type:'POST',--}}
+                {{--url:"{{ url('/poster/downvote') }}",--}}
+                {{--data:{--}}
+                    {{--"_token": "{{ csrf_token() }}",--}}
+                    {{--"poster_id": poster_id--}}
+                {{--},--}}
+                {{--success:function(data){--}}
+                    {{--$('#countDown'+post_id).html(data.down);--}}
+                    {{--$('#countUp').html(data.up);--}}
+                    {{--$('#likesSum').html(data.sum);--}}
+                {{--}--}}
+            {{--});--}}
+        {{--});--}}
+    {{--})--}}
 </script>
 </body>
 </html>
