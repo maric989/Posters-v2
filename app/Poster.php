@@ -52,6 +52,9 @@ class Poster extends Model
         return $comments;
     }
 
+    /*
+     * Sum all likes that poster have
+     */
     public static function getPosterLikes($poster_id)
     {
         $likes = Like::where('likeable_id',$poster_id)
@@ -61,6 +64,20 @@ class Poster extends Model
 
         return $likes;
     }
+
+    /*
+     * Sum all dislikes that poster have
+     */
+    public static function getPosterDislikes($poster_id)
+    {
+        $likes = Like::where('likeable_id',$poster_id)
+            ->where('likeable_type','App\Poster')
+            ->pluck('down')
+            ->sum();
+
+        return $likes;
+    }
+
     public static function getUserPosterLikes($user_id)
     {
         $posters_id = Poster::where('user_id',$user_id)->pluck('id')->toArray();

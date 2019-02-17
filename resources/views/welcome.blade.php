@@ -118,33 +118,55 @@
             $('#video_iframe').attr('src',val);
         }
 </script>
+$( ".pull-right" ).click(function() {
+$( ".pull-right" ).fadeOut( "slow", function() {
+// Animation complete.
+});
+});
 <script>
     $(document).ready(function () {
         $('#like_up').on('click',function () {
-            var up = $('.countUp').html();
-            var poster_id = $('#poster_id').val();
+            $( ".pull-right" ).fadeOut( "slow", function() {
+                var poster_id = $('#poster_id').val();
+                var score = $('.count').html();
 
-            $.ajax({
-                type:'POST',
-                url:"{{ url('/poster/upvote') }}",
-                data:{
-                    "_token": "{{ csrf_token() }}",
-                    "poster_id": poster_id
-                },
-                success:function(data){
-                    console.log(data);
-                    $('#like_up').off('click');
-                    $('#like_up').css('background-color', 'blue');
-                    // $('#like_down').off('click');
-                    // post.find('.countUp').html(data.up);
-                   // $('#countDown').html(data.down);
-                   // $('#countUp').html(data.up);
-                   // $('#likesSum').html(data.sum);
-                   // console.log(data);
+                $.ajax({
+                    type:'POST',
+                    url:"{{ url('/poster/upvote') }}",
+                    data:{
+                        "_token": "{{ csrf_token() }}",
+                        "poster_id": poster_id
+                    },
+                    success:function(data){
+                        $('#like_up').off('click');
+                        $('#like_up').css('background-color', 'blue');
+                        $('.count').text(parseInt(score)+1);
+                    }
+                });
 
-                }
             });
+        });
 
+        $('#like_down').on('click',function () {
+            $( ".pull-right" ).fadeOut( "slow", function() {
+                var poster_id = $('#poster_id').val();
+                var score = $('.count').html();
+
+                $.ajax({
+                    type:'POST',
+                    url:"{{ url('/poster/downvote') }}",
+                    data:{
+                        "_token": "{{ csrf_token() }}",
+                        "poster_id": poster_id
+                    },
+                    success:function(data){
+                        $('#like_up').off('click');
+                        $('#like_up').css('background-color', 'blue');
+                        $('.count').text(parseInt(score)-1);
+                    }
+                });
+
+            });
         })
     })
 </script>

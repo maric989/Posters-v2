@@ -16,7 +16,7 @@
                 <div class="dislike" id="like_up">
                     <i class="icon-like upvote_poster"></i><span class="countUp">{{\App\Poster::getPosterLikes($poster->id)}}</span>
                 </div>
-                <div class="dislike" id="like_down"><a href="#"><i class="icon-dislike"></i> 32</a></div>
+                <div class="dislike" id="like_down"><i class="icon-dislike"></i>{{\App\Poster::getPosterDislikes($poster->id)}}</div>
             </div>
             @endif
         </div>
