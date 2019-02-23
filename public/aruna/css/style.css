@@ -907,7 +907,8 @@ aside .widget:first-child {
   float: right;
   width: 100%;
   height: 55px;
-  background-color: #7f46dd;
+  border-radius: 10px;
+  background-color: #B6A9A9;
   -webkit-transition: width 0.4s ease-in-out;
   -moz-transition: width 0.4s ease-in-out;
   -o-transition: width 0.4s ease-in-out;
@@ -935,9 +936,9 @@ aside .widget:first-child {
   width: 55px;
   height: 55px;
   float: left;
-  text-indent: -9999px;
+  /*text-indent: -9999px;*/
   text-transform: uppercase;
-  background-image: url("../img/post-buttons.png");
+  /*background-image: url("../img/post-buttons.png");*/
   -webkit-transition: background-color 0.4s ease-in-out;
   -moz-transition: background-color 0.4s ease-in-out;
   -o-transition: background-color 0.4s ease-in-out;
@@ -954,11 +955,12 @@ aside .widget:first-child {
   background-position: center center;
 }
 .main-post .buttons-bar .buttons a:hover {
-  background-color: #6135a8;
+  /*background-color: #6135a8;*/
+    text-decoration: none;
 }
 .main-post .buttons-bar .buttons .count {
   height: 55px;
-  background-color: #7541cc;
+  background-color: #B6A9A9;
   float: left;
   padding: 0 40px;
   color: white;
@@ -969,7 +971,7 @@ aside .widget:first-child {
 }
 .count {
     height: 55px;
-    background-color: #7541cc;
+    background-color: #B6A9A9;
     float: left;
     padding: 0 40px;
     color: white;
@@ -981,7 +983,7 @@ aside .widget:first-child {
 }
 .author-bar {
     height: 55px;
-    background-color: #7541cc;
+    background-color: #B6A9A9;
     float: left;
     padding: 0 40px;
     color: white;
@@ -993,7 +995,7 @@ aside .widget:first-child {
 }
 .date-bar {
     height: 55px;
-    background-color: #7541cc;
+    background-color: #B6A9A9;
     float: left;
     padding: 0 12px;
     color: white;

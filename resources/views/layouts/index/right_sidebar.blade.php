@@ -39,7 +39,7 @@
     </div>
     <div class="widget">
         <h2>Najbolji Autor</h2>
-        @dd(\App\Poster::getHighestRankedPoster())
+{{--        @dd(\App\Poster::getHighestRankedPoster())--}}
         <hr />
         <div class="widget-content">
             <div class="joker">

@@ -1,4 +1,4 @@
-<aside class="col-sm-3 left-aside">
+<aside class="col-sm-2 left-aside">
     <div class="sidebar-menu">
         <div class="top-menu">
             {{--<div class="inception-menu">--}}
@@ -12,11 +12,11 @@
                     {{--</div>--}}
                 {{--</div>--}}
             {{--</div>--}}
-            <div class="section-title">Tagovi</div>
+            {{--<div class="section-title">Tagovi</div>--}}
         </div>
         <div class="sidebar-content sidebar-content-category">
             <div class="menu-group">
-                <h2><a href="#">Top Tags</a></h2>
+                <h2><a href="#">Top Tagovi</a></h2>
                 <hr />
                 <ul>
                     @foreach($tags as $tag)

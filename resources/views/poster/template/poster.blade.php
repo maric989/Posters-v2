@@ -24,21 +24,32 @@
             <div class="buttons">
                 {{--<a href="#" class='repost has-tooltip' data-title="REPOST">Repost</a>--}}
                 {{--<a href="#" class='bookmarked has-tooltip' data-title="BOOKMARKED">bookmarked</a>--}}
-                <div class="date-bar"><i class="icon-calendar" style="height:55px"></i> {{$poster->created_at->format('d/m/Y')}}</div>
+                <div class="date-bar">
+                    {{--<i class="icon-calendar" style="height:55px"></i> --}}
+                    {{$poster->created_at->format('d/m/Y')}}
+                </div>
                 <div class="count">{{$poster->likes->pluck('up')->sum() - $poster->likes->pluck('down')->sum()}}</div>
 
-                    <div class="author-bar">
-                        {{--<i class="icon-user"></i>--}}
-                        <p>{{$poster->user->name}}</p>
-{{--                       <h3>{{route('user.profile',$poster->user->slug)}}">{{$poster->user->name}}</h3>--}}
-                    </div>
+                <div class="author-bar">
+                    {{--<i class="icon-user"></i>--}}
+                   <p>{{$poster->user->name}}</p>
+{{--                      <h3>{{route('user.profile',$poster->user->slug)}}">{{$poster->user->name}}</h3>--}}
+                </div>
+                {{--<div class="count">--}}
+                    {{--<a href="{{route('single.poster',[$poster->slug,$poster->id])}}">--}}
+                        {{--<i class="icon-comments"></i>--}}
+
+                        {{--{{$comments->where('post_id',$poster->id)->where('comm_type','App\Poster')->count()}}--}}
+                    {{--</a>--}}
+
+                {{--</div>--}}
 
             </div>
             <div class="social-icons">
                 <a href="javascript:void(0)" data-href="https://www.facebook.com/sharer/sharer.php?u=http://teothemes.com/html/Aruna" class='facebook has-tooltip' data-title="Share on Facebook">facebook</a>
                 <a href="javascript:void(0)" data-href="https://twitter.com/intent/tweet?source=tweetbutton&amp;text=Check the best image/meme sharing website!&url=http://teothemes.com/html/Aruna" class='twitter has-tooltip' data-title="Share on Twitter">twitter</a>
                 <a href="javascript:void(0)" data-href="https://plus.google.com/share?url=http://teothemes.com/html/Aruna" class='googleplus has-tooltip' data-title="Share on Google +">googleplus</a>
-                <a href="mailto:?subject=Check out the best image/meme sharing template!&amp;body=Hey there! Check out the best image/meme sharing template! http://teothemes.com/html/Aruna" class='mail has-tooltip' data-title="Share via Email">mail</a>
+                {{--<a href="mailto:?subject=Check out the best image/meme sharing template!&amp;body=Hey there! Check out the best image/meme sharing template! http://teothemes.com/html/Aruna" class='mail has-tooltip' data-title="Share via Email">mail</a>--}}
             </div>
 
         </div>

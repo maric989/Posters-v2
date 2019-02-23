@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class PosterController extends Controller
 {
@@ -140,6 +141,7 @@ class PosterController extends Controller
                 ->where('post_type','=','App\Poster')
                 ->get();
         $tags = Tag::getMostUsedTags();
+        Log::info('ccccc',[$tags]);
         $likesSum = $likesUp->count() - $likesDown->count();
 
         if (!$tags_id->isEmpty() ){

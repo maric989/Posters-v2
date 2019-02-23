@@ -45,7 +45,7 @@
 <section id="main" role="main">
     <div class="container">
         <div class="row">
-            <div class="col-sm-9 right-content">
+            <div class="col-sm-10 right-content">
                 <div class="row">
                     <div class="col-sm-{{strpos(Route::currentRouteName(),'autori') === false?'9':'12' }}">
                         <div class="main-wrap">
