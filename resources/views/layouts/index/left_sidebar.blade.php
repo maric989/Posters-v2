@@ -42,7 +42,7 @@
             <div class="side-article">
                 <figure>
                     <a href="post.html">
-                        <img src="img/left1.jpg" alt=""/>
+                        <img src="#" alt=""/>
                     </a>
                 </figure>
                 <h2><a href="post.html">Old People Burning</a></h2>
@@ -57,7 +57,7 @@
             <div class="side-article">
                 <figure>
                     <a href="post.html">
-                        <img src="img/left2.jpg" alt=""/>
+                        <img src="#" alt=""/>
                     </a>
                 </figure>
                 <h2><a href="post.html">How to get killed and revive in 3 days!</a></h2>
@@ -72,7 +72,7 @@
             <div class="side-article">
                 <figure>
                     <a href="post.htmls">
-                        <img src="img/left3.jpg" alt=""/>
+                        <img src="#" alt=""/>
                     </a>
                 </figure>
                 <h2><a href="post.html">How Photoshop Really Works</a></h2>
@@ -87,7 +87,7 @@
             <div class="side-article">
                 <figure>
                     <a href="post.html">
-                        <img src="img/left4.jpg" alt=""/>
+                        <img src="#" alt=""/>
                     </a>
                 </figure>
                 <h2><a href="post.html">Old People Burning</a></h2>
@@ -102,7 +102,7 @@
             <div class="side-article">
                 <figure>
                     <a href="post.html">
-                        <img src="img/left5.jpg" alt=""/>
+                        <img src="#" alt=""/>
                     </a>
                 </figure>
                 <h2><a href="post.html">How to get killed and revive in 3 days!</a></h2>
@@ -119,7 +119,7 @@
             <div class="side-article">
                 <figure>
                     <a href="post.html">
-                        <img src="img/left1.jpg" alt=""/>
+                        <img src="#" alt=""/>
                     </a>
                 </figure>
                 <h2><a href="post.html">Old People Burning</a></h2>
@@ -134,7 +134,7 @@
             <div class="side-article">
                 <figure>
                     <a href="post.html">
-                        <img src="img/left2.jpg" alt=""/>
+                        <img src="#" alt=""/>
                     </a>
                 </figure>
                 <h2><a href="post.html">How to get killed and revive in 3 days!</a></h2>
@@ -149,7 +149,7 @@
             <div class="side-article">
                 <figure>
                     <a href="post.htmls">
-                        <img src="img/left3.jpg" alt=""/>
+                        <img src="#" alt=""/>
                     </a>
                 </figure>
                 <h2><a href="post.html">How Photoshop Really Works</a></h2>
@@ -164,7 +164,7 @@
             <div class="side-article">
                 <figure>
                     <a href="post.html">
-                        <img src="img/left4.jpg" alt=""/>
+                        <img src="#" alt=""/>
                     </a>
                 </figure>
                 <h2><a href="post.html">Old People Burning</a></h2>
@@ -179,7 +179,7 @@
             <div class="side-article">
                 <figure>
                     <a href="post.html">
-                        <img src="img/left5.jpg" alt=""/>
+                        <img src="#" alt=""/>
                     </a>
                 </figure>
                 <h2><a href="post.html">How to get killed and revive in 3 days!</a></h2>

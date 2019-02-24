@@ -44,7 +44,7 @@
         <div class="widget-content">
             <div class="joker">
                 <figure>
-                    <img src="img/avatar01.jpg" alt=""/>
+                    <img src="#" alt=""/>
                 </figure>
                 <div class="text">
                     <div class="name"><a href="profile.html">Liam McLean</a></div>
@@ -61,7 +61,7 @@
             <div class="post-list">
                 <article>
                     <figure>
-                        <img src="img/top1.jpg" alt=""/>
+                        <img src="#" alt=""/>
                         <figcaption>01</figcaption>
                     </figure>
                     <div class="text">
@@ -71,7 +71,7 @@
                 </article>
                 <article>
                     <figure>
-                        <img src="img/top2.jpg" alt=""/>
+                        <img src="#" alt=""/>
                         <figcaption>02</figcaption>
                     </figure>
                     <div class="text">
@@ -81,7 +81,7 @@
                 </article>
                 <article>
                     <figure>
-                        <img src="img/top3.jpg" alt=""/>
+                        <img src="#" alt=""/>
                         <figcaption>03</figcaption>
                     </figure>
                     <div class="text">
@@ -91,7 +91,7 @@
                 </article>
                 <article>
                     <figure>
-                        <img src="img/top4.jpg" alt=""/>
+                        <img src="#" alt=""/>
                         <figcaption>04</figcaption>
                     </figure>
                     <div class="text">
@@ -101,7 +101,7 @@
                 </article>
                 <article>
                     <figure>
-                        <img src="img/top5.jpg" alt=""/>
+                        <img src="#" alt=""/>
                         <figcaption>05</figcaption>
                     </figure>
                     <div class="text">

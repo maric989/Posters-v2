@@ -152,7 +152,7 @@
                                 <div class="widget-content">
                                     <div class="joker">
                                         <figure>
-                                            <img src="img/avatar01.jpg" alt=""/>
+                                            <img src="#" alt=""/>
                                         </figure>
                                         <div class="text">
                                             <div class="name"><a href="profile.html">Liam McLean</a></div>

@@ -7,7 +7,7 @@
                     <hr />
                     <div class="widget-content">
                         <figure class="footer-logo">
-                            <a href="index.html"><img src="img/footer-logo.png" alt=""/></a>
+                            <a href="index.html"><img src="#" alt=""/></a>
                         </figure>
                         <p>
                             Aruna is a theme developed by
@@ -28,31 +28,31 @@
                             <div class="left">
                                 <figure class="small">
                                     <a href="post.html">
-                                        <img src="img/footer-img-small01.jpg" alt=""/>
+                                        <img src="#" alt=""/>
                                     </a>
                                 </figure>
                                 <figure class="small">
                                     <a href="post.html">
-                                        <img src="img/footer-img-small02.jpg" alt=""/>
+                                        <img src="#" alt=""/>
                                     </a>
                                 </figure>
                             </div>
                             <div class="left">
                                 <figure class="small">
                                     <a href="post.html">
-                                        <img src="img/footer-img-small02.jpg" alt=""/>
+                                        <img src="#" alt=""/>
                                     </a>
                                 </figure>
                                 <figure class="small">
                                     <a href="post.html">
-                                        <img src="img/footer-img-small01.jpg" alt=""/>
+                                        <img src="#" alt=""/>
                                     </a>
                                 </figure>
                             </div>
                             <div class="right">
                                 <figure class="big">
                                     <a href="post.html">
-                                        <img src="img/footer-img-big01.jpg" alt=""/>
+                                        <img src="#" alt=""/>
                                     </a>
                                 </figure>
                             </div>
