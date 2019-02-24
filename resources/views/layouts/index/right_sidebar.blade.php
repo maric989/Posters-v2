@@ -39,8 +39,9 @@
     </div>
     <div class="widget">
         <h2>Najbolji Autor</h2>
-{{--        @dd(\App\Poster::getHighestRankedPoster())--}}
+        {{--@dd(\App\Poster::getHighestRankedPoster())--}}
         <hr />
+
         <div class="widget-content">
             <div class="joker">
                 <figure>
@@ -55,60 +56,24 @@
         </div>
     </div>
     <div class="widget">
-        <h2><a href="#">Top5 Funniest</a></h2>
+        <h2><a href="#">Top5 Svih vremena</a></h2>
         <hr />
         <div class="widget-content">
             <div class="post-list">
+                {{--@dd($posters)--}}
+                @foreach(\App\Poster::getHighestRankedPoster() as $top_poster)
                 <article>
                     <figure>
-                        <img src="#" alt=""/>
-                        <figcaption>01</figcaption>
+                        <img src="{{$top_poster->image}}" alt=""/>
+                        {{--<figcaption>01</figcaption>--}}
                     </figure>
                     <div class="text">
-                        <h3><a href="post.html">Helping the elderly is not fun...</a></h3>
-                        <span class="date">25.04</span>
+                        <h3><a href="#">{{$top_poster->title}}</a></h3>
+                        <h3><a href="#">{{$top_poster->user->name}}</a></h3>
+                        <span class="date">{{$top_poster->created_at->format('d/m/y')}}</span>
                     </div>
                 </article>
-                <article>
-                    <figure>
-                        <img src="#" alt=""/>
-                        <figcaption>02</figcaption>
-                    </figure>
-                    <div class="text">
-                        <h3><a href="post.html">Old people burning...</a></h3>
-                        <span class="date">25.04</span>
-                    </div>
-                </article>
-                <article>
-                    <figure>
-                        <img src="#" alt=""/>
-                        <figcaption>03</figcaption>
-                    </figure>
-                    <div class="text">
-                        <h3><a href="post.html">Inappropriate jokes are alway...</a></h3>
-                        <span class="date">23.04</span>
-                    </div>
-                </article>
-                <article>
-                    <figure>
-                        <img src="#" alt=""/>
-                        <figcaption>04</figcaption>
-                    </figure>
-                    <div class="text">
-                        <h3><a href="post.html">The Law</a></h3>
-                        <span class="date">22.04</span>
-                    </div>
-                </article>
-                <article>
-                    <figure>
-                        <img src="#" alt=""/>
-                        <figcaption>05</figcaption>
-                    </figure>
-                    <div class="text">
-                        <h3><a href="post.html">How Photoshop works</a></h3>
-                        <span class="date">22.04</span>
-                    </div>
-                </article>
+               @endforeach
             </div>
         </div>
     </div>
