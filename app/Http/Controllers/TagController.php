@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Poster;
 use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class TagController extends Controller
@@ -22,7 +24,13 @@ class TagController extends Controller
         }
 
         $posters = Poster::findMany($ids);
+        //Get Comments
+        $comments = Comment::all();
 
-        return view('Tag.tag',compact('tag','posters'));
+        if (Auth::user()){
+            $user = Auth::user();
+        }
+
+        return view('Tag.tag',compact('tag','posters','comments','user'));
     }
 }

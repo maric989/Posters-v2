@@ -39,8 +39,7 @@
     </div>
     <div class="widget">
         <h2>Najbolji Autor</h2>
-        {{--@dd(\App\Poster::getHighestRankedPoster())--}}
-        <hr />
+        <hr/>
 
         <div class="widget-content">
             <div class="joker">
@@ -60,7 +59,7 @@
         <hr />
         <div class="widget-content">
             <div class="post-list">
-                {{--@dd($posters)--}}
+
                 @foreach(\App\Poster::getHighestRankedPoster() as $top_poster)
                 <article>
                     <figure>
