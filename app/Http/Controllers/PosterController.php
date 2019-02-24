@@ -155,6 +155,10 @@ class PosterController extends Controller
             $tagged = false;
         }
 
+        if (Auth::user()){
+            $user = Auth::user();
+        }
+
         return view('poster.single',compact(
             'poster',
             'comments',
@@ -162,7 +166,8 @@ class PosterController extends Controller
             'likesUp',
             'likesDown',
             'likesSum',
-            'tagged'
+            'tagged',
+            'user'
         ));
     }
 
