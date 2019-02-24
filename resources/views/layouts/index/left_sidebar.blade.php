@@ -1,19 +1,6 @@
 <aside class="col-sm-2 left-aside">
     <div class="sidebar-menu">
-        <div class="top-menu">
-            {{--<div class="inception-menu">--}}
-                {{--<a href="#" class="selector">Menu</a>--}}
-                {{--<div class="sub-navigation">--}}
-                    {{--<div class="half">--}}
-                        {{--<a href="#" rel="sidebar-content-hot"><i class='icon-hot'></i> Hot Posts</a>--}}
-                    {{--</div>--}}
-                    {{--<div class="half">--}}
-                        {{--<a href="#" rel="sidebar-content-bookmarks"><i class='icon-bookmarks'></i> Bookmarks</a>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-            {{--<div class="section-title">Tagovi</div>--}}
-        </div>
+
         <div class="sidebar-content sidebar-content-category">
             <div class="menu-group">
                 <h2><a href="#">Top Tagovi</a></h2>

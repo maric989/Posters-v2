@@ -304,20 +304,20 @@ var Aruna = {
             elPos.top = el.offset().top;
             elPos.bottom = el.outerHeight() + elPos.top;
 
-            var top = 0;
-            if(elPos.top < viewportTop && elPos.bottom > viewportTop) {
-                top = Math.abs(elPos.top - viewportTop);
-                var maxTop = el.outerHeight() - buttonsH;
-                if(top > maxTop) {
-                    top = maxTop;
-                }
-                articleTop.addClass('move');
-            } else {
-                articleTop.removeClass('move');
-            }
-            articleTop.css({
-                top: top+"px"
-            });
+            // var top = 0;
+            // if(elPos.top < viewportTop && elPos.bottom > viewportTop) {
+            //     top = Math.abs(elPos.top - viewportTop);
+            //     var maxTop = el.outerHeight() - buttonsH;
+            //     if(top > maxTop) {
+            //         top = maxTop;
+            //     }
+            //     articleTop.addClass('move');
+            // } else {
+            //     articleTop.removeClass('move');
+            // }
+            // articleTop.css({
+            //     top: top+"px"
+            // });
         }
     },
     switchWindowPost : function() {

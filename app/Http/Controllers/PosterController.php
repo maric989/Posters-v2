@@ -35,6 +35,7 @@ class PosterController extends Controller
 
         //Get Comments
         $comments = Comment::all();
+
         if (Auth::user()){
             $user = Auth::user();
         }
@@ -190,12 +191,13 @@ class PosterController extends Controller
         $up = $poster->likes()->where('up',1)->count();
         $down = $poster->likes()->where('down',1)->count();
         $sum = $up-$down;
+
         $data = [
             'up' => $up,
             'down' => $down,
             'sum' => $sum
         ];
-
+        Log::info('ssss',$data);
         return response()->json($data);
 
     }
@@ -269,7 +271,6 @@ class PosterController extends Controller
 
         //Get Posters with more then HOT_LIKES_MIN
         $posters = Poster::whereIn('id',$ids)->orderBy('created_at','DESC')->paginate();
-
         $comments = Comment::all();
         $user = Auth::user();
 
