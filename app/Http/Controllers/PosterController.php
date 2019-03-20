@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use App\Http\Requests\StorePosterRequest;
+use App\ImageUploader;
 use App\Like;
 use App\Poster;
 use App\Tag;
@@ -13,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+
 
 class PosterController extends Controller
 {
@@ -56,6 +58,10 @@ class PosterController extends Controller
         $last_poster = $user->posters()->orderBy('created_at','desc')->first();
         $date = Carbon::now()->subHour(5);
 
+        if ($user->role_id == 1){
+            return view('poster.create');
+        }
+
         if (!is_null($last_poster)){
             if ($last_poster->created_at > $date){
                     return view('poster.limit',compact('last_poster'));
@@ -86,13 +92,11 @@ class PosterController extends Controller
                 continue;
             }
         }
-
-        $image = $request->file('posterImg');
-        $name = time().'.'.$image->getClientOriginalExtension();
-        $destinationPath = public_path('/images');
-        $image->move($destinationPath, $name);
-
-        $poster->image   = '/images/'.$name;
+        $imageUploader = new ImageUploader($request->file('posterImg'));
+        $imageUploader->store();
+//        $imageUploader->resizeImage(300,200);
+        $imageUploader->addTextOnImage('testtest');
+        $poster->image   = '/images/'.$imageUploader->name;
         $poster->title   = $request->title;
         $poster->user_id = Auth::user()->id;
         $poster->slug    = str_slug($request->title,'-');
