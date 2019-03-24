@@ -70,9 +70,9 @@ Route::post('/comment','CommentController@store')->name('add_comment');
 Route::post('/poster/upvote','PosterController@upvote')->name('upvote_poster');
 Route::post('/poster/downvote','PosterController@downvote')->name('downvote_poster');
 
-Route::get('/autori','AutorsController@index')->name('autori.index');
-Route::post('/coverPhoto','AutorsController@coverImg')->name('change.cover');
-Route::post('/profilePhoto','AutorsController@profileImg')->name('change.profile');
+Route::get('/autori','AuthorsController@index')->name('autori.index');
+Route::post('/coverPhoto','AuthorsController@coverImg')->name('change.cover');
+Route::post('/profilePhoto','AuthorsController@profileImg')->name('change.profile');
 Route::get('tag/{name}','TagController@index')->name('tags');
 
 Route::post('/search/poster','PosterController@search')->name('search.poster');

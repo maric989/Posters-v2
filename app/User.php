@@ -121,4 +121,59 @@ class User extends Authenticatable implements MustVerifyEmail
         return ($liked->isEmpty()) ? false : true;
 
     }
+
+    public function sortedAuthors()
+    {
+
+        $autors = User::where('role_id',2)->get();
+        $likes = [];
+        foreach ($autors as $autor) {
+            $likes[$autor->id] = $this->countLikesDiff($autor->id);
+        }
+        arsort($likes);
+
+        $user_ids = array_keys($likes);
+
+        $sorted_autors = User::whereIn('id',$user_ids)
+            ->orderBy(DB::raw("FIELD(id,".join(',',$user_ids).")"))
+            ->get();
+
+
+        return $sorted_autors;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getTopAuthor()
+    {
+        $autors = User::where('role_id',2)->get();
+        $likes = [];
+        foreach ($autors as $author) {
+            $likes[$author->id] = $this->countLikesDiff($author->id);
+        }
+        arsort($likes);
+
+        $user_ids = array_keys($likes);
+
+        return User::whereIn('id',$user_ids)
+            ->orderBy(DB::raw("FIELD(id,".join(',',$user_ids).")"))
+            ->limit(1)
+            ->first();
+    }
+
+    public function countLikesDiff($id)
+    {
+        $posterUp =   Poster::getUserPosterLikes($id);
+        $posterDown = Poster::getUserPosterDislikes($id);
+        $definitionUp = Definition::getUserDefinitionLikes($id);
+        $definitionDown = Definition::getUserDefinitionDislikes($id);
+
+        $ups = $posterUp + $definitionUp;
+        $downs = $posterDown + $definitionDown;
+        $sum = $ups - $downs;
+
+        return $sum;
+    }
 }

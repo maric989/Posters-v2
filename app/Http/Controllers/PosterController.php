@@ -37,6 +37,7 @@ class PosterController extends Controller
 
         //Get Comments
         $comments = Comment::all();
+        $topAuthor = (new User())->getTopAuthor();
 
         if (Auth::user()){
             $user = Auth::user();
@@ -44,7 +45,12 @@ class PosterController extends Controller
         //Get Tags
         $tags = Tag::getMostUsedTags();
 
-        return view('user.index',compact('posters','comments','user','tags'));
+        return view('user.index',compact(
+            'posters',
+            'comments',
+            'user',
+            'tags',
+            'topAuthor'));
     }
 
     public function create()

@@ -40,17 +40,18 @@
     <div class="widget">
         <h2>Najbolji Autor</h2>
         <hr/>
-
         <div class="widget-content">
             <div class="joker">
-                <figure>
-                    <img src="#" alt=""/>
-                </figure>
+                <a href="{{url('user/'.$topAuthor->slug)}}">
+                    <figure>
+                        <img src="{{(empty($author->profile_photo)? env('DEFAULT_PROFILE_IMG_LINK') : $author->profile_photo)}}" alt=""/>
+                    </figure>
+                </a>
                 <div class="text">
-                    <div class="name"><a href="profile.html">Liam McLean</a></div>
-                    <div class="likes">234910 kudos</div>
+                    <div class="name"><a href="{{url('user/'.$topAuthor->slug)}}">{{$topAuthor->name}}</a></div>
+                    <div class="likes">{{$topAuthor->countLikesDiff($topAuthor->id)}} Lajkova</div>
                 </div>
-                <a href="profile.html" class="btn btn-primary btn-block custom-button">See Liam's Profile</a>
+                <a href="profile.html" class="btn btn-primary btn-block custom-button">{{$topAuthor->name}}</a>
             </div>
         </div>
     </div>
