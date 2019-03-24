@@ -157,10 +157,13 @@ class User extends Authenticatable implements MustVerifyEmail
 
         $user_ids = array_keys($likes);
 
-        return User::whereIn('id',$user_ids)
+        $topAuthor =  User::whereIn('id',$user_ids)
             ->orderBy(DB::raw("FIELD(id,".join(',',$user_ids).")"))
             ->limit(1)
             ->first();
+
+
+        return $topAuthor;
     }
 
     public function countLikesDiff($id)

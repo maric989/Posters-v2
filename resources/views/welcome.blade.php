@@ -20,7 +20,45 @@
     <link rel="stylesheet" href="{{asset('aruna/fileupload/css/jquery.fileupload-ui.css')}}">
     <link rel="stylesheet" href="{{asset('aruna/css/jquery.tagsinput.css')}}">
     <link rel="stylesheet" href="{{asset('aruna/css/style.css')}}">
+    <style>
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
 
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
     <script src="{{asset('aruna/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js')}}"></script>
 
     <div id="fb-root"></div>
@@ -166,57 +204,38 @@
                 });
 
             });
-        })
+        });
+
+        // $('#prijavi_se').modal('show');
     })
 </script>
 <script>
-    {{--$(document).ready(function () {--}}
-        {{--var poster_id = $('#poster_id').val();--}}
+    // Get the modal
+    var modal = document.getElementById('prijaviSeModal');
 
-        {{--$('.upvote_poster').on('click',function (event) {--}}
-            {{--var $this = $(this),--}}
-            {{--post = $this.closest('div.pull-right');--}}
+    // Get the button that opens the modal
+    var btn = document.getElementById("prijaviSeButton");
 
-            {{--console.log(post.find('#poster_id'));--}}
-            {{--event.preventDefault();--}}
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
 
-            {{--$.ajax({--}}
-                {{--type:'POST',--}}
-                {{--url:"{{ url('/poster/upvote') }}",--}}
-                {{--data:{--}}
-                    {{--"_token": "{{ csrf_token() }}",--}}
-                    {{--"poster_id": poster_id--}}
-                {{--},--}}
-                {{--success:function(data){--}}
-                    {{--post.find('.countUp').html(data.up);--}}
-{{--//                    $('#countDown').html(data.down);--}}
-{{--//                    $('#countUp').html(data.up);--}}
-{{--//                    $('#likesSum').html(data.sum);--}}
-{{--//                    console.log(data);--}}
+    // When the user clicks on the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
 
-                {{--}--}}
-            {{--});--}}
-        {{--});--}}
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
 
-        {{--$('#downvote_poster').on('click',function (event) {--}}
-            {{--event.preventDefault();--}}
-            {{--console.log('like1');--}}
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 
-            {{--$.ajax({--}}
-                {{--type:'POST',--}}
-                {{--url:"{{ url('/poster/downvote') }}",--}}
-                {{--data:{--}}
-                    {{--"_token": "{{ csrf_token() }}",--}}
-                    {{--"poster_id": poster_id--}}
-                {{--},--}}
-                {{--success:function(data){--}}
-                    {{--$('#countDown'+post_id).html(data.down);--}}
-                    {{--$('#countUp').html(data.up);--}}
-                    {{--$('#likesSum').html(data.sum);--}}
-                {{--}--}}
-            {{--});--}}
-        {{--});--}}
-    {{--})--}}
 </script>
 </body>
 </html>

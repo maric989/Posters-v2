@@ -37,7 +37,6 @@ class PosterController extends Controller
 
         //Get Comments
         $comments = Comment::all();
-        $topAuthor = (new User())->getTopAuthor();
 
         if (Auth::user()){
             $user = Auth::user();
