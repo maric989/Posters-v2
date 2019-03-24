@@ -94,7 +94,7 @@ header .right-container {
   background-color: #6c3cbc;
 }
 header .right-container .user-box {
-  width: 160px;
+  width: 220px;
   height: 80px;
   background-color: #723fc6;
   float: left;
@@ -4246,5 +4246,8 @@ retina displays
   .custom-checkbox.custom-checkbox-vertical label:before, .custom-checkbox label:before {
     background-image: url('../img/unchecked@2x.png');
     background-size: 12px 12px;
+  }
+  #loginButtons{
+      margin-left: 20px;
   }
 }

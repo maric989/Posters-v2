@@ -90,7 +90,8 @@
                             @yield('content')
                         </div>
                     </div>
-                    @if(strpos(Route::currentRouteName(),'autori') === false)
+                    {{--@if(strpos(Route::currentRouteName(),'autori') === false)--}}
+                    @if(Route::currentRouteName() != 'login' && Route::currentRouteName() != 'register' && Route::currentRouteName() != 'autori.index')
                         @include('layouts.index.right_sidebar')
                     @endif
                 </div>

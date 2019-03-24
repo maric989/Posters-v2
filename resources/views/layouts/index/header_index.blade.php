@@ -66,9 +66,12 @@
                     </figure>
                     <span class="name">{{Auth::user()->name}}</span>
                 @else
-                <button id="prijaviSeButton" class="btn btn-success">Prijavi se</button>
-                <a class="btn btn-warning">Registruj se</a>
-
+                    <div id="loginButtons" style="float: left; margin-left: 25px">
+                        <a href="{{url('/login')}}" class="btn btn-success">Prijavi se</a>
+                    </div>
+                    <div>
+                        <a href="{{url('/register')}}" class="btn btn-warning">Registruj se</a>
+                    </div>
             @endif
             @if(Auth::user())
                 <div class="drop-down">
@@ -105,24 +108,3 @@
     </div>
 </nav>
 
-<div id="prijaviSeModal" class="modal">
-
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                {{--<button type="button" class="btn btn-primary">Save changes</button>--}}
-            </div>
-        </div>
-    </div>
-
-</div>
