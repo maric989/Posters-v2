@@ -61,10 +61,13 @@
     <div class="right-container">
         <div class="user-box">
                 @if(Auth::user())
-                    <figure>
-                        <img src="{{(Auth::user())? Auth::user()->profile_photo : asset('aruna/img/user-box.png')}}" alt="" class="img-circle"/>
-                    </figure>
-                    <span class="name">{{Auth::user()->name}}</span>
+                    <div style="width: 27%; float: left">
+                        <img src="{{(Auth::user())? Auth::user()->profile_photo : asset('aruna/img/user-box.png')}}" alt="" class="img-bordered"/>
+                    </div>
+                <div style="width: 70%; float: left; color: white; margin-top: 7px">
+                    <h3>{{Auth::user()->name}}</h3>
+
+                </div>
                 @else
                     <div id="loginButtons" style="float: left; margin-left: 25px">
                         <a href="{{url('/login')}}" class="btn btn-success">Prijavi se</a>
