@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\DB;
 
 class TagController extends Controller
 {
+    /**
+     * @param $name
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index ($name)
     {
         $tag = Tag::where('name',$name)->first();
@@ -31,6 +35,11 @@ class TagController extends Controller
             $user = Auth::user();
         }
 
-        return view('Tag.tag',compact('tag','posters','comments','user'));
+        return view('Tag.tag')->with([
+            'tag'       => $tag,
+            'posters'   => $posters,
+            'comments'  => $comments,
+            'user'      => $user
+        ]);
     }
 }

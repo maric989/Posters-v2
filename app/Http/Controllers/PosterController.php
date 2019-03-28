@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Log;
 class PosterController extends Controller
 {
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         //HOT POSTERS
@@ -44,14 +47,17 @@ class PosterController extends Controller
         //Get Tags
         $tags = Tag::getMostUsedTags();
 
-        return view('user.index',compact(
-            'posters',
-            'comments',
-            'user',
-            'tags',
-            'topAuthor'));
+        return view('user.index')->with([
+            'posters'   => $posters,
+            'comments'  => $comments,
+            'user'      => $user,
+            'tags'      => $tags,
+        ]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function create()
     {
         if(!Auth::user()){
@@ -76,6 +82,10 @@ class PosterController extends Controller
         return view('poster.create');
     }
 
+    /**
+     * @param StorePosterRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(StorePosterRequest $request)
     {
         if (!Auth::user())
@@ -128,7 +138,11 @@ class PosterController extends Controller
         return redirect('/')->with('success','Vas Poster mora dobiti odobrenje od moderatora!');
     }
 
-    public function single($slug,$id)
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function single($id)
     {
         $poster = Poster::whereId($id)->first();
 
@@ -168,18 +182,22 @@ class PosterController extends Controller
             $user = Auth::user();
         }
 
-        return view('poster.single',compact(
-            'poster',
-            'comments',
-            'tags',
-            'likesUp',
-            'likesDown',
-            'likesSum',
-            'tagged',
-            'user'
-        ));
+        return view('poster.single')->with([
+            'poster'    => $poster,
+            'comments'  => $comments,
+            'tags'      => $tags,
+            'likesUp'   => $likesUp,
+            'likesDown' => $likesDown,
+            'likesSum'  => $likesSum,
+            'tagged'    => $tagged,
+            'user'      => $user
+        ]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function upvote(Request $request)
     {
 
@@ -216,6 +234,10 @@ class PosterController extends Controller
 
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function downvote(Request $request)
     {
         $user_id = Auth::user()->id;
@@ -244,12 +266,18 @@ class PosterController extends Controller
         ];
         return response()->json($data);
     }
-    
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function videoCreate()
     {
         return view('poster.video_create');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function trending()
     {
         $posters = Poster::all();
@@ -268,9 +296,16 @@ class PosterController extends Controller
         $comments = Comment::all();
         $user = Auth::user();
 
-        return view('poster.trending',compact('posters','comments','user'));
+        return view('poster.trending')->with([
+            'posters'    => $posters,
+            'comments'   => $comments,
+            'user'       => $user
+        ]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function fresh()
     {
         $posters = Poster::all();
@@ -289,7 +324,11 @@ class PosterController extends Controller
         $user = Auth::user();
 
 
-        return view('poster.fresh',compact('posters','comments','user'));
+        return view('poster.fresh')->with([
+            'posters'    => $posters,
+            'comments'   => $comments,
+            'user'       => $user
+        ]);
     }
 
     public function search(Request $request)

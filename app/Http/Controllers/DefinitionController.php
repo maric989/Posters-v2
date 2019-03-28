@@ -19,7 +19,10 @@ class DefinitionController extends Controller
         $definitions = Definition::where('approved',1)->orderBy('created_at','desc')->get();
         $comments = Comment::all();
 
-        return view('definition.index',compact('definitions','comments'));
+        return view('definition.index')->with([
+            'definitions' => $definitions,
+            'comments'    => $comments
+        ]);
     }
 
     public function trending()

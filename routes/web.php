@@ -28,7 +28,7 @@ Route::group(['prefix' => 'user'],function (){
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'admin'],function (){
+Route::group(['prefix' => 'admin','middleware' => 'is-admin'],function (){
    Route::get('/','AdminController@index')->name('admin.dashboard');
    //Posters
    Route::get('/posters','Admin\PosterController@getPosters')->name('posters.all');
