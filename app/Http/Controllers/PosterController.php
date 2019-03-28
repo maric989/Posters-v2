@@ -27,30 +27,28 @@ class PosterController extends Controller
         //HOT POSTERS
         //Get all posters
         $posters = Poster::all();
+        $hotConfig = $this->loadPosterLikesConfig('hot');
         $ids = [];
 
         //Count their likes
         foreach ($posters as $poster){
-            if ($poster->getPosterLikes($poster->id) > env('HOT_LIKES_MIN')){
+            if ($poster->getPosterLikes($poster->id) > $hotConfig['min']){
                 $ids[] = $poster->id;
             };
         }
-        //Get Posters with more then HOT_LIKES_MIN
-        $posters = Poster::whereIn('id',$ids)->orderBy('created_at','DESC')->paginate();
+        //Get Posters with more then minimum limit
+        $posters = Poster::whereIn('id',$ids)->orderBy('created_at','desc')->paginate();
 
         //Get Comments
         $comments = Comment::all();
 
-        if (Auth::user()){
-            $user = Auth::user();
-        }
         //Get Tags
         $tags = Tag::getMostUsedTags();
 
         return view('user.index')->with([
             'posters'   => $posters,
             'comments'  => $comments,
-            'user'      => $user,
+            'user'      => Auth::user(),
             'tags'      => $tags,
         ]);
     }
@@ -60,10 +58,6 @@ class PosterController extends Controller
      */
     public function create()
     {
-        if(!Auth::user()){
-            return back();
-        }
-
         $user = Auth::user();
 
         $last_poster = $user->posters()->orderBy('created_at','desc')->first();
@@ -88,10 +82,6 @@ class PosterController extends Controller
      */
     public function store(StorePosterRequest $request)
     {
-        if (!Auth::user())
-        {
-            return back();
-        }
         $poster = new Poster();
 
         $tags = explode(',',$request->tags);
@@ -142,7 +132,7 @@ class PosterController extends Controller
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function single($id)
+    public function single($slug,$id)
     {
         $poster = Poster::whereId($id)->first();
 
@@ -190,7 +180,7 @@ class PosterController extends Controller
             'likesDown' => $likesDown,
             'likesSum'  => $likesSum,
             'tagged'    => $tagged,
-            'user'      => $user
+            'user'      => Auth::user()
         ]);
     }
 
@@ -200,10 +190,6 @@ class PosterController extends Controller
      */
     public function upvote(Request $request)
     {
-
-        if (!Auth::user()){
-            return redirect('login');
-        }
         $user_id = Auth::user()->id;
         $poster = Poster::find($request->poster_id);
 
@@ -280,12 +266,13 @@ class PosterController extends Controller
      */
     public function trending()
     {
+        $trendingConfig = $this->loadPosterLikesConfig('trending');
         $posters = Poster::all();
         $ids = [];
 
         //Count their likes
         foreach ($posters as $poster){
-            if ($poster->getPosterLikes($poster->id) >= env('TRENDING_LIKES_MIN') && $poster->getPosterLikes($poster->id) <= env('TRENDING_LIKES_MAX')){
+            if ($poster->getPosterLikes($poster->id) >= $trendingConfig['min'] && $poster->getPosterLikes($poster->id) <= $trendingConfig['max']){
                 $ids[] = $poster->id;
             };
         }
@@ -308,12 +295,13 @@ class PosterController extends Controller
      */
     public function fresh()
     {
+        $freshConfig = $this->loadPosterLikesConfig('fresh');
         $posters = Poster::all();
         $ids = [];
 
         //Count their likes
         foreach ($posters as $poster){
-            if ($poster->getPosterLikes($poster->id) <= env('FRESH_LIKES_MAX')){
+            if ($poster->getPosterLikes($poster->id) <= $freshConfig['max']){
                 $ids[] = $poster->id;
             };
         }
@@ -339,5 +327,11 @@ class PosterController extends Controller
 
         return view('search',compact('results','comments'));
     }
-    
+
+    private function loadPosterLikesConfig($type)
+    {
+        $config = config('posters');
+
+        return $config[$type]['likes'];
+    }
 }

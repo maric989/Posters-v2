@@ -22,7 +22,7 @@ Auth::routes(['verify' => true]);
 
 
 Route::group(['prefix' => 'user'],function (){
-    Route::get('/settings','UserController@settings')->name('user.settings');
+    Route::get('/settings','UserController@settings')->name('user.settings')->middleware('is-logged');
     Route::get('/{slug}','UserController@profile')->name('user.profile');
 });
 
@@ -50,8 +50,8 @@ Route::group(['prefix' => 'admin','middleware' => 'is-admin'],function (){
 Route::group(['prefix' => 'poster'],function (){
    Route::get('/trending','PosterController@trending')->name('poster.trending');
    Route::get('/fresh','PosterController@fresh')->name('poster.fresh');
-   Route::get('/create','PosterController@create')->name('create.poster');
-   Route::post('/create','PosterController@store')->name('store.poster');
+   Route::get('/create','PosterController@create')->name('create.poster')->middleware('is-logged');
+   Route::post('/create','PosterController@store')->name('store.poster')->middleware('is-logged');
    Route::get('/create_video','PosterController@videoCreate')->name('video_create');
    Route::get('/{slug}/{id}','PosterController@single')->name('single.poster');
 
@@ -67,8 +67,8 @@ Route::group(['prefix' => 'definicije'],function (){
 });
 
 Route::post('/comment','CommentController@store')->name('add_comment');
-Route::post('/poster/upvote','PosterController@upvote')->name('upvote_poster');
-Route::post('/poster/downvote','PosterController@downvote')->name('downvote_poster');
+Route::post('/poster/upvote','PosterController@upvote')->name('upvote_poster')->middleware('is-logged');
+Route::post('/poster/downvote','PosterController@downvote')->name('downvote_poster')->middleware('is-logged');
 
 Route::get('/autori','AuthorsController@index')->name('autori.index');
 Route::post('/coverPhoto','AuthorsController@coverImg')->name('change.cover');

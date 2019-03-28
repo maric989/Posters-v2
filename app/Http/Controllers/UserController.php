@@ -15,9 +15,6 @@ class UserController extends Controller
      */
     public function settings()
     {
-        if(!Auth::user()){
-            return back();
-        }
         $user = Auth::user();
 
         $poster_number = $user->getPostersCount();
