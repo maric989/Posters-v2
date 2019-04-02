@@ -84,11 +84,11 @@
                 <div class="text">
                     <ul class="nav nav-tabs" id="myTab">
                         <li class="active"><a href="#normalComments">{{$comments->count()}} Komentar</a></li>
-                        <li><a href="#facebookComments">Facebook comments</a></li>
+                        {{--<li><a href="#facebookComments">Facebook comments</a></li>--}}
                     </ul>
                 </div>
             </div>
-            <div class="tab-content">
+                <div class="tab-content">
                 <div class="tab-pane active" id="normalComments">
                     <div class="comments-wrap">
                         <ul>
@@ -96,7 +96,7 @@
                                 @foreach($comments as $comment)
                                     <div class="comment">
                                         <figure>
-                                            <img src="{{asset('aruna/img/comment-user01.png')}}" alt=""/>
+                                            <img src="{{(!empty($poster->user->profile_photo))? $poster->user->profile_photo : config('settings.default_profile_image')}}" alt=""/>
                                         </figure>
                                         <div class="comment-text">
                                             {{--<span class="counter">01</span>--}}
