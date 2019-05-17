@@ -44,7 +44,7 @@
             <div class="joker">
                 <a href="{{url('user/'.$topAuthor->slug)}}">
                     <figure>
-                        <img src="{{(empty($author->profile_photo)? env('DEFAULT_PROFILE_IMG_LINK') : $author->profile_photo)}}" alt=""/>
+                        <img src="{{(empty($topAuthor->profile_photo)? env('DEFAULT_PROFILE_IMG_LINK') : $topAuthor->profile_photo)}}" alt=""/>
                     </figure>
                 </a>
                 <div class="text">
@@ -63,15 +63,17 @@
 
                 @foreach(\App\Poster::getHighestRankedPoster() as $top_poster)
                 <article>
-                    <figure>
-                        <img src="{{$top_poster->image}}" alt=""/>
-                        {{--<figcaption>01</figcaption>--}}
-                    </figure>
-                    <div class="text">
-                        <h3><a href="#">{{$top_poster->title}}</a></h3>
-                        <h3><a href="#">{{$top_poster->user->name}}</a></h3>
-                        <span class="date">{{$top_poster->created_at->format('d/m/y')}}</span>
-                    </div>
+                    <a href="{{url('poster/'.$top_poster->slug,$top_poster->id)}}">
+                        <figure>
+                            <img src="{{$top_poster->image}}" alt=""/>
+                            {{--<figcaption>01</figcaption>--}}
+                        </figure>
+                        <div class="text">
+                            <h3>{{$top_poster->title}}</h3>
+                            <h3>{{$top_poster->user->name}}</h3>
+                            <span class="date">{{$top_poster->created_at->format('d/m/y')}}</span>
+                        </div>
+                    </a>
                 </article>
                @endforeach
             </div>

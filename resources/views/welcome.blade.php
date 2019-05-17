@@ -175,7 +175,6 @@
                     $('#like_up').off('click');
                     $('#like_up').css('background-color', 'blue');
                     $('.count').text(parseInt(score)+1);
-                    // console.log(data);
                     $( ".pull-right" ).fadeOut( "slow", function(){});
                 }
             });
@@ -206,6 +205,8 @@
 
             });
         });
+        // Material Select Initialization
+        $('.mdb-select').materialSelect();
 
         // $('#prijavi_se').modal('show');
     })

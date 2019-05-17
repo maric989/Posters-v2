@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Comment;
 use App\Http\Requests\StorePosterRequest;
 use App\ImageUploader;
 use App\Like;
+use App\PostCategory;
 use App\Poster;
 use App\Tag;
 use App\User;
@@ -59,12 +61,14 @@ class PosterController extends Controller
     public function create()
     {
         $user = Auth::user();
-
+        $categories = Category::all();
         $last_poster = $user->posters()->orderBy('created_at','desc')->first();
         $date = Carbon::now()->subHour(5);
 
         if ($user->role_id == 1){
-            return view('poster.create');
+            return view('poster.create')->with([
+                'categories' => $categories
+            ]);
         }
 
         if (!is_null($last_poster)){
@@ -73,7 +77,9 @@ class PosterController extends Controller
             }
         }
 
-        return view('poster.create');
+        return view('poster.create')->with([
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -99,8 +105,8 @@ class PosterController extends Controller
         }
         $imageUploader = new ImageUploader($request->file('posterImg'));
         $imageUploader->store();
-//        $imageUploader->resizeImage(300,200);
         $imageUploader->addTextOnImage('testtest');
+
         $poster->image   = '/images/'.$imageUploader->name;
         $poster->title   = $request->title;
         $poster->user_id = Auth::user()->id;
@@ -123,6 +129,10 @@ class PosterController extends Controller
                'post_type' => 'App\Poster'
               ]
             );
+        }
+
+        if(isset($request->category)) {
+            (new PostCategory())->storeCategory($poster->id, $request->category);
         }
 
         return redirect('/')->with('success','Vas Poster mora dobiti odobrenje od moderatora!');

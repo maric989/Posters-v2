@@ -30,16 +30,12 @@ class TagController extends Controller
         $posters = Poster::findMany($ids);
         //Get Comments
         $comments = Comment::all();
-
-        if (Auth::user()){
-            $user = Auth::user();
-        }
+        
 
         return view('Tag.tag')->with([
             'tag'       => $tag,
             'posters'   => $posters,
             'comments'  => $comments,
-            'user'      => $user
         ]);
     }
 }

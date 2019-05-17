@@ -43,10 +43,19 @@
                     <h3>Tags:</h3>
                     <input name="tags" class="tags-selector" />
                 </div>
+                    <div class="tags-wrap">
+                        <h3>Kategorija:</h3>
+                        <select class="mdb-select md-form" name="category">
+                            <option value="" disabled selected>Choose your option</option>
+                            @foreach($categories as $category)
+                                <option name="category" value="{{$category->id}}">{{$category->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
             </aside>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" class="btn btn-primary" style="margin-top: 2rem">Submit</button>
     </form>
 
 @endsection

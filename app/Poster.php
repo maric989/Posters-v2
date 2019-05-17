@@ -17,6 +17,11 @@ class Poster extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function categories()
+    {
+        return $this->belongsToMany(PostCategory::class,'post_categories');
+    }
+
     public function likes()
     {
         return $this->morphMany(Like::class,'likeable');

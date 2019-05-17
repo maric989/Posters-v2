@@ -6,10 +6,8 @@ use App\Comment;
 use App\Http\Controllers\Controller;
 use App\Like;
 use App\Poster;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 class PosterController extends Controller
 {
