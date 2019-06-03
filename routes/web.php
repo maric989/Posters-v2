@@ -58,7 +58,7 @@ Route::group(['prefix' => 'poster'],function (){
 
 });
 
-Route::group(['prefix' => 'definicije'],function (){
+Route::group(['prefix' => 'definicije','middleware' => 'def-enabled'],function (){
    Route::get('/create','DefinitionController@create')->name('create.definition');
    Route::post('/create','DefinitionController@store')->name('store.definition');
    Route::get('/','DefinitionController@index')->name('index.definition');

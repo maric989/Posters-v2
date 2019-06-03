@@ -22,6 +22,7 @@
                     <li><a href="{{route('poster.fresh')}}">Svezi</a></li>
                 </ul>
             </li>
+            @if($definition_enabled)
             <li>
                 <a href="{{route('index.definition')}}" class="dropdown-toggle" data-toggle="dropdown">Definicije <b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -30,6 +31,7 @@
                     <li><a href="{{route('fresh.definition')}}">Sveze</a></li>
                 </ul>
             </li>
+            @endif
             <li><a href="/autori">Autori</a></li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>

@@ -15,7 +15,9 @@ class Controller extends BaseController
     public function __construct()
     {
         $topAuthor = (new User)->getTopAuthor();
+        $definition_enabled = config('definition.enabled');
 
         view()->share('topAuthor',$topAuthor);
+        view()->share('definition_enabled',$definition_enabled);
     }
 }
