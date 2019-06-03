@@ -27,6 +27,7 @@ class Tag extends Model
             ->limit(10)
             ->get();
 
+        $tags = [];
         foreach ($tags_ids as $id){
             $tags[] = Tag::findMany([$id->tag_id]);
         }

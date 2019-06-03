@@ -148,22 +148,28 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function getTopAuthor()
     {
-        $autors = User::where('role_id',2)->get();
-        $likes = [];
-        foreach ($autors as $author) {
-            $likes[$author->id] = $this->countLikesDiff($author->id);
+        try {
+            $autors = User::where('role_id',2)->get();
+
+            $likes = [];
+            foreach ($autors as $author) {
+                $likes[$author->id] = $this->countLikesDiff($author->id);
+            }
+            arsort($likes);
+
+            $user_ids = array_keys($likes);
+
+            $topAuthor =  User::whereIn('id',$user_ids)
+                ->orderBy(DB::raw("FIELD(id,".join(',',$user_ids).")"))
+                ->limit(1)
+                ->first();
+
+            return $topAuthor;
+
+        }catch (\Exception $e){
+            throw new \Exception('Run seeders');
         }
-        arsort($likes);
 
-        $user_ids = array_keys($likes);
-
-        $topAuthor =  User::whereIn('id',$user_ids)
-            ->orderBy(DB::raw("FIELD(id,".join(',',$user_ids).")"))
-            ->limit(1)
-            ->first();
-
-
-        return $topAuthor;
     }
 
     public function countLikesDiff($id)

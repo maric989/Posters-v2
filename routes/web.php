@@ -13,8 +13,6 @@
 
 use Illuminate\Support\Facades\Artisan;
 
-Route::get('/', 'PosterController@index')->name('poster.index');
-
 
 Route::post('/store_user','AuthController@register')->name('register_user');
 
@@ -26,7 +24,7 @@ Route::group(['prefix' => 'user'],function (){
     Route::get('/{slug}','UserController@profile')->name('user.profile');
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin','middleware' => 'is-admin'],function (){
    Route::get('/','AdminController@index')->name('admin.dashboard');
@@ -46,6 +44,9 @@ Route::group(['prefix' => 'admin','middleware' => 'is-admin'],function (){
    Route::post('/definition/delete/{id}','Admin\DefinitionController@delete')->name('definition.delete');
    Route::get('/definition/{id}','Admin\DefinitionController@getSingleDefinition')->name('admin_single_definition');
 });
+
+//Home route
+Route::get('/', 'PosterController@index')->name('poster.index');
 
 Route::group(['prefix' => 'poster'],function (){
    Route::get('/trending','PosterController@trending')->name('poster.trending');
