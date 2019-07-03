@@ -10,7 +10,7 @@
                 <hr />
                 <div class="counters-line">
                     <div class="pull-left">
-                        <div class="date"><i class="icon-date"></i> {{$poster->created_at->diffForHumans()}}</div>
+                        <div class="date"><i class="icon-date"></i> {{$poster->created_date}}</div>
                         <div class="user"><i class="icon-user"></i> <a href="{{route('user.profile',$poster->user->slug)}}">{{$poster->user->name}}</a></div>
                         <div class="comments"><i class="icon-comments"></i> <a href="{{route('single.poster',[$poster->slug,$poster->id])}}">{{$comments->where('post_id',$poster->id)->where('comm_type','App\Poster')->count()}}</a></div>
                     </div>

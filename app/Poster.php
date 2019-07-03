@@ -61,9 +61,9 @@ class Poster extends Model
     /*
      * Sum all likes that poster have
      */
-    public static function getPosterLikes($poster_id)
+    public function getPosterLikes()
     {
-        $likes = Like::where('likeable_id',$poster_id)
+        $likes = Like::where('likeable_id',$this->id)
             ->where('likeable_type','App\Poster')
             ->pluck('up')
             ->sum();
@@ -74,9 +74,9 @@ class Poster extends Model
     /*
      * Sum all dislikes that poster have
      */
-    public static function getPosterDislikes($poster_id)
+    public function getPosterDislikes()
     {
-        $likes = Like::where('likeable_id',$poster_id)
+        $likes = Like::where('likeable_id',$this->id)
             ->where('likeable_type','App\Poster')
             ->pluck('down')
             ->sum();
@@ -115,7 +115,7 @@ class Poster extends Model
     }
 
 
-    public static function getHighestRankedPoster()
+    public static function getHighestRankedPoster($number)
     {
         try {
             $ids = Poster::all()->pluck('id');
@@ -125,7 +125,7 @@ class Poster extends Model
             }
 
             arsort($res);
-            $top_fives = array_slice($res, 0, 5, true);
+            $top_fives = array_slice($res, 0, $number, true);
 
             foreach ($top_fives as $id => $likes) {
                 $posters[$id] = Poster::find($id);
@@ -136,5 +136,15 @@ class Poster extends Model
             return [];
         }
 
+    }
+
+    public function getCreatedDateAttribute()
+    {
+        return $this->created_at->format('d-m-y');
+    }
+
+    public function countComments()
+    {
+        return Comment::where('post_id',$this->id)->where('comm_type','App\Poster')->count();
     }
 }

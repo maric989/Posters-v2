@@ -306,26 +306,21 @@ class PosterController extends Controller
     public function fresh()
     {
         $freshConfig = $this->loadPosterLikesConfig('fresh');
-        $posters = Poster::all();
+        $posters = new \App\Poster();
         $ids = [];
 
         //Count their likes
-        foreach ($posters as $poster){
+        foreach ($posters->all() as $poster){
             if ($poster->getPosterLikes($poster->id) <= $freshConfig['max']){
                 $ids[] = $poster->id;
             };
         }
 
         //Get Posters with more then HOT_LIKES_MIN
-        $posters = Poster::whereIn('id',$ids)->orderBy('created_at','DESC')->paginate();
-        $comments = Comment::all();
-        $user = Auth::user();
-
+        $posters = $posters->whereIn('id',$ids)->orderBy('created_at','DESC')->paginate();
 
         return view('poster.fresh')->with([
             'posters'    => $posters,
-            'comments'   => $comments,
-            'user'       => $user
         ]);
     }
 

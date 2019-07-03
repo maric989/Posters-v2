@@ -61,7 +61,7 @@
         <div class="widget-content">
             <div class="post-list">
 
-                @foreach(\App\Poster::getHighestRankedPoster() as $top_poster)
+                @foreach(\App\Poster::getHighestRankedPoster(5) as $top_poster)
                 <article>
                     <a href="{{url('poster/'.$top_poster->slug,$top_poster->id)}}">
                         <figure>

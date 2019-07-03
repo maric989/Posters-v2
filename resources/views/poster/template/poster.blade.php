@@ -6,17 +6,17 @@
             <div class="pull-left">
                 {{--<div class="date"><i class="icon-date"></i> {{$poster->created_at->diffForHumans()}}</div>--}}
                 <div class="user"><i class="icon-user"></i> <a href="{{route('user.profile',$poster->user->slug)}}">{{$poster->user->name}}</a></div>
-                <div class="comments"><i class="icon-comments"></i> <a href="{{route('single.poster',[$poster->slug,$poster->id])}}">{{$comments->where('post_id',$poster->id)->where('comm_type','App\Poster')->count()}}</a></div>
+                <div class="comments"><i class="icon-comments"></i> <a href="{{route('single.poster',[$poster->slug,$poster->id])}}">{{$poster->countComments()}}</a></div>
             </div>
 
-            @if(Auth::user() && !$user->isPostLiked($poster->id,$user->id))
+            @if(Auth::user() && !Auth::user()->isPostLiked($poster->id,Auth::user()->id))
             <div class="pull-right">
                 <input type="hidden" value="{{$poster->id}}" id="poster_id">
                 {{--<a href="#"><i class="icon-like upvote_poster"></i><span class="countUp">{{\App\Poster::getPosterLikes($poster->id)}}</span></a>--}}
                 <div class="dislike" id="like_up">
-                    <i class="icon-like upvote_poster"></i><span class="countUp">{{\App\Poster::getPosterLikes($poster->id)}}</span>
+                    <i class="icon-like upvote_poster"></i><span class="countUp">{{$poster->getPosterLikes()}}</span>
                 </div>
-                <div class="dislike" id="like_down"><i class="icon-dislike"></i>{{\App\Poster::getPosterDislikes($poster->id)}}</div>
+                <div class="dislike" id="like_down"><i class="icon-dislike"></i>{{$poster->getPosterDislikes()}}</div>
             </div>
             @endif
         </div>
@@ -26,7 +26,7 @@
                 {{--<a href="#" class='bookmarked has-tooltip' data-title="BOOKMARKED">bookmarked</a>--}}
                 <div class="date-bar">
                     {{--<i class="icon-calendar" style="height:55px"></i> --}}
-                    {{$poster->created_at->format('d/m/Y')}}
+                    {{$poster->created_date}}
                 </div>
                 <div class="count">{{$poster->likes->pluck('up')->sum() - $poster->likes->pluck('down')->sum()}}</div>
 

@@ -18,6 +18,7 @@ class Definition extends Model
 
     public static function getUserDefinitionLikes($user_id)
     {
+        return 0;
         $posters_id = Poster::where('user_id',$user_id)->pluck('id')->toArray();
 
         $result = [];
@@ -33,6 +34,7 @@ class Definition extends Model
 
     public static function getUserDefinitionDislikes($user_id)
     {
+        return 0;
         $posters_id = Poster::where('user_id',$user_id)->pluck('id')->toArray();
 
         $result = [];

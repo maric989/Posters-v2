@@ -23,7 +23,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $definition_enabled = config('definition.enabled');
+
+        view()->share('definition_enabled',$definition_enabled);
 
         parent::boot();
     }

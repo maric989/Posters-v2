@@ -26,7 +26,7 @@
                             </tr>
                             <tr>
                                 <td><strong>Created At</strong></td>
-                                <td>{{$poster->created_at->format('d-m-Y')}}</td>
+                                <td>{{$poster->created_date}}</td>
                             </tr>
                             <tr>
                                 <td><strong>Action</strong></td>
