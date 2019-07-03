@@ -58,7 +58,7 @@
                                 <!-- Tab content -->
                                 <div id="London" class="tabcontent" style="display: block">
                                     @foreach($posters as $poster)
-                                        <article class="main-post">
+                                        <article class="main-possssssst">
                                             <div class="article-top">
                                                 <h1><a href="{{route('single.poster',[$poster->slug,$poster->id])}}">{{$poster->title}}</a></h1>
                                                 <hr />
