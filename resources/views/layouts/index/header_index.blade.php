@@ -9,7 +9,7 @@
         <a class="navbar-brand" href="/">
             {{--<img src="{{asset('aruna/img/logo.png')}}" alt="Aruna - Image Sharing, Gag, Meme Theme"/>--}}
             {{--<img src="https://c7.uihere.com/files/557/258/473/rubik-s-cube-3d-free-jigsaw-puzzles-professor-s-cube-cube-thumb.jpg">--}}
-            <p style="color: white;font-weight: 800">Rubik</p>
+            <p style="color: white;font-weight: 800">Rubik<br>Memes</p>
         </a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -33,43 +33,42 @@
             </li>
             @endif
             <li><a href="/autori">Autori</a></li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">About Us</a></li>
-                    <li class="has-dropdown">
-                        <a href="#">Contact</a>
-                        <ul>
-                            <li><a href="#">Our People</a></li>
-                            <li class="has-dropdown">
-                                <a href="#">Our Address</a>
-                                <ul>
-                                    <li><a href="#">Google Maps</a></li>
-                                    <li><a href="#">Text Address</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Our Emails</a></li>
-                            <li><a href="#">Job Offerings</a></li>
-                            <li><a href="#">Communication</a></li>
-                            <li><a href="#">Communication</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Shortcodes</a></li>
-                    <li><a href="#">Feeatures</a></li>
-                </ul>
-            </li>
+            {{--<li class="dropdown">--}}
+                {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>--}}
+                {{--<ul class="dropdown-menu">--}}
+                    {{--<li><a href="#">About Us</a></li>--}}
+                    {{--<li class="has-dropdown">--}}
+                        {{--<a href="#">Contact</a>--}}
+                        {{--<ul>--}}
+                            {{--<li><a href="#">Our People</a></li>--}}
+                            {{--<li class="has-dropdown">--}}
+                                {{--<a href="#">Our Address</a>--}}
+                                {{--<ul>--}}
+                                    {{--<li><a href="#">Google Maps</a></li>--}}
+                                    {{--<li><a href="#">Text Address</a></li>--}}
+                                {{--</ul>--}}
+                            {{--</li>--}}
+                            {{--<li><a href="#">Our Emails</a></li>--}}
+                            {{--<li><a href="#">Job Offerings</a></li>--}}
+                            {{--<li><a href="#">Communication</a></li>--}}
+                            {{--<li><a href="#">Communication</a></li>--}}
+                        {{--</ul>--}}
+                    {{--</li>--}}
+                    {{--<li><a href="#">Shortcodes</a></li>--}}
+                    {{--<li><a href="#">Feeatures</a></li>--}}
+                {{--</ul>--}}
+            {{--</li>--}}
         </ul>
     </div>
     <div class="right-container">
         <div class="user-box">
                 @if(Auth::user())
-                    <div style="width: 27%; float: left">
-                        <img src="{{(Auth::user())? Auth::user()->profile_photo : asset('aruna/img/user-box.png')}}" alt="" class="img-bordered"/>
+                    <div class="user-box-image">
+                        <img src="{{(!is_null(Auth::user()->profile_photo))? Auth::user()->profile_photo : asset('aruna/img/user-box.png')}}" alt="" class="img-bordered"/>
                     </div>
-                <div style="width: 70%; float: left; color: white; margin-top: 7px">
-                    <h3>{{Auth::user()->name}}</h3>
-
-                </div>
+                    <div style="width: 70%; float: left; color: white; margin-top: 7px">
+                        <h3>{{Auth::user()->name}}</h3>
+                    </div>
                 @else
                     <div id="loginButtons" style="float: left; margin-left: 25px">
                         <a href="{{url('/login')}}" class="btn btn-success">Prijavi se</a>
@@ -81,7 +80,7 @@
             @if(Auth::user())
                 <div class="drop-down">
                     <div class="counters-line">
-                        <div class="half"><span class="counter">{{Auth::user()->countLikesDiff(Auth::user()->id)}}</span><span class="desc">Lajkovi</span></div>
+                        <div class="half"><span class="counter">{{Auth::user()->countLikesDiff()}}</span><span class="desc">Lajkovi</span></div>
                         <div class="half"><span class="counter">{{Auth::user()->posters->count()}}</span><span class="desc">Postovi</span></div>
                     </div>
                     <div class="buttons-line">

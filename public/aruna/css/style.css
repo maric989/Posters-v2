@@ -101,6 +101,15 @@ header .right-container .user-box {
   text-align: center;
   position: relative;
 }
+.user-box-image{
+    width: 30%;
+    height: 100%;
+    float: left;
+}
+.user-box-image img {
+    height: 100%;
+}
+
 header .right-container .user-box:hover .drop-down {
   -webkit-opacity: 1;
   -moz-opacity: 1;
@@ -2269,6 +2278,10 @@ footer .footer-widget p {
   font-family: Dosis, Arial, sans-serif;
   font-size: 14px;
 }
+.upload-wrap{
+    text-align: center;
+    margin-top: 1rem;
+}
 .modal-body .post-window .window-left .upload-wrap .fileinput-button span {
   width: 100%;
   display: inline-block;
@@ -3636,6 +3649,9 @@ header .right-container .social-share .share {
 @media (min-width: 768px) and (max-width: 999px) {
   header .right-container .social-share {
     float: right;
+  }
+  .right-container {
+    width: 24%!important;
   }
 }
 @media (min-width: 200px) and (max-width: 767px) {

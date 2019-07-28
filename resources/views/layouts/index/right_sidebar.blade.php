@@ -26,8 +26,8 @@
         <hr />
         <div class="widget-content">
             @if(!Auth::user())
-            <a data-toggle="modal" href="{{route('register')}}" class="btn btn-primary btn-lg btn-block custom-button">Register</a><br />
-            <a data-toggle="modal" href="{{route('login')}}" class="btn btn-primary btn-lg btn-block custom-button">Login</a><br />
+            <a data-toggle="modal" href="{{route('register')}}" class="btn btn-primary btn-lg btn-block custom-button">Registruj se</a><br />
+            <a data-toggle="modal" href="{{route('login')}}" class="btn btn-primary btn-lg btn-block custom-button">Prijavi se</a><br />
             @else
             {{--<a data-toggle="modal" href="#postModal" class="btn btn-primary btn-lg btn-block custom-button">Post Article</a>--}}
             <a href="{{route('create.poster')}}" class="btn btn-primary btn-lg btn-block custom-button">Kreiraj Poster</a>
@@ -49,9 +49,9 @@
                 </a>
                 <div class="text">
                     <div class="name"><a href="{{url('user/'.$topAuthor->slug)}}">{{$topAuthor->name}}</a></div>
-                    <div class="likes">{{$topAuthor->countLikesDiff($topAuthor->id)}} Lajkova</div>
+                    <div class="likes">{{$topAuthor->countLikesDiff()}} Lajkova</div>
                 </div>
-                <a href="profile.html" class="btn btn-primary btn-block custom-button">{{$topAuthor->name}}</a>
+                <a href="{{url('user/'.$topAuthor->slug)}}" class="btn btn-primary btn-block custom-button">{{$topAuthor->name}}</a>
             </div>
         </div>
     </div>
@@ -61,7 +61,7 @@
         <div class="widget-content">
             <div class="post-list">
 
-                @foreach(\App\Poster::getHighestRankedPoster(5) as $top_poster)
+                @foreach($topPosters as $top_poster)
                 <article>
                     <a href="{{url('poster/'.$top_poster->slug,$top_poster->id)}}">
                         <figure>

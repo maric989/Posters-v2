@@ -47,11 +47,14 @@ class PosterController extends Controller
         //Get Tags
         $tags = Tag::getMostUsedTags();
 
+        $topPosters = (new Poster)->getHighestRankedPoster(5);
+
         return view('user.index')->with([
             'posters'   => $posters,
             'comments'  => $comments,
             'user'      => Auth::user(),
             'tags'      => $tags,
+            'topPosters' => $topPosters
         ]);
     }
 
@@ -88,6 +91,7 @@ class PosterController extends Controller
      */
     public function store(StorePosterRequest $request)
     {
+        dd($request->tags);
         $poster = new Poster();
 
         $tags = explode(',',$request->tags);
@@ -221,9 +225,7 @@ class PosterController extends Controller
         $sum = $up-$down;
 
         $data = [
-            'up' => $up,
-            'down' => $down,
-            'sum' => $sum
+            'poster_id' => $poster->id
         ];
         Log::info('ssss',$data);
         return response()->json($data);
@@ -292,11 +294,14 @@ class PosterController extends Controller
 
         $comments = Comment::all();
         $user = Auth::user();
+        $topPosters = (new Poster)->getHighestRankedPoster(5);
+
 
         return view('poster.trending')->with([
             'posters'    => $posters,
             'comments'   => $comments,
-            'user'       => $user
+            'user'       => $user,
+            'topPosters' => $topPosters
         ]);
     }
 
@@ -318,9 +323,11 @@ class PosterController extends Controller
 
         //Get Posters with more then HOT_LIKES_MIN
         $posters = $posters->whereIn('id',$ids)->orderBy('created_at','DESC')->paginate();
+        $topPosters = (new Poster)->getHighestRankedPoster(5);
 
         return view('poster.fresh')->with([
             'posters'    => $posters,
+            'topPosters' => $topPosters
         ]);
     }
 

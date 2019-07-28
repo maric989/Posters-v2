@@ -125,10 +125,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sortedAuthors()
     {
 
-        $autors = User::where('role_id',2)->get();
+        $autors = User::where('role_id',2)->take(10)->get();
         $likes = [];
         foreach ($autors as $autor) {
-            $likes[$autor->id] = $this->countLikesDiff($autor->id);
+            $likes[$autor->id] = $this->countLikesDiff();
         }
         arsort($likes);
 
@@ -153,7 +153,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
             $likes = [];
             foreach ($autors as $author) {
-                $likes[$author->id] = $this->countLikesDiff($author->id);
+                $likes[$author->id] = $this->countLikesDiff();
             }
             arsort($likes);
 
@@ -172,17 +172,22 @@ class User extends Authenticatable implements MustVerifyEmail
 
     }
 
-    public function countLikesDiff($id)
+    public function countLikesDiff()
     {
-        $posterUp =   Poster::getUserPosterLikes($id);
-        $posterDown = Poster::getUserPosterDislikes($id);
-        $definitionUp = Definition::getUserDefinitionLikes($id);
-        $definitionDown = Definition::getUserDefinitionDislikes($id);
+        $posterUp =   Poster::getUserPosterLikes($this->id);
+        $posterDown = Poster::getUserPosterDislikes($this->id);
+        $definitionUp = Definition::getUserDefinitionLikes($this->id);
+        $definitionDown = Definition::getUserDefinitionDislikes($this->id);
 
         $ups = $posterUp + $definitionUp;
         $downs = $posterDown + $definitionDown;
         $sum = $ups - $downs;
 
         return $sum;
+    }
+
+    public function getJoinedAtAttribute()
+    {
+        return $this->created_at->format('d-m-Y');
     }
 }
