@@ -12,11 +12,10 @@
             @if(Auth::user() && !Auth::user()->isPostLiked($poster->id,Auth::user()->id))
             <div class="pull-right">
                 <input type="hidden" value="{{$poster->id}}" id="poster_id">
-                {{--<a href="#"><i class="icon-like upvote_poster"></i><span class="countUp">{{\App\Poster::getPosterLikes($poster->id)}}</span></a>--}}
-                <div class="dislike" id="like_up">
-                    <i class="icon-like upvote_poster"></i><span class="countUp">{{$poster->getPosterLikes()}}</span>
+                <div class="like" id="like_up_{{$poster->id}}" data-value="1">
+                    <i class="icon-like upvote_poster"></i><span class="countUp"></span>
                 </div>
-                <div class="dislike" id="like_down"><i class="icon-dislike"></i>{{$poster->getPosterDislikes()}}</div>
+                <div class="dislike" id="like_down_{{$poster->id}}" data-value="-1"><i class="icon-dislike"></i></div>
             </div>
             @endif
         </div>
@@ -61,3 +60,5 @@
         </figure>
     </div>
 </article>
+
+

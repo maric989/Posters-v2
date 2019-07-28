@@ -92,7 +92,7 @@
                     </div>
                     {{--@if(strpos(Route::currentRouteName(),'autori') === false)--}}
                     @if(Route::currentRouteName() != 'login' && Route::currentRouteName() != 'register' && Route::currentRouteName() != 'autori.index')
-                        @include('layouts.index.right_sidebar')
+                        @include('layouts.index.right_sidebar',['top5' => $topPosters])
                     @endif
                 </div>
             </div>
@@ -160,10 +160,19 @@
 
 <script>
     $(document).ready(function () {
-        $('#like_up').on('click',function () {
+        // $('.like').on('click',function () {
+        //     var like = this;
+        //     console.log($('.like').data("value"));
+        // });
+        $('.dislike').on('click',function () {
+            console.log($('.dislike').data("value"));
+        });
+        $('.like').on('click',function (e) {
+
             var poster_id = $('#poster_id').val();
             var score = $('.count').html();
-
+            var post = $('#like_up_'+poster_id);
+            console.log(post);
             $.ajax({
                 type:'POST',
                 url:"{{ url('/poster/upvote') }}",
@@ -171,17 +180,19 @@
                     "_token": "{{ csrf_token() }}",
                     "poster_id": poster_id
                 },
-                success:function(data){
-                    $('#like_up').off('click');
-                    $('#like_up').css('background-color', 'blue');
+                success:function(data,e){
+                    e.preventDefault();
+                    var id = data.poster_id;
+                    $('#like_up_'+id).css('background-color', 'blue');
                     $('.count').text(parseInt(score)+1);
-                    $( ".pull-right" ).fadeOut( "slow", function(){});
+                    $('#like_up_'+id).fadeOut('slow', function(){});
+                    $('#like_down_'+id).fadeOut( "slow", function(){});
                 }
             });
 
-            $( ".pull-right" ).fadeOut( "slow", function() {
-
-            });
+            // $( ".pull-right" ).fadeOut( "slow", function() {
+            //
+            // });
         });
 
         $('#like_down').on('click',function () {

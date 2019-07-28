@@ -115,25 +115,24 @@ class Poster extends Model
     }
 
 
-    public static function getHighestRankedPoster($number)
+    public function getHighestRankedPoster($number)
     {
         try {
             $ids = Poster::all()->pluck('id');
 
             foreach ($ids as $id) {
-                $res[$id] = Poster::getPosterLikes($id);
+                $res[$id] = $this->getPosterLikes($id);
             }
-
             arsort($res);
+
             $top_fives = array_slice($res, 0, $number, true);
 
             foreach ($top_fives as $id => $likes) {
                 $posters[$id] = Poster::find($id);
             }
-
             return $posters;
         }catch (\Exception $e){
-            return [];
+            return $e;
         }
 
     }

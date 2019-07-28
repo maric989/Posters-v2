@@ -28,7 +28,7 @@
                                 <div class="outer">
                                     <div class="inner">
                                         <div class="counter-item">
-                                            <span class="number">{{$poster_likes}}</span><br/>
+                                            <span class="number">{{$user->countLikesDiff()}}</span><br/>
                                             <span class="exp">Skor</span>
                                         </div>
                                         <div class="counter-item">
@@ -118,9 +118,8 @@
                     <div class="modal-body mx-3">
                         <div class="md-form mb-5">
                             <i class="fa fa-envelope prefix grey-text"></i>
-                            <input type="file" id="cover_img" class="form-control validate" name="cover_img">
+                            <input type="file" id="cover_img" class="form-control validate" name="cover_img" required>
                             <input type="hidden" name="user_id" value="{{$user->id}}">
-                            <label data-error="wrong" data-success="right" for="defaultForm-email">Dodaj</label>
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
@@ -146,9 +145,8 @@
                     <div class="modal-body mx-3">
                         <div class="md-form mb-5">
                             <i class="fa fa-envelope prefix grey-text"></i>
-                            <input type="file" id="profile_img" class="form-control validate" name="profile_img">
+                            <input type="file" id="profile_img" class="form-control validate" name="profile_img" required>
                             <input type="hidden" name="user_id" value="{{$user->id}}">
-                            <label data-error="wrong" data-success="right" for="defaultForm-email">Dodaj</label>
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
