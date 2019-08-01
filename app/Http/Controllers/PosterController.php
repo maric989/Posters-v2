@@ -47,14 +47,14 @@ class PosterController extends Controller
         //Get Tags
         $tags = Tag::getMostUsedTags();
 
-        $topPosters = (new Poster)->getHighestRankedPoster(5);
+        $ = (new Poster)->getHighestRankedPoster(5);
 
         return view('user.index')->with([
             'posters'   => $posters,
             'comments'  => $comments,
             'user'      => Auth::user(),
             'tags'      => $tags,
-            'topPosters' => $topPosters
+            '' => $
         ]);
     }
 
@@ -295,6 +295,9 @@ class PosterController extends Controller
         $comments = Comment::all();
         $user = Auth::user();
         $topPosters = (new Poster)->getHighestRankedPoster(5);
+        if (empty($topPosters)){
+            $topPosters = [];
+        }
 
 
         return view('poster.trending')->with([
