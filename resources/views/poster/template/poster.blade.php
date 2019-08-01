@@ -11,11 +11,13 @@
 
             @if(Auth::user() && !Auth::user()->isPostLiked($poster->id,Auth::user()->id))
             <div class="pull-right">
-                <input type="hidden" value="{{$poster->id}}" id="poster_id">
+                <input type="hidden" value="{{$poster->id}}" class="poster_id">
                 <div class="like" id="like_up_{{$poster->id}}" data-value="1">
                     <i class="icon-like upvote_poster"></i><span class="countUp"></span>
                 </div>
-                <div class="dislike" id="like_down_{{$poster->id}}" data-value="-1"><i class="icon-dislike"></i></div>
+                <div class="dislike" id="like_down_{{$poster->id}}" data-value="-1">
+                    <i class="icon-dislike"></i>
+                </div>
             </div>
             @endif
         </div>

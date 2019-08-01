@@ -168,11 +168,10 @@
             console.log($('.dislike').data("value"));
         });
         $('.like').on('click',function (e) {
-
-            var poster_id = $('#poster_id').val();
+            var poster_id = $(this).parent().children('.poster_id').val();
             var score = $('.count').html();
             var post = $('#like_up_'+poster_id);
-            console.log(post);
+            // console.log(post);
             $.ajax({
                 type:'POST',
                 url:"{{ url('/poster/upvote') }}",
@@ -180,8 +179,7 @@
                     "_token": "{{ csrf_token() }}",
                     "poster_id": poster_id
                 },
-                success:function(data,e){
-                    e.preventDefault();
+                success:function(data){
                     var id = data.poster_id;
                     $('#like_up_'+id).css('background-color', 'blue');
                     $('.count').text(parseInt(score)+1);
