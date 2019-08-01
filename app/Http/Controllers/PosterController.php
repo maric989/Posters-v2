@@ -47,14 +47,18 @@ class PosterController extends Controller
         //Get Tags
         $tags = Tag::getMostUsedTags();
 
-        $ = (new Poster)->getHighestRankedPoster(5);
+        $topPosters = (new Poster)->getHighestRankedPoster(5);
+        if (empty($topPosters)){
+            $topPosters = [];
+        }
+
 
         return view('user.index')->with([
             'posters'   => $posters,
             'comments'  => $comments,
             'user'      => Auth::user(),
             'tags'      => $tags,
-            '' => $
+            'topPosters' => $topPosters
         ]);
     }
 
@@ -327,6 +331,9 @@ class PosterController extends Controller
         //Get Posters with more then HOT_LIKES_MIN
         $posters = $posters->whereIn('id',$ids)->orderBy('created_at','DESC')->paginate();
         $topPosters = (new Poster)->getHighestRankedPoster(5);
+        if (empty($topPosters)){
+            $topPosters = [];
+        }
 
         return view('poster.fresh')->with([
             'posters'    => $posters,
