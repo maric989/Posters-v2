@@ -15,14 +15,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-//        $tags = Tag::getMostUsedTags();
-//
-//        if (Auth::user()){
-//            $user = Auth::user();
-//            view()->share('user',$user);
-//        }
-//
-//        view()->share('tags',$tags);
+        $tags = Tag::getMostUsedTags();
+
+        if (Auth::user()){
+            $user = Auth::user();
+            view()->share('user',$user);
+        }
+
+        view()->share('tags',$tags);
 
     }
 
