@@ -82,7 +82,7 @@
             @endif
             <div class="input-group">
                 <span class="input-group-addon">Email:</span>
-                <input type="text" class="form-control" name="email">
+                <input type="text" class="form-control" name="email" value="{{old('email')}}">
             </div>
         </div>
 

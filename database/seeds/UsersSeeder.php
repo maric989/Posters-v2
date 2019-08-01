@@ -12,35 +12,43 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-//        \DB::table('users')->insert([
-//           'name' => 'admin',
-//           'role_id' => 1,
-//           'email' => 'admin@maric.com',
-//           'password' => bcrypt('maric1989'),
-//           'slug' => 'admin'
-//        ]);
-//
-//        \DB::table('users')->insert([
-//            'name' => 'umetnik',
-//            'role_id' => 2,
-//            'email' => 'umetnik@maric.com',
-//            'password' => bcrypt('umetnik'),
-//            'slug' => 'umetnik'
-//        ]);
-//
-//        \DB::table('users')->insert([
-//            'name' => 'umetnik2',
-//            'role_id' => 2,
-//            'email' => 'umetnik2@maric.com',
-//            'password' => bcrypt('umetnik2'),
-//            'slug' => 'umetnik2'
-//        ]);
+        \DB::table('users')->insert([
+           'name' => 'admin',
+           'role_id' => 1,
+           'email' => 'admin@maric.com',
+           'password' => bcrypt('maric1989'),
+           'created_at' => '2018-12-12',
+           'updated_at' => '2018-12-12',
+           'slug' => 'admin'
+        ]);
+
+        \DB::table('users')->insert([
+            'name' => 'umetnik',
+            'role_id' => 2,
+            'email' => 'umetnik@maric.com',
+            'password' => bcrypt('umetnik'),
+            'created_at' => '2018-12-12',
+            'updated_at' => '2018-12-12',
+            'slug' => 'umetnik'
+        ]);
+
+        \DB::table('users')->insert([
+            'name' => 'umetnik2',
+            'role_id' => 2,
+            'email' => 'umetnik2@maric.com',
+            'password' => bcrypt('umetnik2'),
+            'created_at' => '2018-12-12',
+            'updated_at' => '2018-12-12',
+            'slug' => 'umetnik2'
+        ]);
 
         \DB::table('users')->insert([
             'name' => 'umetnik3',
             'role_id' => 2,
             'email' => 'umetnik3@maric.com',
             'password' => bcrypt('umetnik2'),
+            'created_at' => '2018-12-12',
+            'updated_at' => '2018-12-12',
             'slug' => 'umetnik3'
         ]);
 
@@ -49,6 +57,8 @@ class UsersSeeder extends Seeder
             'role_id' => 2,
             'email' => 'umetnik4@maric.com',
             'password' => bcrypt('umetnik2'),
+            'created_at' => '2018-12-12',
+            'updated_at' => '2018-12-12',
             'slug' => 'umetnik4'
         ]);
 
@@ -57,6 +67,8 @@ class UsersSeeder extends Seeder
             'role_id' => 2,
             'email' => 'umetnik5@maric.com',
             'password' => bcrypt('umetnik2'),
+            'created_at' => '2018-12-12',
+            'updated_at' => '2018-12-12',
             'slug' => 'umetnik5'
         ]);
 
@@ -65,6 +77,8 @@ class UsersSeeder extends Seeder
             'role_id' => 2,
             'email' => 'umetnik6@maric.com',
             'password' => bcrypt('umetnik2'),
+            'created_at' => '2018-12-12',
+            'updated_at' => '2018-12-12',
             'slug' => 'umetnik6'
         ]);
 
@@ -73,6 +87,8 @@ class UsersSeeder extends Seeder
             'role_id' => 2,
             'email' => 'umetnik7@maric.com',
             'password' => bcrypt('umetnik2'),
+            'created_at' => '2018-12-12',
+            'updated_at' => '2018-12-12',
             'slug' => 'umetnik7'
         ]);
 
@@ -81,6 +97,8 @@ class UsersSeeder extends Seeder
             'role_id' => 2,
             'email' => 'umetnik8@maric.com',
             'password' => bcrypt('umetnik2'),
+            'created_at' => '2018-12-12',
+            'updated_at' => '2018-12-12',
             'slug' => 'umetnik8'
         ]);
 
@@ -89,6 +107,8 @@ class UsersSeeder extends Seeder
             'role_id' => 2,
             'email' => 'umetnik9@maric.com',
             'password' => bcrypt('umetnik2'),
+            'created_at' => '2018-12-12',
+            'updated_at' => '2018-12-12',
             'slug' => 'umetnik9'
         ]);
 
@@ -97,6 +117,8 @@ class UsersSeeder extends Seeder
             'role_id' => 2,
             'email' => 'umetnik10@maric.com',
             'password' => bcrypt('umetnik2'),
+            'created_at' => '2018-12-12',
+            'updated_at' => '2018-12-12',
             'slug' => 'umetnik10'
         ]);
     }
