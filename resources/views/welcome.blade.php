@@ -92,7 +92,9 @@
                     </div>
                     {{--@if(strpos(Route::currentRouteName(),'autori') === false)--}}
                     @if(Route::currentRouteName() != 'login' && Route::currentRouteName() != 'register' && Route::currentRouteName() != 'autori.index')
-                        @include('layouts.index.right_sidebar',['top5' => $topPosters])
+                        @if(isset($topPosters))
+                            @include('layouts.index.right_sidebar',['top5' => $topPosters])
+                        @endif
                     @endif
                 </div>
             </div>
