@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="{{asset('aruna/fileupload/css/jquery.fileupload-ui.css')}}">
     <link rel="stylesheet" href="{{asset('aruna/css/jquery.tagsinput.css')}}">
     <link rel="stylesheet" href="{{asset('aruna/css/style.css')}}">
+
+    @yield('css')
+
     <style>
         /* The Modal (background) */
         .modal {
@@ -151,6 +154,8 @@
     <script src="{{asset('aruna/js/jquery.lazyload.min.js')}}"></script>
 </div>
 
+@yield('javascript')
+
 <script>
         function myFunction(val) {
             var test = val.match(/v\=(.*)\&/)[1];
@@ -250,5 +255,6 @@
     }
 
 </script>
+
 </body>
 </html>

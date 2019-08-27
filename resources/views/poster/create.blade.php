@@ -1,5 +1,12 @@
 @extends('welcome')
+@section('css')
+<style>
+   #picturePreview {
+       margin-top: 20px;
+   }
 
+</style>
+@stop
 @section('content')
     @include('layouts.flash_message')
 
@@ -31,6 +38,7 @@
                     @endif
                 </div>
             </div>
+
             <aside>
                 <div class="outer">
                     <div class="inner">
@@ -53,9 +61,35 @@
                         </select>
                     </div>
                 </div>
+                <div class="imgPreview">
+                    <img id="picturePreview" src="#" style="display: none">
+                </div>
             </aside>
         </div>
         <button type="submit" class="btn btn-primary" style="margin-top: 2rem">Submit</button>
     </form>
 
 @endsection
+
+@section('javascript')
+    <script>
+        $(document).ready(function () {
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        $('#picturePreview').attr('src', e.target.result);
+                        $('#picturePreview').css('display','');
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("#fileToUpload").change(function() {
+                readURL(this);
+            });
+        })
+    </script>
+@stop

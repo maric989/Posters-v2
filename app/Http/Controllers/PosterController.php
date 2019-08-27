@@ -89,13 +89,13 @@ class PosterController extends Controller
         ]);
     }
 
+
     /**
      * @param StorePosterRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StorePosterRequest $request)
     {
-        dd($request->tags);
         $poster = new Poster();
 
         $tags = explode(',',$request->tags);
