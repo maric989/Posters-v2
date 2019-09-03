@@ -19,7 +19,7 @@
                     <strong style="color: red">{{ $errors->first('title') }}</strong>
                     </span>
                 @endif
-                <textarea class="form-control" rows="3" placeholder="Post title" name="title"></textarea>
+                <textarea class="form-control" rows="3" placeholder="Post title" name="title" id="title"></textarea>
                 <div class="upload-wrap">
                                  <span class="btn btn-success fileinput-button">
                                      <span class="purple">DODAJ POSTER</span><br/>
@@ -43,7 +43,7 @@
                 <div class="outer">
                     <div class="inner">
                         <div class="custom-checkbox">
-                            <input type="checkbox" value="check1" name="check" id="check16" checked/>
+                            <input type="checkbox" value="check1" name="check" id="check16"/>
                             <label for="check16">NSFW</label>
                         </div>
                     </div>
@@ -61,8 +61,11 @@
                         </select>
                     </div>
                 </div>
-                <div class="imgPreview">
-                    <img id="picturePreview" src="#" style="display: none">
+                <div>
+                    <h2 id="previewText"></h2>
+                    <div class="imgPreview">
+                        <img id="picturePreview" src="#" style="display: none">
+                    </div>
                 </div>
             </aside>
         </div>
@@ -89,6 +92,9 @@
 
             $("#fileToUpload").change(function() {
                 readURL(this);
+            });
+            $("#title").keyup(function(){
+                $('#previewText').text(this.value);
             });
         })
     </script>
