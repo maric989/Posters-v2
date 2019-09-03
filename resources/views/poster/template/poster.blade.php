@@ -29,7 +29,7 @@
                     {{--<i class="icon-calendar" style="height:55px"></i> --}}
                     {{$poster->created_date}}
                 </div>
-                <div class="count">{{$poster->likes->pluck('up')->sum() - $poster->likes->pluck('down')->sum()}}</div>
+                <div class="count" id="count_{{$poster->id}}">{{$poster->likes->pluck('up')->sum() - $poster->likes->pluck('down')->sum()}}</div>
 
                 <div class="author-bar">
                     {{--<i class="icon-user"></i>--}}

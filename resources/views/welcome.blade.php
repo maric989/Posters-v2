@@ -167,16 +167,31 @@
 
 <script>
     $(document).ready(function () {
-        // $('.like').on('click',function () {
-        //     var like = this;
-        //     console.log($('.like').data("value"));
-        // });
         $('.dislike').on('click',function () {
-            console.log($('.dislike').data("value"));
+            var poster_id = $(this).parent().children('.poster_id').val();
+            var score = $('#count_'+poster_id).html();
+            var post = $('#like_down_'+poster_id);
+
+            $.ajax({
+                type:'POST',
+                url:"{{ url('/poster/downvote') }}",
+                data:{
+                    "_token": "{{ csrf_token() }}",
+                    "poster_id": poster_id
+                },
+                success:function(data){
+                    console.log(data)
+                    var id = data.poster_id;
+                    $('#like_down_'+id).css('background-color', 'blue');
+                    $('#count_'+id).text(parseInt(score)-1);
+                    $('#like_up_'+id).fadeOut('slow', function(){});
+                    $('#like_down_'+id).fadeOut( "slow", function(){});
+                }
+            });
         });
         $('.like').on('click',function (e) {
             var poster_id = $(this).parent().children('.poster_id').val();
-            var score = $('.count').html();
+            var score = $('#count_'+poster_id).html();
             var post = $('#like_up_'+poster_id);
             // console.log(post);
             $.ajax({
@@ -187,9 +202,10 @@
                     "poster_id": poster_id
                 },
                 success:function(data){
+                    console.log(data)
                     var id = data.poster_id;
                     $('#like_up_'+id).css('background-color', 'blue');
-                    $('.count').text(parseInt(score)+1);
+                    $('#count_'+id).text(parseInt(score)+1);
                     $('#like_up_'+id).fadeOut('slow', function(){});
                     $('#like_down_'+id).fadeOut( "slow", function(){});
                 }

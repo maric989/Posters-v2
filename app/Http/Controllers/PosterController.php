@@ -262,9 +262,7 @@ class PosterController extends Controller
         $down = $poster->likes()->where('down',1)->count();
         $sum = $up - $down;
         $data = [
-            'up' => $up,
-            'down' => $down,
-            'sum' => $sum
+            'poster_id' => $poster->id
         ];
         return response()->json($data);
     }
