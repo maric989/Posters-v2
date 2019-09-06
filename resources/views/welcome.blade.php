@@ -169,7 +169,8 @@
     $(document).ready(function () {
         $('.dislike').on('click',function () {
             var poster_id = $(this).parent().children('.poster_id').val();
-            var score = $('#count_'+poster_id).html();
+            var score = $('#count_'+poster_id).text();
+            console.log(score);
             var post = $('#like_down_'+poster_id);
 
             $.ajax({

@@ -32,18 +32,9 @@
                 <div class="count" id="count_{{$poster->id}}">{{$poster->likes->pluck('up')->sum() - $poster->likes->pluck('down')->sum()}}</div>
 
                 <div class="author-bar">
-                    {{--<i class="icon-user"></i>--}}
                    <p>{{$poster->user->name}}</p>
-{{--                      <h3>{{route('user.profile',$poster->user->slug)}}">{{$poster->user->name}}</h3>--}}
                 </div>
-                {{--<div class="count">--}}
-                    {{--<a href="{{route('single.poster',[$poster->slug,$poster->id])}}">--}}
-                        {{--<i class="icon-comments"></i>--}}
 
-                        {{--{{$comments->where('post_id',$poster->id)->where('comm_type','App\Poster')->count()}}--}}
-                    {{--</a>--}}
-
-                {{--</div>--}}
 
             </div>
             <div class="social-icons">

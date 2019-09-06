@@ -21,7 +21,7 @@
                 @endif
                 <textarea class="form-control" rows="3" placeholder="Post title" name="title" id="title"></textarea>
                 <div class="upload-wrap">
-                                 <span class="btn btn-success fileinput-button">
+                                 <span class="btn btn-success fileinput-button" style="width: 100%">
                                      <span class="purple">DODAJ POSTER</span><br/>
                                      <span></span><br/><br/>
                                      <span>PNG, GIF ili JPG samo. <br/> Max Velicina fajla je 5MB.</span>
