@@ -19,7 +19,7 @@
                     <strong style="color: red">{{ $errors->first('title') }}</strong>
                     </span>
                 @endif
-                <textarea class="form-control" rows="3" placeholder="Post title" name="title" id="title"></textarea>
+                <textarea class="form-control" rows="3" placeholder="Ime Postera" name="title" id="title"></textarea>
                 <div class="upload-wrap">
                                  <span class="btn btn-success fileinput-button" style="width: 100%">
                                      <span class="purple">DODAJ POSTER</span><br/>

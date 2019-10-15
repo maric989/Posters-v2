@@ -70,8 +70,8 @@ Route::group(['prefix' => 'definicije','middleware' => 'def-enabled'],function (
 Route::post('/comment','CommentController@store')->name('add_comment');
 Route::post('/poster/upvote','PosterController@upvote')->name('upvote_poster')->middleware('is-logged');
 Route::post('/poster/downvote','PosterController@downvote')->name('downvote_poster')->middleware('is-logged');
-Route::post('/comment/upvote','CommentController@like')->name('downvote_poster')->middleware('is-logged');
-Route::post('/comment/downvote','CommentController@dislike')->name('downvote_poster')->middleware('is-logged');
+Route::post('/comment/upvote','CommentController@like')->name('upvote_comment')->middleware('is-logged');
+Route::post('/comment/downvote','CommentController@dislike')->name('downvote_comment')->middleware('is-logged');
 
 Route::get('/autori','AuthorsController@index')->name('autori.index');
 Route::post('/coverPhoto','AuthorsController@coverImg')->name('change.cover');

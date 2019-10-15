@@ -1,5 +1,39 @@
 @extends('welcome')
 
+@section('css')
+<style>
+    .like-plus{
+        font-size: 30px;
+        color: green;
+        font-weight: bold;
+    }
+    .like-minus{
+        font-size: 30px;
+        color: red;
+        font-weight: bold;
+    }
+    .comment-user-info{
+        border-bottom: 1px solid blueviolet;
+        padding: 0;
+    }
+    .comment-likes{
+        text-align: right;
+        margin-top: -20px;
+    }
+    .comment-creator-name{
+        padding-left: 0;
+    }
+    .message{
+        padding: 10px;
+    }
+    .user-liked{
+        text-align: right;
+        margin-top: -20px;
+        display: none;
+    }
+</style>
+@endsection
+
 @section('content')
 
     <div class="main-wrap">
@@ -21,7 +55,7 @@
                 <button class="btn btn-primary custom-button pull-right">Komentari</button>
                 <div class="text">
                     <ul class="nav nav-tabs" id="myTab">
-                        <li class="active"><a href="#normalComments">{{$comments->count()}} Komentar</a></li>
+                        <li class="active"><a href="#normalComments">{{$comments->count()}}  @if($comments->count() == 1)Komentar @else Komentara @endif</a></li>
                         {{--<li><a href="#facebookComments">Facebook comments</a></li>--}}
                     </ul>
                 </div>
@@ -36,29 +70,7 @@
                                         <figure>
                                             <img src="{{(!empty($poster->user->profile_photo))? $poster->user->profile_photo : config('settings.default_profile_image')}}" alt=""/>
                                         </figure>
-                                        <div class="comment-text">
-                                            {{--<span class="counter">01</span>--}}
-
-                                            <h3><a href="#">{{$comment->user->name}}</a></h3>
-                                            @if (!$comment->isUserLikedOrDisliked(Auth::user()->id))
-                                                <div class="like-box">
-                                                    <div class="like_comment" data-id="{{$comment->id}}"><i class="icon-like"></i> {{$comment->CommentLikes}}</div>
-                                                    <div class="dislike_comment" data-id="{{$comment->id}}"><i class="icon-dislike"></i> {{$comment->CommentDislikes}}</div>
-                                                </div>
-                                            @else
-                                                <div class="like-box">
-                                                    <div><i class="icon-like"></i> {{$comment->CommentLikes}}</div>
-                                                    <div><i class="icon-dislike"></i> {{$comment->CommentDislikes}}</div>
-                                                </div>
-                                            @endif
-                                            <hr/>
-                                            <div class="message">
-                                                <p>
-                                                    {{$comment->body}}
-                                                </p>
-                                            </div>
-
-                                        </div>
+                                        @include('poster.template._comment', ['comment' => $comment])
                                     </div>
                                 @endforeach
                             </li>
@@ -77,7 +89,7 @@
                             </div>
                         </form>
                     @else
-                        <textarea class="form-control" rows="10" name="body"> Morate biti prijavljeni da bi ostavili komentar
+                        <textarea class="form-control" rows="10" name="body" readonly> Morate biti prijavljeni da bi ostavili komentar
                         </textarea>
                         <a href="{{route('login')}}" type="submit"  class="btn btn-primary btn-lg custom-button">Login</a>
                         <a href="{{route('register')}}" type="submit"  class="btn btn-primary btn-lg custom-button">Register</a>
@@ -96,11 +108,9 @@
 @section('javascript')
 <script>
     $(document).ready(function () {
-        $('.like_comment').on('click',function () {
-            var liked_id = $('.like_comment').attr('data-id');
-            var score = $('.like_comment').html();
-            console.log(score)
-
+        //Like comment
+        $('.logged-like').on('click',function () {
+            var liked_id = $('.logged-like').data('id');
             $.ajax({
                 type:'POST',
                 url:"{{ url('/comment/upvote') }}",
@@ -109,27 +119,25 @@
                     "comment_id": liked_id
                 },
                 success:function(data){
-                    // $('.like-box').css('display','none');
-                    $('.like_comment i').text(parseInt(score)-1);
-
+                    $('#comment-'+liked_id).replaceWith("<p style=' text-align: right;margin-top: -20px;'> Hvala sto ste glasali </p>");
+                }
+            });        });
+        //Dislike comment
+        $('.logged-dislike').on('click',function () {
+            var disliked_id = $('.logged-dislike').data('id');
+            $.ajax({
+                type:'POST',
+                url:"{{ url('/comment/downvote') }}",
+                data:{
+                    "_token": "{{ csrf_token() }}",
+                    "comment_id": disliked_id
+                },
+                success:function(data) {
+                    console.log('.comment-'+disliked_id);
+                    $('#comment-'+disliked_id).replaceWith("<p style=' text-align: right;margin-top: -20px;'> Hvala sto ste glasali </p>");
                 }
             });
-        });
-
-        $('.dislike_comment').on('click',function () {
-            var disliked_id = $('.dislike_comment').attr('data-id');
-                $.ajax({
-                    type:'POST',
-                    url:"{{ url('/comment/downvote') }}",
-                    data:{
-                        "_token": "{{ csrf_token() }}",
-                        "comment_id": disliked_id
-                    },
-                    success:function(data){
-                        $('.like-box').css('display','none');
-                    }
-                });
-        });
+        })
     })
 </script>
 @endsection
