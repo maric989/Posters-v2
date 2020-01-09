@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{asset('aruna/fileupload/css/jquery.fileupload-ui.css')}}">
     <link rel="stylesheet" href="{{asset('aruna/css/jquery.tagsinput.css')}}">
     <link rel="stylesheet" href="{{asset('aruna/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('style.css')}}">
 
     @yield('css')
 

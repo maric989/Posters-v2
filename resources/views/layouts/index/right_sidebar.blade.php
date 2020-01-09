@@ -44,7 +44,7 @@
             <div class="joker">
                 <a href="{{url('user/'.$topAuthor->slug)}}">
                     <figure>
-                        <img src="{{(empty($topAuthor->profile_photo)? env('DEFAULT_PROFILE_IMG_LINK') : $topAuthor->profile_photo)}}" alt=""/>
+                        <img class="top-autor-profile-img" src="{{(empty($topAuthor->profile_photo)? env('DEFAULT_PROFILE_IMG_LINK') : $topAuthor->profile_photo)}}" alt=""/>
                     </figure>
                 </a>
                 <div class="text">
