@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class Poster extends Model
@@ -86,6 +87,10 @@ class Poster extends Model
 
     public static function getUserPosterLikes($user_id)
     {
+        if(!Auth::user()){
+            return false;
+        }
+
         $posters_id = Poster::where('user_id',$user_id)->pluck('id')->toArray();
 
         $result = [];
@@ -96,11 +101,16 @@ class Poster extends Model
                 ->pluck('up')->sum();
         }
         $sum = array_sum($result);
+
         return $sum;
     }
 
     public static function getUserPosterDislikes($user_id)
     {
+        if(!Auth::user()){
+            return false;
+        }
+
         $posters_id = Poster::where('user_id',$user_id)->pluck('id')->toArray();
 
         $result = [];

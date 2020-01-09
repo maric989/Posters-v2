@@ -315,6 +315,7 @@ class PosterController extends Controller
      */
     public function fresh()
     {
+        dd((new Poster())->getFresh());
         $freshConfig = $this->loadPosterLikesConfig('fresh');
         $posters = new \App\Poster();
         $ids = [];
