@@ -45,7 +45,7 @@ class PostersSummary extends Model
         $imploded_posters_ids = implode(',',$posters_ids);
 
         $posters = Poster::whereIn('id',$posters_ids)
-            ->orderByRaw("FIELD(id, $imploded_posters_ids)")
+            ->orderByRaw("FIELD('id', '$imploded_posters_ids')")
             ->get();
 
         return $posters;
