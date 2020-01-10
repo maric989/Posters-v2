@@ -124,29 +124,6 @@ class Poster extends Model
         return $sum;
     }
 
-
-    public function getHighestRankedPoster($number)
-    {
-        try {
-            $ids = Poster::all()->pluck('id');
-
-            foreach ($ids as $id) {
-                $res[$id] = $this->getPosterLikes($id);
-            }
-            arsort($res);
-
-            $top_fives = array_slice($res, 0, $number, true);
-
-            foreach ($top_fives as $id => $likes) {
-                $posters[$id] = Poster::find($id);
-            }
-            return $posters;
-        }catch (\Exception $e){
-            return $e;
-        }
-
-    }
-
     public function getCreatedDateAttribute()
     {
         return $this->created_at->format('d-m-y');

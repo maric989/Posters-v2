@@ -6,11 +6,7 @@
             <div class="pull-left">
                 {{--<div class="date"><i class="icon-date"></i> {{$poster->created_at->diffForHumans()}}</div>--}}
                 <div class="user">
-                    @if(!empty($poster->user->profile_photo))
-                        <img src="{{$poster->user->profile_photo}}" class="user-poster-profile">
-                    @else
-                        <i class="icon-user"></i>
-                    @endif
+                    <img src="{{$poster->user->profilePhotoLink}}" class="user-poster-profile" style="width: 30px;height: 30px">
                     <a href="{{route('user.profile',$poster->user->slug)}}">{{$poster->user->name}}</a>
                 </div>
                 <div class="comments"><i class="icon-comments"></i> <a href="{{route('single.poster',[$poster->slug,$poster->id])}}">{{$poster->countComments()}}</a></div>

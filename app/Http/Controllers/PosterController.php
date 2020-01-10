@@ -9,6 +9,7 @@ use App\ImageUploader;
 use App\Like;
 use App\PostCategory;
 use App\Poster;
+use App\PostersSummary;
 use App\Tag;
 use App\User;
 use Carbon\Carbon;
@@ -34,7 +35,7 @@ class PosterController extends Controller
 
         //Count their likes
         foreach ($posters as $poster){
-            if ($poster->getPosterLikes($poster->id) > $hotConfig['min']){
+            if ((new PostersSummary())->getPosterLikes($poster->id) > $hotConfig['min']){
                 $ids[] = $poster->id;
             };
         }
@@ -47,7 +48,7 @@ class PosterController extends Controller
         //Get Tags
         $tags = Tag::getMostUsedTags();
 
-        $topPosters = (new Poster)->getHighestRankedPoster(5);
+        $topPosters = (new PostersSummary())->getHighestRatedPosters(5);
         if (empty($topPosters)){
             $topPosters = [];
         }
@@ -286,7 +287,7 @@ class PosterController extends Controller
 
         //Count their likes
         foreach ($posters as $poster){
-            if ($poster->getPosterLikes($poster->id) >= $trendingConfig['min'] && $poster->getPosterLikes($poster->id) <= $trendingConfig['max']){
+            if ((new PostersSummary())->getPosterLikes($poster->id) >= $trendingConfig['min'] && $poster->getPosterLikes($poster->id) <= $trendingConfig['max']){
                 $ids[] = $poster->id;
             };
         }
@@ -296,7 +297,7 @@ class PosterController extends Controller
 
         $comments = Comment::all();
         $user = Auth::user();
-        $topPosters = (new Poster)->getHighestRankedPoster(5);
+        $topPosters = (new PostersSummary())->getHighestRatedPosters(5);
         if (empty($topPosters)){
             $topPosters = [];
         }
@@ -315,21 +316,20 @@ class PosterController extends Controller
      */
     public function fresh()
     {
-        dd((new Poster())->getFresh());
         $freshConfig = $this->loadPosterLikesConfig('fresh');
         $posters = new \App\Poster();
         $ids = [];
 
         //Count their likes
         foreach ($posters->all() as $poster){
-            if ($poster->getPosterLikes($poster->id) <= $freshConfig['max']){
+            if ((new PostersSummary())->getPosterLikes($poster->id) <= $freshConfig['max']){
                 $ids[] = $poster->id;
             };
         }
 
         //Get Posters with more then HOT_LIKES_MIN
         $posters = $posters->whereIn('id',$ids)->orderBy('created_at','DESC')->paginate();
-        $topPosters = (new Poster)->getHighestRankedPoster(5);
+        $topPosters = (new PostersSummary())->getHighestRatedPosters(5);
         if (empty($topPosters)){
             $topPosters = [];
         }

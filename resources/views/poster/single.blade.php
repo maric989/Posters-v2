@@ -68,7 +68,7 @@
                                 @foreach($comments as $comment)
                                     <div class="comment">
                                         <figure>
-                                            <img src="{{(!empty($poster->user->profile_photo))? $poster->user->profile_photo : config('settings.default_profile_image')}}" alt=""/>
+                                            <img src="{{ $poster->user->profilePhotoLink }}" alt=""/>
                                         </figure>
                                         @include('poster.template._comment', ['comment' => $comment])
                                     </div>

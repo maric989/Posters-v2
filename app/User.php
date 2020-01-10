@@ -145,6 +145,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * @return mixed
+     * @throws \Exception
      */
     public function getTopAuthor()
     {
@@ -189,5 +190,14 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getJoinedAtAttribute()
     {
         return $this->created_at->format('d-m-Y');
+    }
+
+    public function getProfilePhotoLinkAttribute()
+    {
+        $default_image = config('settings.default_profile_image');
+        if (isset($this->profile_photo) && !empty($this->profile_photo)){
+            return $this->profile_photo;
+        }
+        return $default_image;
     }
 }
