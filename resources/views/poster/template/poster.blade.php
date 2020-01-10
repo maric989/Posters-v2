@@ -32,7 +32,7 @@
                     {{--<i class="icon-calendar" style="height:55px"></i> --}}
                     {{$poster->created_date}}
                 </div>
-                <div class="count" id="count_{{$poster->id}}">{{$poster->likes->pluck('up')->sum() - $poster->likes->pluck('down')->sum()}}</div>
+                <div class="count" id="count_{{$poster->id}}">{{ (new \App\Models\Poster\PostersSummary())->getRating($poster->id) }}</div>
 
                 <div class="author-bar">
                    <p>{{$poster->user->name}}</p>

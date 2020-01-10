@@ -3,6 +3,7 @@
 namespace App\Models\User;
 
 use App\Definition;
+use App\Like;
 use App\Models\Comment\Comment;
 use App\Models\Poster\Poster;
 use Illuminate\Notifications\Notifiable;
@@ -112,17 +113,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isPostLiked($post_id,$user_id)
     {
-
-        $liked = DB::table('likes')
-            ->select('id')
-            ->where('likeable_id','=',$post_id)
-            ->where('user_id','=',$user_id)
-            ->where('likeable_type','App\Poster')
-            ->get();
-
-        //TODO ovde iskesiraj $liked ako je true da ne ide do baze uvek
-        return ($liked->isEmpty()) ? false : true;
-
+        return Like::where('user_id',$user_id)->where('likeable_id',$post_id)->where('likeable_type','App\Models\Poster\Poster')->count();
     }
 
     public function sortedAuthors()

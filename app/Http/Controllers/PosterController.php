@@ -234,7 +234,10 @@ class PosterController extends Controller
         $data = [
             'poster_id' => $poster->id
         ];
-        Log::info('ssss',$data);
+
+        event(new \App\Events\PosterReaction($poster->id, 'like'));
+
+
         return response()->json($data);
 
     }
@@ -267,6 +270,10 @@ class PosterController extends Controller
         $data = [
             'poster_id' => $poster->id
         ];
+
+        event(new \App\Events\PosterReaction($poster->id, 'dislike'));
+
+
         return response()->json($data);
     }
 
@@ -319,7 +326,7 @@ class PosterController extends Controller
     public function fresh()
     {
         $freshConfig = $this->loadPosterLikesConfig('fresh');
-        $posters = new \App\Poster();
+        $posters = new Poster();
         $ids = [];
 
         //Count their likes

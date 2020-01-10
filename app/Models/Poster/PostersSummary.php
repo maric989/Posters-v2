@@ -38,6 +38,7 @@ class PostersSummary extends Model
         return $rating->rating;
     }
 
+
     public function getHighestRatedPosters($number)
     {
         $posters_ids = $this->orderBy('rating','desc')->take($number)->pluck('poster_id')->toArray();
