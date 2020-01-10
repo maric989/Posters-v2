@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Comment;
+use App\Models\Comment\Comment;
 use App\Definition;
 use App\Http\Requests\StoreDefinitionRequest;
 use App\Like;
 use App\Tag;
-use App\User;
+use App\Models\User\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;

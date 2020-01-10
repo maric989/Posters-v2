@@ -51,7 +51,7 @@
     </div>
     <div class="article-content">
         <figure>
-            <div class="corner-tag green"><a href="category.html">Gingerfun</a></div>
+{{--            <div class="corner-tag green"><a href="category.html">Gingerfun</a></div>--}}
             <img class="lazy" data-original="{{$poster->image}}" alt=""/>
         </figure>
     </div>

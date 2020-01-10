@@ -1,10 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models\Poster;
 
+use App\Like;
+use App\Models\Comment\Comment;
+use App\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class Poster extends Model
 {

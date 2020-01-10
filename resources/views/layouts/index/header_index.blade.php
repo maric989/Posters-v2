@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default" role="navigation" style="background-color: black">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
             <span class="sr-only">Toggle navigation</span>
@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
             <li class="active">
-                <a href="{{url('/')}}" class="dropdown-toggle" data-toggle="dropdown">Posteri <b class="caret"></b></a>
+                <a href="{{url('/')}}" class="dropdown-toggle" style="background-color: black" data-toggle="dropdown">Posteri <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href="{{url('/')}}">Top</a></li>
                     <li><a href="{{route('poster.trending')}}">Trending</a></li>
@@ -61,7 +61,7 @@
         </ul>
     </div>
     <div class="right-container">
-        <div class="user-box">
+        <div class="user-box" style="background-color: black">
                 @if(Auth::user())
                     <div class="user-box-image">
                         <img src="{{(!is_null(Auth::user()->profile_photo))? Auth::user()->profile_photo : asset('aruna/img/user-box.png')}}" alt="" class="img-bordered"/>

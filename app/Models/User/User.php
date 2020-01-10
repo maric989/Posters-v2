@@ -1,7 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models\User;
 
+use App\Definition;
+use App\Models\Comment\Comment;
+use App\Models\Poster\Poster;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -177,9 +180,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $posterUp =   Poster::getUserPosterLikes($this->id);
         $posterDown = Poster::getUserPosterDislikes($this->id);
-        $definitionUp = Definition::getUserDefinitionLikes($this->id);
-        $definitionDown = Definition::getUserDefinitionDislikes($this->id);
-
+//        $definitionUp = Definition::getUserDefinitionLikes($this->id);
+//        $definitionDown = Definition::getUserDefinitionDislikes($this->id);
+        $definitionUp = 0;
+        $definitionDown = 0;
         $ups = $posterUp + $definitionUp;
         $downs = $posterDown + $definitionDown;
         $sum = $ups - $downs;

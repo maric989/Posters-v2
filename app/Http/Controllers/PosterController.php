@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\Comment;
+use App\Models\Category;
+use App\Models\Comment\Comment;
 use App\Http\Requests\StorePosterRequest;
 use App\ImageUploader;
 use App\Like;
-use App\PostCategory;
-use App\Poster;
-use App\PostersSummary;
+use App\Models\Poster\PostCategory;
+use App\Models\Poster\Poster;
+use App\Models\Poster\PostersSummary;
 use App\Tag;
-use App\User;
+use App\Models\User\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -287,7 +287,7 @@ class PosterController extends Controller
 
         //Count their likes
         foreach ($posters as $poster){
-            if ((new PostersSummary())->getPosterLikes($poster->id) >= $trendingConfig['min'] && $poster->getPosterLikes($poster->id) <= $trendingConfig['max']){
+            if ((new PostersSummary())->getPosterLikes($poster->id) >= $trendingConfig['min'] && (new PostersSummary())->getPosterLikes($poster->id) <= $trendingConfig['max']){
                 $ids[] = $poster->id;
             };
         }

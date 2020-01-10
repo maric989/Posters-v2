@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Comment;
+use App\Models\Comment\Comment;
 use App\Http\Requests\StoreCommentRequest;
 use App\Like;
 use Illuminate\Http\Request;

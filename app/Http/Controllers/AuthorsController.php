@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Definition;
 use App\Poster;
-use App\User;
+use App\Models\User\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 

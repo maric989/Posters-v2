@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Comment;
+use App\Models\Comment\Comment;
 use App\Poster;
 use App\Tag;
 use Illuminate\Http\Request;
@@ -30,7 +30,7 @@ class TagController extends Controller
         $posters = Poster::findMany($ids);
         //Get Comments
         $comments = Comment::all();
-        
+
 
         return view('Tag.tag')->with([
             'tag'       => $tag,

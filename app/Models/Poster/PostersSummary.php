@@ -1,9 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models\Poster;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
 class PostersSummary extends Model
 {
@@ -21,6 +20,9 @@ class PostersSummary extends Model
     public function getPosterLikes($poster_id)
     {
         $likes =  $this->where('poster_id',$poster_id)->select('likes_count')->first();
+        if (empty($likes)){
+            return 0;
+        }
         return $likes->likes_count;
     }
 
