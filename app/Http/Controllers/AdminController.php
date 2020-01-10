@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Definition;
-use App\Poster;
+
+use App\Models\Poster\Poster;
 use App\Models\User\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

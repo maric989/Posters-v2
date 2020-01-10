@@ -123,6 +123,8 @@ class PosterController extends Controller
 
         $poster->save();
 
+        event(new \App\Events\PosterWasUploaded($poster));
+
         $user = User::find(Auth::user()->id);
         if ($user->role_id == 3){
             $user->role_id = 2;

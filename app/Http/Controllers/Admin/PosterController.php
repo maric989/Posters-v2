@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Comment;
+
 use App\Http\Controllers\Controller;
 use App\Like;
-use App\Poster;
+use App\Models\Comment\Comment;
+use App\Models\Poster\Poster;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -58,6 +59,8 @@ class PosterController extends Controller
         $poster = Poster::whereId($id)->first();
         $poster->approved = 1;
         $poster->save();
+
+        event(new \App\Events\PosterApproved($id));
 
         return back()->with('success','Poster je odobren');
     }
