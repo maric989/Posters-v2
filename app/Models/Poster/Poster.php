@@ -5,8 +5,12 @@ namespace App\Models\Poster;
 use App\Like;
 use App\Models\Comment\Comment;
 use App\Models\User\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Poster extends Model
 {
@@ -135,4 +139,24 @@ class Poster extends Model
     {
         return Comment::where('post_id',$this->id)->where('comm_type','App\Poster')->count();
     }
+
+    public static function getApprovedPosters($rating)
+    {
+        $config = config('posters');
+        $likes = $config[$rating]['likes'];
+
+        $fresh_posters_id = PostersSummary::where('rating','<=',$likes['max'])
+            ->where('rating', '>=', $likes['min'])
+            ->pluck('poster_id')
+            ->toArray();
+
+        $fresh_posters = Poster::whereIn('id',$fresh_posters_id)
+            ->orderBy('created_at','DESC')
+            ->paginate(10);
+
+        return $fresh_posters;
+    }
+
+
+
 }

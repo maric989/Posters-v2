@@ -15,3 +15,46 @@ header{
 nav{
     background-color: black!important;
 }
+
+
+#testaaa{
+     background-color: #0a0a0a;
+     height: 22px;
+     width: 22px;
+}
+
+.comment{
+    display: flex;
+}
+
+.comment-content{
+    min-width: 600px;
+    max-width: 600px;
+}
+
+.comment-content p{
+    font-size: 1.2em;
+    padding: 5px;
+}
+
+.comment-content h4 {
+    margin: 0;
+    border-bottom: 1px solid black;
+
+}
+
+.media-left{
+    margin-right: 1em;
+    max-width: 50px;
+    min-width: 50px;
+    max-height: 50px;
+    min-height: 50px;
+}
+
+.comment-actions{
+    background-color: red;
+}
+
+.comment-likes{
+    margin-top: 15px !important;
+}

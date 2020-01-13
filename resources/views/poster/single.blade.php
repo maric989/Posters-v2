@@ -63,18 +63,14 @@
                 <div class="tab-content">
                 <div class="tab-pane active" id="normalComments">
                     <div class="comments-wrap">
-                        <ul>
-                            <li>
-                                @foreach($comments as $comment)
-                                    <div class="comment">
-                                        <figure>
-                                            <img src="{{ $poster->user->profilePhotoLink }}" alt=""/>
-                                        </figure>
-                                        @include('poster.template._comment', ['comment' => $comment])
-                                    </div>
-                                @endforeach
-                            </li>
-                        </ul>
+                        @foreach($comments as $comment)
+                            <div class="comment">
+                                {{--<figure>--}}
+                                    {{--<img src="{{ $poster->user->profilePhotoLink }}" alt=""/>--}}
+                                {{--</figure>--}}
+                                @include('poster.template._comment', ['comment' => $comment])
+                            </div>
+                        @endforeach
                     </div>
                     <h2>Dodaj komentar</h2>
                     <hr/>

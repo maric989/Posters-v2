@@ -48,6 +48,10 @@ class PostersSummary extends Model
             ->orderByRaw("FIELD('id', '$imploded_posters_ids')")
             ->get();
 
+        if (is_null($posters)){
+            $posters = [];
+        }
+
         return $posters;
     }
 }

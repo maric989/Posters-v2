@@ -2,6 +2,9 @@
 
 namespace App\Models\Comment;
 
+use App\Like;
+use App\Models\Poster\Poster;
+use App\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model

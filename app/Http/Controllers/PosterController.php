@@ -27,38 +27,12 @@ class PosterController extends Controller
      */
     public function index()
     {
-        //HOT POSTERS
-        //Get all posters
-        $posters = Poster::all();
-        $hotConfig = $this->loadPosterLikesConfig('hot');
-        $ids = [];
-
-        //Count their likes
-        foreach ($posters as $poster){
-            if ((new PostersSummary())->getPosterLikes($poster->id) > $hotConfig['min']){
-                $ids[] = $poster->id;
-            };
-        }
-        //Get Posters with more then minimum limit
-        $posters = Poster::whereIn('id',$ids)->orderBy('created_at','desc')->paginate();
-
-        //Get Comments
-        $comments = Comment::all();
-
-        //Get Tags
-        $tags = Tag::getMostUsedTags();
+        $posters = Poster::getApprovedPosters('hot');
 
         $topPosters = (new PostersSummary())->getHighestRatedPosters(5);
-        if (empty($topPosters)){
-            $topPosters = [];
-        }
-
 
         return view('user.index')->with([
             'posters'   => $posters,
-            'comments'  => $comments,
-            'user'      => Auth::user(),
-            'tags'      => $tags,
             'topPosters' => $topPosters
         ]);
     }
@@ -290,32 +264,12 @@ class PosterController extends Controller
      */
     public function trending()
     {
-        $trendingConfig = $this->loadPosterLikesConfig('trending');
-        $posters = Poster::all();
-        $ids = [];
+        $posters = Poster::getApprovedPosters('trending');
 
-        //Count their likes
-        foreach ($posters as $poster){
-            if ((new PostersSummary())->getPosterLikes($poster->id) >= $trendingConfig['min'] && (new PostersSummary())->getPosterLikes($poster->id) <= $trendingConfig['max']){
-                $ids[] = $poster->id;
-            };
-        }
-
-        //Get Posters with more then HOT_LIKES_MIN
-        $posters = Poster::whereIn('id',$ids)->orderBy('created_at','DESC')->paginate();
-
-        $comments = Comment::all();
-        $user = Auth::user();
         $topPosters = (new PostersSummary())->getHighestRatedPosters(5);
-        if (empty($topPosters)){
-            $topPosters = [];
-        }
-
 
         return view('poster.trending')->with([
             'posters'    => $posters,
-            'comments'   => $comments,
-            'user'       => $user,
             'topPosters' => $topPosters
         ]);
     }
@@ -325,23 +279,9 @@ class PosterController extends Controller
      */
     public function fresh()
     {
-        $freshConfig = $this->loadPosterLikesConfig('fresh');
-        $posters = new Poster();
-        $ids = [];
+        $posters = Poster::getApprovedPosters('fresh');
 
-        //Count their likes
-        foreach ($posters->all() as $poster){
-            if ((new PostersSummary())->getPosterLikes($poster->id) <= $freshConfig['max']){
-                $ids[] = $poster->id;
-            };
-        }
-
-        //Get Posters with more then HOT_LIKES_MIN
-        $posters = $posters->whereIn('id',$ids)->orderBy('created_at','DESC')->paginate();
         $topPosters = (new PostersSummary())->getHighestRatedPosters(5);
-        if (empty($topPosters)){
-            $topPosters = [];
-        }
 
         return view('poster.fresh')->with([
             'posters'    => $posters,
@@ -358,10 +298,4 @@ class PosterController extends Controller
         return view('search',compact('results','comments'));
     }
 
-    private function loadPosterLikesConfig($type)
-    {
-        $config = config('posters');
-
-        return $config[$type]['likes'];
-    }
 }

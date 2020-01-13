@@ -3,7 +3,8 @@
 return [
     'hot' => [
         'likes' => [
-            'min' => env('HOT_LIKES_MIN',9)
+            'min' => env('HOT_LIKES_MIN',9),
+            'max' => env('HOT_LIKES_MAX',9999999)
         ]
     ],
 

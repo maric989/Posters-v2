@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment\Comment;
-use App\Poster;
+use App\Models\Poster\Poster;
 use App\Tag;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class TagController extends Controller
