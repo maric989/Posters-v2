@@ -41,7 +41,7 @@
 
         <div class="article-infos">
             @if($tagged)
-                <h2>Post tags</h2>
+                <h2>Tagovi</h2>
                 <hr/>
                 <div class="tags">
                     <ul>

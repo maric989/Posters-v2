@@ -6,10 +6,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">
+        <a class="navbar-logo" href="/">
             {{--<img src="{{asset('aruna/img/logo.png')}}" alt="Aruna - Image Sharing, Gag, Meme Theme"/>--}}
             {{--<img src="https://c7.uihere.com/files/557/258/473/rubik-s-cube-3d-free-jigsaw-puzzles-professor-s-cube-cube-thumb.jpg">--}}
-            <p style="color: white;font-weight: 800">Rubik<br>Memes</p>
+            {{--<p style="color: white;font-weight: 800">ED<br>EN</p>--}}
+            <span>ED</span> <br>
+            <span>EN</span>
         </a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

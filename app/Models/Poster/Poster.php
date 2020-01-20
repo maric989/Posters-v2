@@ -151,6 +151,7 @@ class Poster extends Model
             ->toArray();
 
         $fresh_posters = Poster::whereIn('id',$fresh_posters_id)
+            ->where('approved',1)
             ->orderBy('created_at','DESC')
             ->paginate(10);
 

@@ -58,3 +58,18 @@ nav{
 .comment-likes{
     margin-top: 15px !important;
 }
+
+.navbar-logo{
+    float: left;
+    font-size: 20px;
+    padding: 10px;
+    color: white;
+    border-right: 2px solid white;
+    font-weight: bold;
+}
+
+.navbar-logo:hover{
+    text-decoration: none;
+    color: #7f46dd;
+    border-right: 2px solid #7f46dd;
+}
