@@ -30,7 +30,7 @@
                                                 </div>
                                                 <div class="counter-item" style="margin-right: 30px">
                                                     <span class="number">{{$user->getPostersCount() + $user->getDefinitionCount()}}</span><br/>
-                                                    <span class="exp">Postova</span>
+                                                    <span class="exp">Posta</span>
                                                     <span class="number">{{$user->countLikesDiff()}}</span><br/>
                                                     <span class="exp">Likes</span>
                                                 </div>
@@ -40,11 +40,10 @@
                                     </div>
                                 </div>
                             </div>
-
                     </div>
                         {{--Posts--}}
                     <div class="row">
-                        <div class="col-sm-9">
+                        <div class="col-sm-11 offset-sm-2">
                             <div class="main-wrap">
                                 <h1>Postovi od {{$user->name}}</h1>
                                 <div class="separator"></div>
@@ -55,45 +54,6 @@
                                         @include('poster.template.poster')
                                     @endforeach
                                 </div>
-
-
-                                {{--<article class="main-post">--}}
-                                    {{--<div class="article-top">--}}
-                                        {{--<h1><a href="post.html">Joker saying how it is.</a></h1>--}}
-                                        {{--<hr />--}}
-                                        {{--<div class="counters-line">--}}
-                                            {{--<div class="pull-left">--}}
-                                                {{--<div class="date"><i class="icon-date"></i> 23.04</div>--}}
-                                                {{--<div class="user"><i class="icon-user"></i> <a href="profile.html">johnjsu</a></div>--}}
-                                                {{--<div class="comments"><i class="icon-comments"></i> <a href="post.html">320</a></div>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="pull-right">--}}
-                                                {{--<div class="like"><a href="#"><i class="icon-like"></i> 56</a></div>--}}
-                                                {{--<div class="dislike"><a href="#"><i class="icon-dislike"></i> 32</a></div>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                        {{--<div class="buttons-bar">--}}
-                                            {{--<div class="buttons">--}}
-                                                {{--<a href="#" class='repost has-tooltip' data-title="REPOST">Repost</a>--}}
-                                                {{--<a href="#" class='bookmarked has-tooltip' data-title="BOOKMARKED">bookmarked</a>--}}
-                                                {{--<div class="count">2430</div>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="social-icons">--}}
-                                                {{--<a href="javascript:void(0)" data-href="https://www.facebook.com/sharer/sharer.php?u=http://teothemes.com/html/Aruna" class='facebook has-tooltip' data-title="Share on Facebook">facebook</a>--}}
-                                                {{--<a href="javascript:void(0)" data-href="https://twitter.com/intent/tweet?source=tweetbutton&amp;text=Check the best image/meme sharing website!&url=http://teothemes.com/html/Aruna" class='twitter has-tooltip' data-title="Share on Twitter">twitter</a>--}}
-                                                {{--<a href="javascript:void(0)" data-href="https://plus.google.com/share?url=http://teothemes.com/html/Aruna" class='googleplus has-tooltip' data-title="Share on Google +">googleplus</a>--}}
-                                                {{--<a href="mailto:?subject=Check out the best image/meme sharing template!&amp;body=Hey there! Check out the best image/meme sharing template! http://teothemes.com/html/Aruna" class='mail has-tooltip' data-title="Share via Email">mail</a>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="article-content">--}}
-                                        {{--<figure>--}}
-                                            {{--<div class="corner-tag green"><a href="category.html">Gingerfun</a></div>--}}
-                                            {{--<img class="lazy" data-original="img/blog-post01.jpg" alt=""/>--}}
-                                        {{--</figure>--}}
-                                    {{--</div>--}}
-                                {{--</article>--}}
-
                             </div>
                         </div>
                         {{--<aside class="col-sm-3">--}}

@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{asset('aruna/fileupload/css/jquery.fileupload-ui.css')}}">
     <link rel="stylesheet" href="{{asset('aruna/css/jquery.tagsinput.css')}}">
     <link rel="stylesheet" href="{{asset('aruna/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('style.css')}}">
 
     <script src="{{asset('aruna/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js')}}"></script>
     <style>
@@ -80,7 +81,7 @@
 <section id="main" role="main">
     <div class="container">
         <div class="row">
-            <div class="col-sm-9 right-content">
+            <div class="col-sm-12 right-content">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="main-wrap">
@@ -89,7 +90,7 @@
                     </div>
                 </div>
             </div>
-            @include('layouts.index.left_sidebar')
+            {{--@include('layouts.index.left_sidebar')--}}
         </div>
     </div>
 </section>

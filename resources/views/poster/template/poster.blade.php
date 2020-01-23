@@ -32,7 +32,11 @@
                     {{--<i class="icon-calendar" style="height:55px"></i> --}}
                     {{$poster->created_date}}
                 </div>
-                <div class="count" id="count_{{$poster->id}}">{{ (new \App\Models\Poster\PostersSummary())->getRating($poster->id) }}</div>
+
+                <div class="count" id="count_{{$poster->id}}">
+                    <i class="fas fa-star"></i>
+                    {{ (new \App\Models\Poster\PostersSummary())->getRating($poster->id) }}
+                </div>
 
                 <div class="author-bar">
                    <p>{{$poster->user->name}}</p>

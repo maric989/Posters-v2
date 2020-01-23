@@ -67,6 +67,7 @@ class PosterController extends Controller
 
     public function refuse($id)
     {
+        dd($id);
         $poster = Poster::whereId($id)->first();
         $poster->approved = 0;
         $poster->save();

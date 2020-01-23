@@ -73,17 +73,17 @@
                     </div>
                 @else
                     <div id="loginButtons" style="float: left; margin-left: 25px">
-                        <a href="{{url('/login')}}" class="btn btn-success">Prijavi se</a>
+                        <a href="{{url('/login')}}" class="btn btn" style="background-color: #7f46dd; color: white">Prijavi se</a>
                     </div>
                     <div>
-                        <a href="{{url('/register')}}" class="btn btn-warning">Registruj se</a>
+                        <a href="{{url('/register')}}" class="btn btn" style="background-color: #7f46dd; color: white">Registruj se</a>
                     </div>
             @endif
             @if(Auth::user())
                 <div class="drop-down">
                     <div class="counters-line">
-                        <div class="half"><span class="counter">{{Auth::user()->countLikesDiff()}}</span><span class="desc">Lajkovi</span></div>
-                        <div class="half"><span class="counter">{{Auth::user()->posters->count()}}</span><span class="desc">Postovi</span></div>
+                        <div class="half"><span class="counter">{{Auth::user()->countLikesDiff()}}</span><span class="desc">Lajkova</span></div>
+                        <div class="half"><span class="counter">{{Auth::user()->posters->where('approved','1')->count()}}</span><span class="desc">Posta</span></div>
                     </div>
                     <div class="buttons-line">
                         <a href="{{route('user.profile',Auth::user()->slug)}}" class="btn btn-primary btn-block custom-button">Profil</a>

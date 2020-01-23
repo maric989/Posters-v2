@@ -36,7 +36,7 @@
                                 </form>
                                 <form action="{{route('poster.delete',$poster->id)}}" method="post">
                                     {{csrf_field()}}
-                                    <td><button class="btn btn-danger">Delete</button> </td>
+                                    <td><button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button> </td>
                                 </form>
                             </tr>
 

@@ -1,37 +1,7 @@
 @extends('welcome')
 
 @section('css')
-<style>
-    .like-plus{
-        font-size: 30px;
-        color: green;
-        font-weight: bold;
-    }
-    .like-minus{
-        font-size: 30px;
-        color: red;
-        font-weight: bold;
-    }
-    .comment-user-info{
-        border-bottom: 1px solid blueviolet;
-        padding: 0;
-    }
-    .comment-likes{
-        text-align: right;
-        margin-top: -20px;
-    }
-    .comment-creator-name{
-        padding-left: 0;
-    }
-    .message{
-        padding: 10px;
-    }
-    .user-liked{
-        text-align: right;
-        margin-top: -20px;
-        display: none;
-    }
-</style>
+
 @endsection
 
 @section('content')

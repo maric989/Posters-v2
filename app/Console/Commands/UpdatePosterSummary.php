@@ -7,6 +7,7 @@ use Illuminate\Console\Command;
 
 class UpdatePosterSummary extends Command
 {
+
     /**
      * The name and signature of the console command.
      *
@@ -15,8 +16,9 @@ class UpdatePosterSummary extends Command
     protected $signature = 'update:posters:summary {poster_id?}';
 
     protected $like;
+
     /**
-     * The console command description.
+     * Update posters summary table
      *
      * @var string
      */

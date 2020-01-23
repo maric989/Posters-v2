@@ -65,27 +65,85 @@ class PosterController extends Controller
     }
 
 
+    public function store(StorePosterRequest $request,Poster $poster)
+    {
+        $imageUploader = new ImageUploader($request->file('posterImg'));
+        $imageUploader->store();
+        $imageUploader->addTextOnImage('testtest');
+
+        $poster->image   = '/images/'.$imageUploader->name;
+        $poster->title   = $request->title;
+        $poster->user_id = Auth::user()->id;
+        $poster->slug    = str_slug($request->title,'-');
+
+        $poster->save();
+
+        event(new \App\Events\PosterWasUploaded($poster));
+
+        if(!empty($request->tags)) {
+            $tags = explode(',', $request->tags);
+            foreach ($tags as $tag) {
+                $check_tag = Tag::where('name', strtolower($tag))->first();
+                if (empty($check_tag)) {
+                    $new_tag = new Tag();
+                    $new_tag->name = $tag;
+
+                    $new_tag->save();
+                    DB::table('tags_posts')->insert(
+                        ['tag_id' => $new_tag->id,
+                            'post_id' => $poster->id,
+                            'post_type' => 'App\Poster'
+                        ]
+                    );
+                } else {
+                    DB::table('tags_posts')->insert(
+                        ['tag_id' => $check_tag->id,
+                            'post_id' => $poster->id,
+                            'post_type' => 'App\Poster'
+                        ]
+                    );
+                }
+            }
+        }
+
+        $user = User::find(Auth::user()->id);
+        if ($user->role_id == 3){
+            $user->role_id = 2;
+
+            $user->save();
+        }
+
+        return redirect('/')->with('success','Vas Poster mora dobiti odobrenje od moderatora!');
+
+    }
     /**
      * @param StorePosterRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StorePosterRequest $request)
+    public function store2(StorePosterRequest $request)
     {
         $poster = new Poster();
 
-        $tags = explode(',',$request->tags);
-        foreach ($tags as $tag){
-            $check_tag = Tag::where('name',strtolower($tag))->get();
+        $tags = $request->tags;
 
-            if ($check_tag->isEmpty()){
-                $new_tag = new Tag();
-                $new_tag->name = $tag;
+        if (!empty($request->tags)) {
+            $tags = explode(',', $request->tags);
+            foreach ($tags as $tag) {
+                $check_tag = Tag::where('name', strtolower($tag))->get();
 
-                $new_tag->save();
-            }else{
-                continue;
+                if ($check_tag->isEmpty()) {
+                    $new_tag = new Tag();
+                    $new_tag->name = $tag;
+
+                    $new_tag->save();
+
+                } else {
+                    continue;
+                }
             }
         }
+
+
         $imageUploader = new ImageUploader($request->file('posterImg'));
         $imageUploader->store();
         $imageUploader->addTextOnImage('testtest');
@@ -116,9 +174,9 @@ class PosterController extends Controller
             );
         }
 
-        if(isset($request->category)) {
-            (new PostCategory())->storeCategory($poster->id, $request->category);
-        }
+//        if(isset($request->category)) {
+//            (new PostCategory())->storeCategory($poster->id, $request->category);
+//        }
 
         return redirect('/')->with('success','Vas Poster mora dobiti odobrenje od moderatora!');
     }
@@ -163,10 +221,6 @@ class PosterController extends Controller
             $tagged = false;
         }
 
-        if (Auth::user()){
-            $user = Auth::user();
-        }
-
         return view('poster.single')->with([
             'poster'    => $poster,
             'comments'  => $comments,
@@ -190,20 +244,16 @@ class PosterController extends Controller
 
         if ($poster->likes()->where('user_id',$user_id)->count()){
             $poster->likes()->where('user_id',$user_id)->delete();
-
-            $liked = false;
         }else{
             $like = new Like();
             $like->user_id = $user_id;
             $like->up = 1;
             $like->down = 0;
             $poster->likes()->save($like);
-
-            $liked = true;
         }
-        $up = $poster->likes()->where('up',1)->count();
-        $down = $poster->likes()->where('down',1)->count();
-        $sum = $up-$down;
+//        $up = $poster->likes()->where('up',1)->count();
+//        $down = $poster->likes()->where('down',1)->count();
+//        $sum = $up-$down;
 
         $data = [
             'poster_id' => $poster->id
@@ -238,9 +288,9 @@ class PosterController extends Controller
 
             $liked = true;
         }
-        $up = $poster->likes()->where('up',1)->count();
-        $down = $poster->likes()->where('down',1)->count();
-        $sum = $up - $down;
+//        $up = $poster->likes()->where('up',1)->count();
+//        $down = $poster->likes()->where('down',1)->count();
+//        $sum = $up - $down;
         $data = [
             'poster_id' => $poster->id
         ];

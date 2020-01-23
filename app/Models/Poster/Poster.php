@@ -5,12 +5,8 @@ namespace App\Models\Poster;
 use App\Like;
 use App\Models\Comment\Comment;
 use App\Models\User\User;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class Poster extends Model
 {
@@ -139,6 +135,8 @@ class Poster extends Model
     {
         return Comment::where('post_id',$this->id)->where('comm_type','App\Poster')->count();
     }
+
+    // Main Posters Data Function
 
     public static function getApprovedPosters($rating)
     {
